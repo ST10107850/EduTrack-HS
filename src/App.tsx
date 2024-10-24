@@ -1,11 +1,11 @@
+import {Navbar} from "./components/Navbar.jsx";
 
 function App() {
-
   return (
-    <div className="text-blue-800">
-      Edu-Track HS Hackathon Project 1233
+    <div className="bg-primaryColor px-11">
+      <Navbar />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
