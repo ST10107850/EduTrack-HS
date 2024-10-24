@@ -3,7 +3,7 @@ function App() {
 
   return (
     <div className="text-blue-800">
-      Edu-Track HS
+      Edu-Track HS Hackathon Project
     </div>
   )
 }
