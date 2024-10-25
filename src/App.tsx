@@ -1,3 +1,4 @@
+import { Contact } from "./components/Contact";
 import {Navbar} from "./components/Navbar";
 import { Newsletter } from "./components/Newsletter";
 
@@ -6,6 +7,7 @@ function App() {
     <div className="">
       <Navbar />
       <Newsletter/>
+      <Contact/>
     </div>
   );
 }

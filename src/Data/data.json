@@ -1,84 +1,102 @@
 {
-    "schoolNews": [
-        {
-            "id": "1",
-            "image": "https://www.durbanhighschool.co.za/wp-content/uploads/2022/03/U14A-Hockey-e1648474335683.jpg",
-            "date": "2024-10-10",
-            "title": "Annual Sports Day",
-            "schoolName": "Johannesburg High School",
-            "description": "This year’s Sports Day saw students from all grades compete in an array of events, including track races, relay, high jump, and tug-of-war. Parents and staff joined to cheer, creating an energetic atmosphere. The day began with a marching parade and ended with an award ceremony for individual and team achievements. Beyond the competitive events, students enjoyed face painting, snack stands, and a community fair, making it a memorable event that emphasized school unity, teamwork, and a spirit of friendly competition."
-        },
-        {
-            "id": "2",
-            "image": "https://stahla.com/wp-content/uploads/2024/06/art-school-events-1024x683.jpg",
-            "date": "2024-09-15",
-            "title": "Art and Culture Fair",
-            "schoolName": "Johannesburg High School",
-            "description": "The annual Art and Culture Fair brought together students, staff, and families to celebrate creative expression. Artworks from all grades filled the school hall, showcasing painting, sculpture, and digital art. Visitors enjoyed performances by the school’s drama and music clubs, featuring traditional African music, modern dance, and poetry recitals. The fair celebrated the cultural diversity of South Africa, with student-run booths offering dishes, crafts, and traditional stories from various cultural backgrounds. The event inspired unity and pride."
-        },
-        {
-            "id": "3",
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShgZKbernNLdyBZiVoQlsMH5l6bN6ZA9Yb4A&s",
-            "date": "2024-08-30",
-            "title": "Science Fair Extravaganza",
-            "schoolName": "Johannesburg High School",
-            "description": "This year’s Science Fair showcased innovative projects in renewable energy, robotics, and biology, with students presenting work to judges, parents, and peers. A highlight was the robotics competition, where teams competed to program robots through obstacle courses. The projects reflected students' commitment to solving real-world issues such as water conservation and sustainable agriculture. Attendees appreciated the interactive exhibits, which allowed hands-on learning and provided insight into potential future careers in STEM fields."
-        },
-        {
-            "id": "4",
-            "image": "https://www.unionschools.co.za/wp-content/uploads/2022/09/HD-1.jpg",
-            "date": "2024-09-24",
-            "title": "Heritage Day Celebration",
-            "schoolName": "Johannesburg High School",
-            "description": "The Heritage Day event was a vibrant celebration of South Africa’s cultural diversity. Students dressed in traditional attire representing different communities, performing dances and songs that highlight their heritage. Parents contributed by setting up booths with food, art, and crafts unique to their backgrounds. A storytelling segment featured elders narrating folktales. The event ended with a unity walk where students paraded around the campus holding flags from around the world, emphasizing inclusion and respect for diversity."
-        },
-        {
-            "id": "5",
-            "image": "https://www.theglobeandmail.com/resizer/v2/7IC76KO5RNHX5EP2YSBWGWKBNM?auth=82de7f41d43a36f8ac2b7f7d12a62230cc471dba4098f7179dfbf1785d42a775&width=1200&quality=80",
-            "date": "2024-08-01",
-            "title": "Community Volunteer Day",
-            "schoolName": "Johannesburg High School",
-            "description": "Johannesburg High School held a Volunteer Day dedicated to community service, with students participating in activities such as park clean-ups, food bank assistance, and neighborhood beautification projects. Guided by staff, students learned about the importance of giving back, gaining hands-on experience in team-building and responsibility. The day fostered strong bonds within the community, as volunteers also collaborated with local organizations. This event underscored the school’s commitment to cultivating socially responsible young leaders."
-        },
-        {
-            "id": "6",
-            "image": "https://resources.finalsite.net/images/f_auto,q_auto,t_image_size_2/v1682534698/parktudor/xuw6rdi2qm3pjg2sojln/bookdrive2.jpg",
-            "date": "2024-07-20",
-            "title": "Annual Book Drive",
-            "schoolName": "Johannesburg High School",
-            "description": "The Annual Book Drive was a major success, with students, parents, and staff contributing over 1,000 books for children in need. The drive aimed to promote literacy and a love for reading, ensuring underprivileged children have access to educational resources. Students organized the books by reading level, preparing them for distribution to local libraries and schools. The Book Drive included a celebration where students wrote personal notes to go with each book, adding a heartfelt touch and inspiring compassion and empathy."
-        },
-        {
-            "id": "7",
-            "image": "https://images.squarespace-cdn.com/content/v1/552bcd30e4b02ed06b97c76d/75fadee0-390c-42f7-9af8-d1b34367351f/20230615_133719.jpg",
-            "date": "2024-06-05",
-            "title": "Eco-Awareness Week",
-            "schoolName": "Johannesburg High School",
-            "description": "Eco-Awareness Week focused on sustainability, with students participating in tree planting, recycling projects, and workshops on climate change. Each day highlighted different themes like water conservation, wildlife protection, and eco-friendly living. The school invited environmentalists to give talks, providing students insight into global environmental issues. Students also designed posters and performed skits on eco-conscious topics, raising awareness and demonstrating commitment to preserving the planet for future generations."
-        },
-        {
-            "id": "8",
-            "image": "https://resources.finalsite.net/images/f_auto,q_auto,t_image_size_2/v1710351376/tulsaschoolsorg/axsdchwh7quzcjtu50ic/YouthMedicalSummit-14.jpg",
-            "date": "2024-05-15",
-            "title": "Youth Technology Summit",
-            "schoolName": "Johannesburg High School",
-            "description": "The Youth Technology Summit brought together tech-savvy students to explore advances in AI, coding, and robotics. Students presented projects, ranging from apps designed for social impact to drones used in agricultural monitoring. Workshops offered hands-on experience, allowing participants to collaborate on projects in fields like digital media and virtual reality. Experts from local tech firms provided guidance and mentorship, and students left with a deeper understanding of how technology can be used to address societal challenges."
-        },
-        {
-            "id": "9",
-            "image": "https://www.mycomlink.co.za/img/0/908/f236b.jpg",
-            "date": "2024-04-10",
-            "title": "Student Leadership Workshop",
-            "schoolName": "Johannesburg High School",
-            "description": "Johannesburg High School hosted a Student Leadership Workshop, providing student council members with training on communication, organization, and conflict resolution. Through activities like role-playing and team-building exercises, students learned skills essential to effective leadership. Guest speakers included local leaders and alumni, sharing experiences and advice. The workshop’s goal was to empower students with tools to make positive changes in their school and community, fostering a spirit of accountability and dedication among the young leaders."
-        },
-        {
-            "id": "10",
-            "image": "https://image-prod.iol.co.za/16x9/800/?source=https://iol-prod.appspot.com/image/d50a8cb40c18a4070ab9902b26e96365612a8aed/2000&operation=CROP&offset=0x105&resize=2000x1125",
-            "date": "2024-03-18",
-            "title": "National Mathematics Competition",
-            "schoolName": "Johannesburg High School",
-            "description": "The Johannesburg High School excelled in the National Mathematics Competition, with students achieving top ranks in several categories. Competing with schools from across the country, the team demonstrated strong problem-solving skills and dedication. The rigorous competition involved both individual and team challenges, testing mathematical reasoning, logic, and creativity. The students' hard work paid off, as they brought home numerous medals and certificates, inspiring a sense of pride and accomplishment among the entire school community."
-        }
-    ]
+  "schoolNews": [
+    {
+      "id": "1",
+      "image": "https://www.durbanhighschool.co.za/wp-content/uploads/2022/03/U14A-Hockey-e1648474335683.jpg",
+      "date": "2024-10-10",
+      "title": "Annual Sports Day",
+      "schoolName": "Johannesburg Secondary School",
+      "description": "This year’s Sports Day saw students from all grades compete in an array of events, including track races, relay, Secondary jump, and tug-of-war. Parents and staff joined to cheer, creating an energetic atmosphere. The day began with a marching parade and ended with an award ceremony for individual and team achievements. Beyond the competitive events, students enjoyed face painting, snack stands, and a community fair, making it a memorable event that emphasized school unity, teamwork, and a spirit of friendly competition."
+    },
+    {
+      "id": "2",
+      "image": "https://stahla.com/wp-content/uploads/2024/06/art-school-events-1024x683.jpg",
+      "date": "2024-09-15",
+      "title": "Art and Culture Fair",
+      "schoolName": "Johannesburg Secondary School",
+      "description": "The annual Art and Culture Fair brought together students, staff, and families to celebrate creative expression. Artworks from all grades filled the school hall, showcasing painting, sculpture, and digital art. Visitors enjoyed performances by the school’s drama and music clubs, featuring traditional African music, modern dance, and poetry recitals. The fair celebrated the cultural diversity of South Africa, with student-run booths offering dishes, crafts, and traditional stories from various cultural backgrounds. The event inspired unity and pride."
+    },
+    {
+      "id": "3",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShgZKbernNLdyBZiVoQlsMH5l6bN6ZA9Yb4A&s",
+      "date": "2024-08-30",
+      "title": "Science Fair Extravaganza",
+      "schoolName": "Johannesburg Secondary School",
+      "description": "This year’s Science Fair showcased innovative projects in renewable energy, robotics, and biology, with students presenting work to judges, parents, and peers. A Secondarylight was the robotics competition, where teams competed to program robots through obstacle courses. The projects reflected students' commitment to solving real-world issues such as water conservation and sustainable agriculture. Attendees appreciated the interactive exhibits, which allowed hands-on learning and provided insight into potential future careers in STEM fields."
+    },
+    {
+      "id": "4",
+      "image": "https://www.unionschools.co.za/wp-content/uploads/2022/09/HD-1.jpg",
+      "date": "2024-09-24",
+      "title": "Heritage Day Celebration",
+      "schoolName": "Johannesburg Secondary School",
+      "description": "The Heritage Day event was a vibrant celebration of South Africa’s cultural diversity. Students dressed in traditional attire representing different communities, performing dances and songs that Secondarylight their heritage. Parents contributed by setting up booths with food, art, and crafts unique to their backgrounds. A storytelling segment featured elders narrating folktales. The event ended with a unity walk where students paraded around the campus holding flags from around the world, emphasizing inclusion and respect for diversity."
+    },
+    {
+      "id": "5",
+      "image": "https://www.theglobeandmail.com/resizer/v2/7IC76KO5RNHX5EP2YSBWGWKBNM?auth=82de7f41d43a36f8ac2b7f7d12a62230cc471dba4098f7179dfbf1785d42a775&width=1200&quality=80",
+      "date": "2024-08-01",
+      "title": "Community Volunteer Day",
+      "schoolName": "Johannesburg Secondary School",
+      "description": "Johannesburg Secondary School held a Volunteer Day dedicated to community service, with students participating in activities such as park clean-ups, food bank assistance, and neighborhood beautification projects. Guided by staff, students learned about the importance of giving back, gaining hands-on experience in team-building and responsibility. The day fostered strong bonds within the community, as volunteers also collaborated with local organizations. This event underscored the school’s commitment to cultivating socially responsible young leaders."
+    },
+    {
+      "id": "6",
+      "image": "https://resources.finalsite.net/images/f_auto,q_auto,t_image_size_2/v1682534698/parktudor/xuw6rdi2qm3pjg2sojln/bookdrive2.jpg",
+      "date": "2024-07-20",
+      "title": "Annual Book Drive",
+      "schoolName": "Johannesburg Secondary School",
+      "description": "The Annual Book Drive was a major success, with students, parents, and staff contributing over 1,000 books for children in need. The drive aimed to promote literacy and a love for reading, ensuring underprivileged children have access to educational resources. Students organized the books by reading level, preparing them for distribution to local libraries and schools. The Book Drive included a celebration where students wrote personal notes to go with each book, adding a heartfelt touch and inspiring compassion and empathy."
+    },
+    {
+      "id": "7",
+      "image": "https://images.squarespace-cdn.com/content/v1/552bcd30e4b02ed06b97c76d/75fadee0-390c-42f7-9af8-d1b34367351f/20230615_133719.jpg",
+      "date": "2024-06-05",
+      "title": "Eco-Awareness Week",
+      "schoolName": "Johannesburg Secondary School",
+      "description": "Eco-Awareness Week focused on sustainability, with students participating in tree planting, recycling projects, and workshops on climate change. Each day Secondarylighted different themes like water conservation, wildlife protection, and eco-friendly living. The school invited environmentalists to give talks, providing students insight into global environmental issues. Students also designed posters and performed skits on eco-conscious topics, raising awareness and demonstrating commitment to preserving the planet for future generations."
+    },
+    {
+      "id": "8",
+      "image": "https://resources.finalsite.net/images/f_auto,q_auto,t_image_size_2/v1710351376/tulsaschoolsorg/axsdchwh7quzcjtu50ic/YouthMedicalSummit-14.jpg",
+      "date": "2024-05-15",
+      "title": "Youth Technology Summit",
+      "schoolName": "Johannesburg Secondary School",
+      "description": "The Youth Technology Summit brought together tech-savvy students to explore advances in AI, coding, and robotics. Students presented projects, ranging from apps designed for social impact to drones used in agricultural monitoring. Workshops offered hands-on experience, allowing participants to collaborate on projects in fields like digital media and virtual reality. Experts from local tech firms provided guidance and mentorship, and students left with a deeper understanding of how technology can be used to address societal challenges."
+    },
+    {
+      "id": "9",
+      "image": "https://www.mycomlink.co.za/img/0/908/f236b.jpg",
+      "date": "2024-04-10",
+      "title": "Student Leadership Workshop",
+      "schoolName": "Johannesburg Secondary School",
+      "description": "Johannesburg Secondary School hosted a Student Leadership Workshop, providing student council members with training on communication, organization, and conflict resolution. Through activities like role-playing and team-building exercises, students learned skills essential to effective leadership. Guest speakers included local leaders and alumni, sharing experiences and advice. The workshop’s goal was to empower students with tools to make positive changes in their school and community, fostering a spirit of accountability and dedication among the young leaders."
+    },
+    {
+      "id": "10",
+      "image": "https://image-prod.iol.co.za/16x9/800/?source=https://iol-prod.appspot.com/image/d50a8cb40c18a4070ab9902b26e96365612a8aed/2000&operation=CROP&offset=0x105&resize=2000x1125",
+      "date": "2024-03-18",
+      "title": "National Mathematics Competition",
+      "schoolName": "Johannesburg Secondary School",
+      "description": "The Johannesburg Secondary School excelled in the National Mathematics Competition, with students achieving top ranks in several categories. Competing with schools from across the country, the team demonstrated strong problem-solving skills and dedication. The rigorous competition involved both individual and team challenges, testing mathematical reasoning, logic, and creativity. The students' hard work paid off, as they brought home numerous medals and certificates, inspiring a sense of pride and accomplishment among the entire school community."
+    }
+  ],
+  "notifications": [
+    {
+      "id": "10d4",
+      "name": "simphiwe",
+      "surname": "nsundwane",
+      "email": "lungisanijiyane5@gmail.com",
+      "phone": "12345",
+      "message": "dsfghj"
+    },
+    {
+      "id": "bd28",
+      "name": "simphiwe",
+      "surname": "nsundwane",
+      "email": "lungisanijiyane5@gmail.com",
+      "phone": "12345",
+      "message": "qwertuy7i8"
+    }
+  ]
 }
