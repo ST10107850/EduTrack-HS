@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 
 export const ParentDashboard = () => {
-  // Sample data for dropdowns
+  
   const learners = ["Elizabeth Maleke", "John Doe", "Jane Smith"];
   const subjects = ["Math", "Science", "History"];
   const terms = ["Term 1", "Term 2", "Term 3"];
 
-  // Sample data for assignments
+  
   const assignments = [
     { name: "Assignment 1", totalMark: 100, markObtained: 85 },
     { name: "Assignment 2", totalMark: 100, markObtained: 80 },
@@ -56,12 +56,12 @@ export const ParentDashboard = () => {
   }, [assignments]);
 
   return (
-    <div className="relative flex flex-col justify-center items-center h-[90vh] text-gray-800">
-      <h1 className="text-5xl text-secondaryColor mb-16 font-bold">
+    <div className="relative flex flex-col md:my-0 my-12 justify-center items-center md:h-[90vh] text-gray-800">
+      <h1 className="text-5xl mx-7 md:mx-0 text-secondaryColor mb-16 font-bold">
         Welcome {selectedLearner || "Select a Learner"}
       </h1>
 
-      <div className="mb-6 flex space-x-4">
+      <div className="mb-6 flex sm:flex-row flex-col space-x-4">
         <select
           value={selectedLearner || ""}
           onChange={(e) => setSelectedLearner(e.target.value)}
@@ -103,7 +103,7 @@ export const ParentDashboard = () => {
       </div>
 
       {selectedLearner && selectedSubject && selectedTerm && (
-        <div className="grid grid-cols-3 gap-4 mb-8 w-3/4">
+        <div className="grid md:grid-cols-3 grid-cols-1 gap-4 md: mb-8 w-3/4">
           <div className="bg-primaryColor p-4 rounded shadow text-white">
             <h3 className="text-lg font-bold">Subject Details</h3>
             <div className="flex items-center text-xl justify-between">

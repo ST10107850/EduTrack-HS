@@ -20,7 +20,6 @@ export const Newsletter = () => {
       const res = await fetch(apiUrl);
       const data = await res.json();
       console.log("Fetched data: ", data);
-
       setArticles(data);
     } catch (error) {
       console.log("Error fetching data: ", error);
@@ -58,54 +57,51 @@ export const Newsletter = () => {
   };
 
   return (
-    <div className="relative flex flex-col justify-center items-center h-screen text-gray-800">
+    <div className="relative flex flex-col justify-center items-center h-screen text-gray-800 px-4 sm:px-10">
       {articles.length > 0 && (
-        <h1 className="text-5xl text-secondaryColor mb-16 font-bold ">Welcome to {articles[currentIndex].schoolName}</h1>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl text-secondaryColor mb-8 md:mb-16 font-bold text-center">
+          Welcome to {articles[currentIndex].schoolName}
+        </h1>
       )}
       {articles.length > 0 && (
-        <div className="bg-white shadow-md p-6 h-[60vh] w-[70vw] rounded-md flex">
-          <div className="w-1/2 h-auto">
+        <div className="bg-white shadow-md p-4 md:p-6 h-auto md:h-[60vh] w-full max-w-3xl lg:max-w-[70vw] rounded-md flex flex-col md:flex-row space-y-4 md:space-y-0">
+          <div className="w-full md:w-1/2 h-auto flex justify-center items-center">
             <img
-              src={
-                articles[currentIndex].image ||
-                "https://via.placeholder.com/400"
-              }
+              src={articles[currentIndex].image || "https://via.placeholder.com/400"}
               alt="Article"
-              className="w-full h-full rounded-lg"
+              className="w-full h-full max-h-[300px] md:max-h-[60vh] object-cover rounded-lg"
             />
           </div>
-          <div className="w-1/2 flex flex-col justify-center items-start pl-32">
-            <div className="w-full">
-              <p className="text-gray-500 text-sm mb-5">
-                {new Date(articles[currentIndex].date).toLocaleDateString()}
-              </p>
-              <h1 className="text-3xl font-bold mb-10 text-secondaryColor">
-                {articles[currentIndex].title}
-              </h1>
-              <p className="text-lg mb-10">
-                {articles[currentIndex].description.slice(0, 400)}...
-              </p>
-              <button
-                onClick={handleReadMoreClick}
-                className="inline-block bg-primaryColor text-white py-2 px-4 rounded-full hover:bg-secondaryColor-dark transition"
-              >
-                Read More
-              </button>
-            </div>
+          <div className="w-full md:w-1/2 flex flex-col justify-center md:pl-16 md:pr-10">
+            <p className="text-gray-500 text-xs md:text-sm mb-2">
+              {new Date(articles[currentIndex].date).toLocaleDateString()}
+            </p>
+            <h1 className="text-xl md:text-2xl font-bold mb-4 text-secondaryColor truncate">
+              {articles[currentIndex].title}
+            </h1>
+            <p className="text-sm md:text-base mb-4 overflow-hidden">
+              {articles[currentIndex].description.slice(0, 400)}...
+            </p>
+            <button
+              onClick={handleReadMoreClick}
+              className="inline-block bg-primaryColor text-white py-2 px-4 rounded-full hover:bg-secondaryColor-dark transition"
+            >
+              Read More
+            </button>
           </div>
         </div>
       )}
 
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
-          <div className="bg-white rounded-md p-6 w-3/4 md:w-1/2 lg:w-1/3">
-            <h2 className="text-2xl font-bold mb-4 text-secondaryColor">
+          <div className="bg-white rounded-md p-6 w-11/12 sm:w-3/4 lg:w-1/2">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-secondaryColor">
               {articles[currentIndex].title}
             </h2>
-            <p className="text-sm text-gray-500 mb-5">
+            <p className="text-xs sm:text-sm text-gray-500 mb-5">
               {new Date(articles[currentIndex].date).toLocaleDateString()}
             </p>
-            <p className="text-lg mb-6">{articles[currentIndex].description}</p>
+            <p className="text-sm sm:text-base mb-6">{articles[currentIndex].description}</p>
             <button
               onClick={closeModal}
               className="inline-block bg-primaryColor text-white py-2 px-4 rounded-full hover:bg-secondaryColor-dark transition"
