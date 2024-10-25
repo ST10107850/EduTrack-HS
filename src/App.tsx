@@ -1,13 +1,15 @@
-import { Contact } from "./components/Contact";
+// import { Contact } from "./components/Contact";
 import {Navbar} from "./components/Navbar";
-import { Newsletter } from "./components/Newsletter";
+// import { Newsletter } from "./components/Newsletter";
+import { ParentDashboard } from "./components/ParentDashboard";
 
 function App() {
   return (
     <div className="">
       <Navbar />
-      <Newsletter/>
-      <Contact/>
+      {/* <Newsletter/>
+      <Contact/> */}
+      <ParentDashboard/>
     </div>
   );
 }

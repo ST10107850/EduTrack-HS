@@ -7,7 +7,7 @@ export const Navbar = () => {
   const [activeTab, setActiveTab] = useState("home");
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
-  const handleTabClick = (tab) => {
+  const handleTabClick = (tab: React.SetStateAction<string>) => {
     setActiveTab(tab);
   };
 
@@ -55,7 +55,7 @@ export const Navbar = () => {
                 About Us
               </a>
             </li>
-            <li className="hover:rounded-md hover:text-secondaryColor">
+            {/* <li className="hover:rounded-md hover:text-secondaryColor">
               <a
                 href="#"
                 onClick={() => handleTabClick("gallery")}
@@ -67,7 +67,7 @@ export const Navbar = () => {
               >
                 Gallery
               </a>
-            </li>
+            </li> */}
             <li className="hover:rounded-md hover:text-secondaryColor">
               <a
                 href="#"
