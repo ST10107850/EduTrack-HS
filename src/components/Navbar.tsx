@@ -14,7 +14,7 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="shadow-md top-0 right-0 left-0 z-50 transition-colors">
+    <div className="bg-primaryColor shadow-xl top-0 right-0 left-0 z-50 transition-colors px-10">
       <div className="w-full py-4">
         <div className="flex items-center justify-between">
           <div className="text-3xl font-bold text-white">

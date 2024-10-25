@@ -1,9 +1,11 @@
-import {Navbar} from "./components/Navbar.jsx";
+import {Navbar} from "./components/Navbar";
+import { Newsletter } from "./components/Newsletter";
 
 function App() {
   return (
-    <div className="bg-primaryColor px-11">
+    <div className="">
       <Navbar />
+      <Newsletter/>
     </div>
   );
 }
