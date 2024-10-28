@@ -1,3 +1,4 @@
+import { Boards } from "./components/Boards";
 import { Contact } from "./components/Contact";
 import {Navbar} from "./components/Navbar";
 import { Newsletter } from "./components/Newsletter";
@@ -10,8 +11,9 @@ function App() {
       <Navbar />
       <Newsletter/>
       <Contact/> 
-      {/* <ParentDashboard/> */}
+      <ParentDashboard/>
       <TeachersDashboard/>
+      {/* <Boards/> */}
     </div>
   );
 }
