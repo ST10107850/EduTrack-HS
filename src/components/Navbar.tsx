@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BiUserCircle } from "react-icons/bi";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { MdNotificationsNone } from "react-icons/md"; // Import notification icon
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -33,7 +34,7 @@ export const Navbar = () => {
           </div>
 
           {/* Desktop Menu */}
-          <ul className="hidden md:flex text-white space-x-4 items-center  text-xl">
+          <ul className="hidden md:flex text-white space-x-4 items-center text-xl">
             <li className={`hover:rounded-md hover:text-secondaryColor`}>
               <a
                 href="#"
@@ -73,33 +74,25 @@ export const Navbar = () => {
                 Contact Us
               </a>
             </li>
-            {/* Profile Icon with Dropdown */}
-            <li className="relative">
+          </ul>
 
-              <BiUserCircle size={29} onClick={toggleProfileMenu}/>
-              {/* <img
-                src="/path/to/your/image/mainProfile.PNG" // Replace with actual path
-                alt="Profile"
-                className="w-8 h-8 rounded-full cursor-pointer"
-                
-              /> */}
+          {/* Notifications and Profile Icons */}
+          <div className="flex items-center space-x-4 text-white">
+            <MdNotificationsNone size={25} className="cursor-pointer" />
+            <div className="relative">
+              <BiUserCircle size={29} onClick={toggleProfileMenu} className="cursor-pointer" />
               {isProfileMenuOpened && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 text-black">
                   <div className="px-4 py-2 font-bold">Boitshepo Mashamaite</div>
-           
                   <hr className="my-1" />
-                 
-                  
                   <a href="#" className="block px-4 py-2 hover:bg-gray-200">Switch account</a>
                   <a href="#" className="block px-4 py-2 hover:bg-gray-200">Sign out</a>
                   <hr className="my-1" />
-                 
                   <a href="#" className="block px-4 py-2 hover:bg-gray-200">Settings</a>
-
                 </div>
               )}
-            </li>
-          </ul>
+            </div>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
