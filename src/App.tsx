@@ -1,4 +1,4 @@
-import { Boards } from "./components/Boards";
+// import { Boards } from "./components/Boards";
 import { Contact } from "./components/Contact";
 import {Navbar} from "./components/Navbar";
 import { Newsletter } from "./components/Newsletter";
