@@ -1,10 +1,4 @@
 import { useState, useEffect } from "react";
-import data from "../Data/data.json";
-
-type Grade = {
-  gradeId: string,
-  grade: string
-}
 
 export const TeachersDashboard = () => {
   const grade = ["Grade 8", "Grade 9", "Grade 10"];
@@ -22,7 +16,6 @@ export const TeachersDashboard = () => {
   const [selectedGrade, setSelectedGrade] = useState<string | null>(null);
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
-  let totalNumberOfLearners = 0;
 
   const calculatePercentage = (markObtained: number, totalMark: number) => {
     return ((markObtained / totalMark) * 100).toFixed(2);
@@ -34,22 +27,15 @@ export const TeachersDashboard = () => {
     return "Passed With Distinction";
   };
   const calculatePassedCount = () => {
-    return assignments.filter(
-      (assignment) =>
-        calculateStatus(
-          (assignment.markObtained / assignment.totalMark) * 100
-        ) === "Passed"
-    ).length;
+    return assignments.filter(assignment => calculateStatus(assignment.markObtained / assignment.totalMark * 100) === "Passed").length;
   };
-
+  
   const calculateTotalPercentage = () => {
-    const totalObtained = assignments.reduce(
-      (acc, assignment) => acc + assignment.markObtained,
-      0
-    );
+    const totalObtained = assignments.reduce((acc, assignment) => acc + assignment.markObtained, 0);
     const totalMarks = assignments.length * 100;
     return ((totalObtained / totalMarks) * 100).toFixed(2);
   };
+  
 
   // Helper functions for count and percentage calculation
   const calculateCountsAndPercentages = () => {
@@ -58,9 +44,7 @@ export const TeachersDashboard = () => {
       distinction = 0;
 
     assignments.forEach((assignment) => {
-      const percentage = parseFloat(
-        calculatePercentage(assignment.markObtained, assignment.totalMark)
-      );
+      const percentage = parseFloat(calculatePercentage(assignment.markObtained, assignment.totalMark));
       const status = calculateStatus(percentage);
 
       if (status === "Passed") passed++;
@@ -68,7 +52,6 @@ export const TeachersDashboard = () => {
       else if (status === "Passed With Distinction") distinction++;
     });
 
-    totalNumberOfLearners = passed + failed + distinction;
     const total = assignments.length;
     return {
       passed,
@@ -134,10 +117,7 @@ export const TeachersDashboard = () => {
             </option>
           ))}
         </select>
-        <input
-          className="p-2 border rounded text-black"
-          placeholder="Search a Learner"
-        />
+        <input className="p-2 border rounded text-black" placeholder="Search a Learner" />
       </div>
 
       {selectedGrade && (
@@ -160,22 +140,13 @@ export const TeachersDashboard = () => {
             </div>
           </div>
 
-          <div className="bg-[#A0D3E8] p-4 rounded shadow flex flex-col justify-center">
-            <div className="flex items-center justify-between mb-5">
-              <h3 className="text-lg font-bold">Average Class Score</h3>
-              <p className="text-2xl">{calculateTotalPercentage()}%</p>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <h3 className="text-lg font-bold">Total number of Learners:</h3>
-              <p className="text-2xl">{totalNumberOfLearners}</p>
-            </div>
+          <div className="bg-[#A0D3E8] p-4 rounded shadow">
+            <h3 className="text-lg font-bold">Average Class Score</h3>
+            <p className="text-2xl">{calculateTotalPercentage()}%</p>
           </div>
 
           <div className="bg-[#4A90E2] p-6 rounded shadow text-white w-full max-w-md">
-            <h3 className="text-lg font-bold mb-4 text-center">
-              Learner Performance Summary
-            </h3>
+            <h3 className="text-lg font-bold mb-4 text-center">Learner Performance Summary</h3>
             <div className="flex justify-around items-center">
               <div className="text-center">
                 <h4 className="text-lg font-semibold">Passed</h4>
@@ -198,7 +169,7 @@ export const TeachersDashboard = () => {
           </div>
         </div>
       )}
-      {selectedGrade && (
+     {selectedGrade && (
         <table className="table-auto border-collapse border border-gray-300 w-3/4">
           <thead>
             <tr>

@@ -1,7 +1,8 @@
-import React, { useState } from "react"; 
+import React, { useState } from "react";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 export const Navbar = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -16,9 +17,8 @@ export const Navbar = () => {
   };
 
   return (
-    
     <div className="bg-primaryColor shadow-xl top-0 right-0 left-0 z-50 transition-colors px-10">
-      <ToastContainer/>
+      <ToastContainer />
       <div className="w-full py-4">
         <div className="flex items-center justify-between">
           <div className="text-3xl font-bold text-white">
@@ -30,8 +30,8 @@ export const Navbar = () => {
           {/* Desktop Menu */}
           <ul className="hidden md:flex text-white space-x-4 items-center text-xl">
             <li className={`hover:rounded-md hover:text-secondaryColor`}>
-              <a
-                href="#"
+              <Link
+                to="/"
                 onClick={() => handleTabClick("home")}
                 className={`${
                   activeTab === "home"
@@ -40,11 +40,11 @@ export const Navbar = () => {
                 }`}
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
+              <Link
+                to="/about" // Assuming you have an About route
                 onClick={() => handleTabClick("about")}
                 className={`${
                   activeTab === "about"
@@ -53,24 +53,11 @@ export const Navbar = () => {
                 }`}
               >
                 About Us
-              </a>
+              </Link>
             </li>
-            {/* <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
-                onClick={() => handleTabClick("gallery")}
-                className={`${
-                  activeTab === "gallery"
-                    ? "text-secondaryColor py-1 px-1 rounded-md"
-                    : "bg-transparent"
-                }`}
-              >
-                Gallery
-              </a>
-            </li> */}
             <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
+              <Link
+                to="/contact" // Assuming you have a Contact route
                 onClick={() => handleTabClick("contact")}
                 className={`${
                   activeTab === "contact"
@@ -79,11 +66,10 @@ export const Navbar = () => {
                 }`}
               >
                 Contact Us
-              </a>
+              </Link>
             </li>
             <li className="relative group hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="javascript:void(0)"
+              <span
                 onClick={() => handleTabClick("account")}
                 className={`${
                   activeTab === "account"
@@ -92,14 +78,15 @@ export const Navbar = () => {
                 }`}
               >
                 Account
-              </a>
+              </span>
+              {/* Dropdown for Login and Register */}
               <div className="absolute hidden group-hover:block bg-white text-black mt-2 p-2 rounded shadow-lg">
-                <a href="#" className="block px-4 py-2 hover:bg-gray-200">
+                <Link to="/login" className="block px-4 py-2 hover:bg-gray-200">
                   Login
-                </a>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-200">
+                </Link>
+                <Link to="/register" className="block px-4 py-2 hover:bg-gray-200">
                   Register
-                </a>
+                </Link>
               </div>
             </li>
           </ul>
@@ -117,8 +104,8 @@ export const Navbar = () => {
         {isMenuOpened && (
           <ul className="flex flex-col bg-primaryColor text-white p-4 space-y-4 items-start md:hidden mt-4">
             <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
+              <Link
+                to="/"
                 onClick={() => handleTabClick("home")}
                 className={`${
                   activeTab === "home"
@@ -127,11 +114,11 @@ export const Navbar = () => {
                 }`}
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
+              <Link
+                to="/about"
                 onClick={() => handleTabClick("about")}
                 className={`${
                   activeTab === "about"
@@ -140,24 +127,11 @@ export const Navbar = () => {
                 }`}
               >
                 About Us
-              </a>
+              </Link>
             </li>
             <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
-                onClick={() => handleTabClick("gallery")}
-                className={`${
-                  activeTab === "gallery"
-                    ? "text-secondaryColor py-1 px-1 rounded-md"
-                    : "bg-transparent"
-                }`}
-              >
-                Gallery
-              </a>
-            </li>
-            <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
+              <Link
+                to="/contact"
                 onClick={() => handleTabClick("contact")}
                 className={`${
                   activeTab === "contact"
@@ -166,11 +140,10 @@ export const Navbar = () => {
                 }`}
               >
                 Contact Us
-              </a>
+              </Link>
             </li>
             <li className="relative group hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="javascript:void(0)"
+              <span
                 onClick={() => handleTabClick("account")}
                 className={`${
                   activeTab === "account"
@@ -179,14 +152,15 @@ export const Navbar = () => {
                 }`}
               >
                 Account
-              </a>
+              </span>
+              {/* Dropdown for Login and Register */}
               <div className="absolute hidden group-hover:block bg-white text-black mt-2 p-2 rounded shadow-lg">
-                <a href="#" className="block px-4 py-2 hover:bg-gray-200">
+                <Link to="/login" className="block px-4 py-2 hover:bg-gray-200">
                   Login
-                </a>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-200">
+                </Link>
+                <Link to="/register" className="block px-4 py-2 hover:bg-gray-200">
                   Register
-                </a>
+                </Link>
               </div>
             </li>
           </ul>
