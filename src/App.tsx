@@ -1,3 +1,4 @@
+import AdminDashboard from "./components/AdminDashboard";
 import { Boards } from "./components/Boards";
 import { Contact } from "./components/Contact";
 import {Navbar} from "./components/Navbar";
@@ -9,6 +10,7 @@ function App() {
   return (
     <div className="">
       <Navbar />
+      <AdminDashboard />
       <Newsletter/>
       <Contact/> 
       <ParentDashboard/>

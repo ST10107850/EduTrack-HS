@@ -1,4 +1,5 @@
-import React, { useState } from "react"; 
+import React, { useState } from "react";
+import { BiUserCircle } from "react-icons/bi";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -6,8 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 export const Navbar = () => {
   const [activeTab, setActiveTab] = useState("home");
   const [isMenuOpened, setIsMenuOpened] = useState(false);
+  const [isProfileMenuOpened, setIsProfileMenuOpened] = useState(false);
 
-  const handleTabClick = (tab: React.SetStateAction<string>) => {
+  const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
@@ -15,10 +17,13 @@ export const Navbar = () => {
     setIsMenuOpened(!isMenuOpened);
   };
 
+  const toggleProfileMenu = () => {
+    setIsProfileMenuOpened(!isProfileMenuOpened);
+  };
+
   return (
-    
     <div className="bg-primaryColor shadow-xl top-0 right-0 left-0 z-50 transition-colors px-10">
-      <ToastContainer/>
+      <ToastContainer />
       <div className="w-full py-4">
         <div className="flex items-center justify-between">
           <div className="text-3xl font-bold text-white">
@@ -28,7 +33,7 @@ export const Navbar = () => {
           </div>
 
           {/* Desktop Menu */}
-          <ul className="hidden md:flex text-white space-x-4 items-center text-xl">
+          <ul className="hidden md:flex text-white space-x-4 items-center  text-xl">
             <li className={`hover:rounded-md hover:text-secondaryColor`}>
               <a
                 href="#"
@@ -55,19 +60,6 @@ export const Navbar = () => {
                 About Us
               </a>
             </li>
-            {/* <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
-                onClick={() => handleTabClick("gallery")}
-                className={`${
-                  activeTab === "gallery"
-                    ? "text-secondaryColor py-1 px-1 rounded-md"
-                    : "bg-transparent"
-                }`}
-              >
-                Gallery
-              </a>
-            </li> */}
             <li className="hover:rounded-md hover:text-secondaryColor">
               <a
                 href="#"
@@ -81,26 +73,31 @@ export const Navbar = () => {
                 Contact Us
               </a>
             </li>
-            <li className="relative group hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="javascript:void(0)"
-                onClick={() => handleTabClick("account")}
-                className={`${
-                  activeTab === "account"
-                    ? "text-secondaryColor py-1 px-1 rounded-md"
-                    : "bg-transparent"
-                }`}
-              >
-                Account
-              </a>
-              <div className="absolute hidden group-hover:block bg-white text-black mt-2 p-2 rounded shadow-lg">
-                <a href="#" className="block px-4 py-2 hover:bg-gray-200">
-                  Login
-                </a>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-200">
-                  Register
-                </a>
-              </div>
+            {/* Profile Icon with Dropdown */}
+            <li className="relative">
+
+              <BiUserCircle size={29} onClick={toggleProfileMenu}/>
+              {/* <img
+                src="/path/to/your/image/mainProfile.PNG" // Replace with actual path
+                alt="Profile"
+                className="w-8 h-8 rounded-full cursor-pointer"
+                
+              /> */}
+              {isProfileMenuOpened && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 text-black">
+                  <div className="px-4 py-2 font-bold">Boitshepo Mashamaite</div>
+           
+                  <hr className="my-1" />
+                 
+                  
+                  <a href="#" className="block px-4 py-2 hover:bg-gray-200">Switch account</a>
+                  <a href="#" className="block px-4 py-2 hover:bg-gray-200">Sign out</a>
+                  <hr className="my-1" />
+                 
+                  <a href="#" className="block px-4 py-2 hover:bg-gray-200">Settings</a>
+
+                </div>
+              )}
             </li>
           </ul>
 
@@ -145,19 +142,6 @@ export const Navbar = () => {
             <li className="hover:rounded-md hover:text-secondaryColor">
               <a
                 href="#"
-                onClick={() => handleTabClick("gallery")}
-                className={`${
-                  activeTab === "gallery"
-                    ? "text-secondaryColor py-1 px-1 rounded-md"
-                    : "bg-transparent"
-                }`}
-              >
-                Gallery
-              </a>
-            </li>
-            <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
                 onClick={() => handleTabClick("contact")}
                 className={`${
                   activeTab === "contact"
@@ -167,27 +151,6 @@ export const Navbar = () => {
               >
                 Contact Us
               </a>
-            </li>
-            <li className="relative group hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="javascript:void(0)"
-                onClick={() => handleTabClick("account")}
-                className={`${
-                  activeTab === "account"
-                    ? "text-secondaryColor py-1 px-1 rounded-md"
-                    : "bg-transparent"
-                }`}
-              >
-                Account
-              </a>
-              <div className="absolute hidden group-hover:block bg-white text-black mt-2 p-2 rounded shadow-lg">
-                <a href="#" className="block px-4 py-2 hover:bg-gray-200">
-                  Login
-                </a>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-200">
-                  Register
-                </a>
-              </div>
             </li>
           </ul>
         )}
