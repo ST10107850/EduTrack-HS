@@ -109,180 +109,116 @@
   ],
   "grades": [
     {
-      "gradeId": "1",
-      "grade": "Grade 8",
-      "id": "cbc5"
+      "gradeId": 1,
+      "grade": "Grade 8"
     },
     {
-      "gradeId": "2",
-      "grade": "Grade 9",
-      "id": "e895"
+      "gradeId": 2,
+      "grade": "Grade 9"
     },
     {
-      "gradeId": "3",
-      "grade": "Grade 10",
-      "id": "b342"
+      "gradeId": 3,
+      "grade": "Grade 10"
     },
     {
-      "gradeId": "4",
-      "grade": "Grade 11",
-      "id": "8a7f"
+      "gradeId": 4,
+      "grade": "Grade 11"
     },
     {
-      "gradeId": "5",
-      "grade": "Grade 12",
-      "id": "1abe"
+      "gradeId": 5,
+      "grade": "Grade 12"
     }
   ],
   "subjects": [
     {
       "subjectId": "1",
-      "subject": "Maths",
-      "id": "1b4f"
+      "subject": "Maths"
     },
     {
       "subjectId": "2",
-      "subject": "Science",
-      "id": "ca63"
+      "subject": "Science"
     },
     {
       "subjectId": "3",
-      "subject": "History",
-      "id": "df02"
+      "subject": "History"
     },
     {
       "subjectId": "4",
-      "subject": "Geography",
-      "id": "7d74"
+      "subject": "Geography"
     },
     {
       "subjectId": "5",
-      "subject": "English",
-      "id": "718b"
+      "subject": "English"
     },
     {
       "subjectId": "6",
-      "subject": "Afrikaans",
-      "id": "d63b"
+      "subject": "Afrikaans"
     },
     {
       "subjectId": "7",
-      "subject": "Art",
-      "id": "d5c4"
+      "subject": "Art"
     },
     {
       "subjectId": "8",
-      "subject": "Economics",
-      "id": "cb44"
+      "subject": "Economics"
     },
     {
       "subjectId": "9",
-      "subject": "Biology",
-      "id": "29e6"
+      "subject": "Biology"
     },
     {
       "subjectId": "10",
-      "subject": "Physical Education",
-      "id": "de94"
+      "subject": "Physical Education"
     }
   ],
   "learners": [
     {
-      "id": "1",
-      "name": "Learner 1",
+      "id": "be59",
+      "fullName": "g",
+      "surname": "nsundwane",
+      "idNumber": "1234567890123",
+      "address": "scvbnm,.",
+      "emailAddress": "sdfg@gmail.com",
+      "phoneNumber": "1234567890",
+      "gradeId": "3",
+      "subjects": [
+        "1",
+        "2",
+        "5"
+      ]
+    },
+    {
+      "id": "ab1d",
+      "fullName": "Elizabeth",
+      "surname": "Maleke",
+      "idNumber": "1234567890123",
+      "address": "sdfghjkl;",
+      "emailAddress": "eli@gmail.com",
+      "phoneNumber": "1234567890",
       "gradeId": "1",
-      "marks": [
-        {
-          "subjectId": "1",
-          "markObtained": 80,
-          "totalMark": 60
-        },
-        {
-          "subjectId": "2",
-          "markObtained": 70,
-          "totalMark": 100
-        },
-        {
-          "subjectId": "3",
-          "markObtained": 85,
-          "totalMark": 100
-        }
+      "subjects": [
+        "6",
+        "8",
+        "1"
       ]
-    },
+    }
+  ],
+  "teachers": [
     {
-      "id": "2",
-      "name": "Learner 2",
-      "gradeId": "1",
-      "marks": [
-        {
-          "subjectId": "1",
-          "markObtained": 55
-        },
-        {
-          "subjectId": "2",
-          "markObtained": 66
-        },
-        {
-          "subjectId": "3",
-          "markObtained": 58
-        }
-      ]
-    },
-    {
-      "id": "3",
-      "name": "Learner 3",
-      "gradeId": "1",
-      "marks": [
-        {
-          "subjectId": "1",
-          "markObtained": 90
-        },
-        {
-          "subjectId": "2",
-          "markObtained": 85
-        },
-        {
-          "subjectId": "3",
-          "markObtained": 80
-        }
-      ]
-    },
-    {
-      "id": "4",
-      "name": "Learner 5",
-      "gradeId": "2",
-      "marks": [
-        {
-          "subjectId": "1",
-          "markObtained": 90
-        },
-        {
-          "subjectId": "2",
-          "markObtained": 85
-        },
-        {
-          "subjectId": "3",
-          "markObtained": 80
-        }
-      ]
-    },
-    {
-      "id": "5",
-      "name": "Learner 5",
-      "gradeId": "5",
-      "marks": [
-        {
-          "subjectId": "1",
-          "markObtained": 90
-        },
-        {
-          "subjectId": "2",
-          "markObtained": 85
-        },
-        {
-          "subjectId": "3",
-          "markObtained": 80
-        }
+      "id": 1730124130210,
+      "fullName": "Samuel",
+      "surname": "Nsundwane",
+      "idNumber": "1234567890123",
+      "address": "sdfghjkl;",
+      "emailAddress": "sam@gmail.com",
+      "phoneNumber": "1234567890",
+      "gradeId": [
+        1,
+        2
+      ],
+      "subjects": [
+        "1",
+        "2"
       ]
     }
   ]
