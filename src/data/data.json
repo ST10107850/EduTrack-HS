@@ -1,4 +1,18 @@
 {
+  "parents": [
+    {
+      "id": "f60e",
+      "fullName": "motshabi maleke",
+      "email": "motshabielizabeth1@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "208b",
+      "fullName": "motshabi",
+      "email": "email@gmail.com",
+      "password": "123456"
+    }
+  ],
   "schoolNews": [
     {
       "id": "1",
@@ -109,181 +123,256 @@
   ],
   "grades": [
     {
-      "gradeId": "1",
-      "grade": "Grade 8",
-      "id": "cbc5"
+      "gradeId": 1,
+      "grade": "Grade 8"
     },
     {
-      "gradeId": "2",
-      "grade": "Grade 9",
-      "id": "e895"
+      "gradeId": 2,
+      "grade": "Grade 9"
     },
     {
-      "gradeId": "3",
-      "grade": "Grade 10",
-      "id": "b342"
+      "gradeId": 3,
+      "grade": "Grade 10"
     },
     {
-      "gradeId": "4",
-      "grade": "Grade 11",
-      "id": "8a7f"
+      "gradeId": 4,
+      "grade": "Grade 11"
     },
     {
-      "gradeId": "5",
-      "grade": "Grade 12",
-      "id": "1abe"
+      "gradeId": 5,
+      "grade": "Grade 12"
     }
   ],
   "subjects": [
     {
       "subjectId": "1",
-      "subject": "Maths",
-      "id": "1b4f"
+      "subject": "Maths"
     },
     {
       "subjectId": "2",
-      "subject": "Science",
-      "id": "ca63"
+      "subject": "Science"
     },
     {
       "subjectId": "3",
-      "subject": "History",
-      "id": "df02"
+      "subject": "History"
     },
     {
       "subjectId": "4",
-      "subject": "Geography",
-      "id": "7d74"
+      "subject": "Geography"
     },
     {
       "subjectId": "5",
-      "subject": "English",
-      "id": "718b"
+      "subject": "English"
     },
     {
       "subjectId": "6",
-      "subject": "Afrikaans",
-      "id": "d63b"
+      "subject": "Afrikaans"
     },
     {
       "subjectId": "7",
-      "subject": "Art",
-      "id": "d5c4"
+      "subject": "Art"
     },
     {
       "subjectId": "8",
-      "subject": "Economics",
-      "id": "cb44"
+      "subject": "Economics"
     },
     {
       "subjectId": "9",
-      "subject": "Biology",
-      "id": "29e6"
+      "subject": "Biology"
     },
     {
       "subjectId": "10",
-      "subject": "Physical Education",
-      "id": "de94"
+      "subject": "Physical Education"
     }
   ],
   "learners": [
     {
-      "id": "1",
-      "name": "Learner 1",
-      "gradeId": "1",
+      "id": "be59",
+      "fullName": "g",
+      "surname": "nsundwane",
+      "idNumber": "1234567890123",
+      "address": "scvbnm,.",
+      "emailAddress": "sdfg@gmail.com",
+      "phoneNumber": "1234567890",
       "marks": [
         {
           "subjectId": "1",
-          "markObtained": 80,
-          "totalMark": 60
-        },
-        {
-          "subjectId": "2",
-          "markObtained": 70,
-          "totalMark": 100
-        },
-        {
-          "subjectId": "3",
           "markObtained": 85,
           "totalMark": 100
         }
+      ],
+      "gradeId": "3",
+      "subjects": [
+        "1",
+        "2",
+        "5"
       ]
     },
     {
-      "id": "2",
-      "name": "Learner 2",
-      "gradeId": "1",
+      "id": "be591",
+      "fullName": "Elizabeth",
+      "surname": "Jiyane",
+      "idNumber": "1234567890123",
+      "address": "scvbnm,.",
+      "emailAddress": "sdfg@gmail.com",
+      "phoneNumber": "1234567890",
       "marks": [
         {
-          "subjectId": "1",
-          "markObtained": 55
-        },
-        {
-          "subjectId": "2",
-          "markObtained": 66
+          "subjectId": "4",
+          "markObtained": 85,
+          "totalMark": 100
         },
         {
           "subjectId": "3",
-          "markObtained": 58
+          "markObtained": 40,
+          "totalMark": 60
+        },
+        {
+          "subjectId": "6",
+          "markObtained": 20,
+          "totalMark": 70
         }
-      ]
-    },
-    {
-      "id": "3",
-      "name": "Learner 3",
-      "gradeId": "1",
-      "marks": [
-        {
-          "subjectId": "1",
-          "markObtained": 90
-        },
-        {
-          "subjectId": "2",
-          "markObtained": 85
-        },
-        {
-          "subjectId": "3",
-          "markObtained": 80
-        }
-      ]
-    },
-    {
-      "id": "4",
-      "name": "Learner 5",
-      "gradeId": "2",
-      "marks": [
-        {
-          "subjectId": "1",
-          "markObtained": 90
-        },
-        {
-          "subjectId": "2",
-          "markObtained": 85
-        },
-        {
-          "subjectId": "3",
-          "markObtained": 80
-        }
-      ]
-    },
-    {
-      "id": "5",
-      "name": "Learner 5",
+      ],
       "gradeId": "5",
+      "subjects": [
+        "6",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "id": "be591",
+      "fullName": "Sam",
+      "surname": "Jiyane",
+      "idNumber": "1234567890123",
+      "address": "scvbnm,.",
+      "emailAddress": "sdfg@gmail.com",
+      "phoneNumber": "1234567890",
       "marks": [
         {
-          "subjectId": "1",
-          "markObtained": 90
-        },
-        {
-          "subjectId": "2",
-          "markObtained": 85
+          "subjectId": "4",
+          "markObtained": 85,
+          "totalMark": 100
         },
         {
           "subjectId": "3",
-          "markObtained": 80
+          "markObtained": 20,
+          "totalMark": 60
+        },
+        {
+          "subjectId": "6",
+          "markObtained": 60,
+          "totalMark": 70
         }
+      ],
+      "gradeId": "5",
+      "subjects": [
+        "6",
+        "3",
+        "4"
       ]
+    },
+    {
+      "id": "be591",
+      "fullName": "Sam",
+      "surname": "Jiyane",
+      "idNumber": "1234567890123",
+      "address": "scvbnm,.",
+      "emailAddress": "sdfg@gmail.com",
+      "phoneNumber": "1234567890",
+      "marks": [
+        {
+          "subjectId": "4",
+          "markObtained": 85,
+          "totalMark": 100
+        },
+        {
+          "subjectId": "3",
+          "markObtained": 20,
+          "totalMark": 60
+        },
+        {
+          "subjectId": "6",
+          "markObtained": 60,
+          "totalMark": 70
+        }
+      ],
+      "gradeId": "2",
+      "subjects": [
+        "6",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "id": "be591",
+      "fullName": "Sam",
+      "surname": "Jiyane",
+      "idNumber": "1234567890123",
+      "address": "scvbnm,.",
+      "emailAddress": "sdfg@gmail.com",
+      "phoneNumber": "1234567890",
+      "marks": [
+        {
+          "subjectId": "4",
+          "markObtained": 85,
+          "totalMark": 100
+        },
+        {
+          "subjectId": "3",
+          "markObtained": 20,
+          "totalMark": 60
+        },
+        {
+          "subjectId": "6",
+          "markObtained": 60,
+          "totalMark": 70
+        }
+      ],
+      "gradeId": "3",
+      "subjects": [
+        "6",
+        "3",
+        "4"
+      ]
+    }
+  ],
+  "teachers": [
+    {
+      "id": 1730124130210,
+      "fullName": "Samuel",
+      "surname": "Nsundwane",
+      "idNumber": "1234567890123",
+      "address": "sdfghjkl;",
+      "emailAddress": "sam@gmail.com",
+      "phoneNumber": "1234567890",
+      "gradeId": [
+        1,
+        2
+      ],
+      "subjects": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "id": 1730193102818,
+      "fullName": "Elizabeth ",
+      "surname": "Maleke",
+      "idNumber": "1234567890123",
+      "address": "Juta Street",
+      "emailAddress": "eli@gmail.com",
+      "phoneNumber": "1234567890",
+      "gradeId": [
+        1,
+        2
+      ],
+      "subjects": [
+        "1",
+        "2",
+        "2"
+      ],
+      "password": "9hDcDr7v(wb4"
     }
   ]
 }

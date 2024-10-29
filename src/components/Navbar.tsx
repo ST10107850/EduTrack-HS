@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { BiUserCircle } from "react-icons/bi";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { MdNotificationsNone } from "react-icons/md"; // Import notification icon
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 export const Navbar = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -36,8 +36,8 @@ export const Navbar = () => {
           {/* Desktop Menu */}
           <ul className="hidden md:flex text-white space-x-4 items-center text-xl">
             <li className={`hover:rounded-md hover:text-secondaryColor`}>
-              <a
-                href="#"
+              <Link
+                to="/"
                 onClick={() => handleTabClick("home")}
                 className={`${
                   activeTab === "home"
@@ -46,11 +46,11 @@ export const Navbar = () => {
                 }`}
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
+              <Link
+                to="/about" // Assuming you have an About route
                 onClick={() => handleTabClick("about")}
                 className={`${
                   activeTab === "about"
@@ -59,11 +59,11 @@ export const Navbar = () => {
                 }`}
               >
                 About Us
-              </a>
+              </Link>
             </li>
             <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
+              <Link
+                to="/contact" // Assuming you have a Contact route
                 onClick={() => handleTabClick("contact")}
                 className={`${
                   activeTab === "contact"
@@ -72,7 +72,28 @@ export const Navbar = () => {
                 }`}
               >
                 Contact Us
-              </a>
+              </Link>
+            </li>
+            <li className="relative group hover:rounded-md hover:text-secondaryColor">
+              <span
+                onClick={() => handleTabClick("account")}
+                className={`${
+                  activeTab === "account"
+                    ? "text-secondaryColor py-1 px-1 rounded-md"
+                    : "bg-transparent"
+                }`}
+              >
+                Account
+              </span>
+              {/* Dropdown for Login and Register */}
+              <div className="absolute hidden group-hover:block bg-white text-black mt-2 p-2 rounded shadow-lg">
+                <Link to="/login" className="block px-4 py-2 hover:bg-gray-200">
+                  Login
+                </Link>
+                <Link to="/register" className="block px-4 py-2 hover:bg-gray-200">
+                  Register
+                </Link>
+              </div>
             </li>
           </ul>
 
@@ -107,8 +128,8 @@ export const Navbar = () => {
         {isMenuOpened && (
           <ul className="flex flex-col bg-primaryColor text-white p-4 space-y-4 items-start md:hidden mt-4">
             <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
+              <Link
+                to="/"
                 onClick={() => handleTabClick("home")}
                 className={`${
                   activeTab === "home"
@@ -117,11 +138,11 @@ export const Navbar = () => {
                 }`}
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
+              <Link
+                to="/about"
                 onClick={() => handleTabClick("about")}
                 className={`${
                   activeTab === "about"
@@ -130,11 +151,11 @@ export const Navbar = () => {
                 }`}
               >
                 About Us
-              </a>
+              </Link>
             </li>
             <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
+              <Link
+                to="/contact"
                 onClick={() => handleTabClick("contact")}
                 className={`${
                   activeTab === "contact"
@@ -143,7 +164,28 @@ export const Navbar = () => {
                 }`}
               >
                 Contact Us
-              </a>
+              </Link>
+            </li>
+            <li className="relative group hover:rounded-md hover:text-secondaryColor">
+              <span
+                onClick={() => handleTabClick("account")}
+                className={`${
+                  activeTab === "account"
+                    ? "text-secondaryColor py-1 px-1 rounded-md"
+                    : "bg-transparent"
+                }`}
+              >
+                Account
+              </span>
+              {/* Dropdown for Login and Register */}
+              <div className="absolute hidden group-hover:block bg-white text-black mt-2 p-2 rounded shadow-lg">
+                <Link to="/login" className="block px-4 py-2 hover:bg-gray-200">
+                  Login
+                </Link>
+                <Link to="/register" className="block px-4 py-2 hover:bg-gray-200">
+                  Register
+                </Link>
+              </div>
             </li>
           </ul>
         )}
