@@ -27,12 +27,16 @@ export type Article = {
  export type Learner = {
     id: string;
     fullName: string;
+    idNumber: string;
+    emailAddress:string;
     gradeId: string;
     marks: Array<{
       subjectId: string;
+      assignmentName: string;
       markObtained: number;
       totalMark: number;
     }>;
+    subjects: []
   };
   
   export type teachers = {
@@ -47,4 +51,17 @@ export type Article = {
     subjects: number[]; 
     password: string;
   };
+
+  export type Parent ={
+    id:string;
+    fullName: string;
+    emailAddress:string;
+    password:string;
+    surname: string;
+    idNumber: string;
+    address: string;
+    phoneNumber:string;
+    learnerID: string;
+    confirmPassword:string;
+  }
   

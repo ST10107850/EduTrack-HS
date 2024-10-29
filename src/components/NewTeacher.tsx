@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import data from "../Data/data.json";
+import data from "../data/data.json";
 import { toast } from "react-toastify";
 import { Grade, Subjects, teachers } from "../Types/types"; // Ensure all imports are correct
 import { useApi } from "../hooks/ApiContext";

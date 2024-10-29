@@ -17,15 +17,18 @@ export const useAuthActions = () => {
     };
 
     // Handle user login
-    const handleLogin = async (email: string, password: string) => {
-        try {
-            const user = await loginUser(email, password); // Call the login service
-            dispatch({ type: 'LOGIN', payload: user }); // Dispatch the login action
-        } catch (error) {
-            console.error("Login failed:", error); // Log any errors
-            throw error; // Propagate the error to the form
-        }
-    };
+   // Handle user login
+const handleLogin = async (email: string, password: string) => {
+    try {
+        const user = await loginUser(email, password); // Call the login service
+        dispatch({ type: 'LOGIN', payload: user }); // Dispatch the login action
+        return user; // Return the user for further use
+    } catch (error) {
+        console.error("Login failed:", error); // Log any errors
+        throw error; // Propagate the error to the form
+    }
+};
+
 
     return { handleRegister, handleLogin };
 };

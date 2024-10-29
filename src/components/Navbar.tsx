@@ -17,7 +17,7 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="bg-primaryColor shadow-xl top-0 right-0 left-0 z-50 transition-colors px-10">
+    <div className="bg-primaryColor shadow-xl top-0 fixed right-0 left-0 z-50 transition-colors px-10">
       <ToastContainer />
       <div className="w-full py-4">
         <div className="flex items-center justify-between">

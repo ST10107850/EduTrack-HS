@@ -50,14 +50,14 @@ export const Newsletter = () => {
   };
 
   return (
-    <div className="relative flex flex-col justify-center items-center h-screen text-gray-800 px-4 sm:px-10">
+    <div className="relative flex flex-col justify-center items-center md:h-screen mt-4 text-gray-800 px-4 sm:px-10">
       {articles.length > 0 && (
         <h1 className="text-3xl sm:text-4xl md:text-5xl text-secondaryColor mb-8 md:mb-16 font-bold text-center">
           Welcome to {articles[currentIndex].schoolName}
         </h1>
       )}
       {articles.length > 0 && (
-        <div className="bg-white shadow-md p-4 md:p-6 h-auto md:h-[60vh] w-full max-w-3xl lg:max-w-[70vw] rounded-md flex flex-col md:flex-row space-y-4 md:space-y-0">
+        <div className="bg-white shadow-md mb-10 md:mb-5 lg:mb-0 p-4 md:p-6 h-auto md:h-[60vh] w-full max-w-3xl lg:max-w-[70vw] rounded-md flex flex-col md:flex-row space-y-4 md:space-y-0">
           <div className="w-full md:w-1/2 h-auto flex justify-center items-center">
             <img
               src={articles[currentIndex].image || "https://via.placeholder.com/400"}
@@ -72,8 +72,8 @@ export const Newsletter = () => {
             <h1 className="text-xl md:text-2xl font-bold mb-4 text-secondaryColor truncate">
               {articles[currentIndex].title}
             </h1>
-            <p className="text-sm md:text-base mb-4 overflow-hidden">
-              {articles[currentIndex].description.slice(0, 400)}...
+            <p className="text-sm md:text-base mb-6 overflow-hidden">
+              {articles[currentIndex].description.slice(0, 200)}...
             </p>
             <button
               onClick={handleReadMoreClick}

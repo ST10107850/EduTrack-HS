@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import data from "../Data/data.json";
+import data from "../data/data.json";
 
 type Grade = {
   gradeId: string;
