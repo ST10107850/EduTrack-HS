@@ -24,16 +24,15 @@ export type Article = {
     subject: string;
   };
   
-  export type Learners = {
-    id: number;
+ export type Learner = {
+    id: string;
     fullName: string;
-    surname: string;
-    idNumber: string;
-    address: string;
-    emailAddress: string;
-    phoneNumber: string;
-    gradeId: number[]; // Changed to array of grade IDs
-    subjects: number[]; // Changed to array of subject IDs
+    gradeId: string;
+    marks: Array<{
+      subjectId: string;
+      markObtained: number;
+      totalMark: number;
+    }>;
   };
   
   export type teachers = {
@@ -44,7 +43,8 @@ export type Article = {
     address: string;
     emailAddress: string;
     phoneNumber: string;
-    gradeId: number[]; // Changed to array of grade IDs
-    subjects: number[]; // Changed to array of subject IDs
+    gradeId: number[]; 
+    subjects: number[]; 
+    password: string;
   };
   

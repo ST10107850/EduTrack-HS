@@ -1,35 +1,15 @@
 import { useState, useEffect } from "react";
 import data from "../Data/data.json";
-
-type Grade = {
-  gradeId: string;
-  grade: string;
-};
-
-type Subject = {
-  subjectId: string;
-  subject: string;
-};
-
-type Learner = {
-  id: string;
-  name: string;
-  gradeId: string;
-  marks: Array<{
-    subjectId: string;
-    markObtained: number;
-    totalMark: number;
-  }>;
-};
+import types from "../Types/types";
 
 export const TeachersDashboard = () => {
-  const grades: Grade[] = data.grades;
-  const subjects: Subject[] = data.subjects;
-  const learners: Learner[] = data.learners;
+  const grades: types.Grade[] = data.grades;
+  const subjects: types.Subject[] = data.subjects;
+  const learners: types.Learner[] = data.learners;
 
   const [selectedGrade, setSelectedGrade] = useState<string | null>(null);
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
-  const [selectedLearners, setSelectedLearners] = useState<Learner[]>([]);
+  const [selectedLearners, setSelectedLearners] = useState<types.Learner[]>([]);
 
   const calculatePercentage = (markObtained: number, totalMark: number) => {
     return ((markObtained / totalMark) * 100).toFixed(2);
@@ -42,13 +22,22 @@ export const TeachersDashboard = () => {
   };
 
   useEffect(() => {
-    if (selectedGrade) {
+    if (selectedGrade && selectedSubject) {  // Ensure both are selected
       const filteredLearners = learners.filter(
-        (learner) => learner.gradeId === selectedGrade
+        (learner) =>
+          learner.gradeId === selectedGrade &&
+          Array.isArray(learner.marks) &&  
+          learner.marks.some(mark => mark.subjectId === selectedSubject)
       );
+  
+      console.log("Filtered Learners:", filteredLearners); // Debugging
       setSelectedLearners(filteredLearners);
+    } else {
+      setSelectedLearners([]);  // Clear learners if filters are not set
     }
-  }, [selectedGrade]);
+  }, [selectedGrade, selectedSubject]);
+  
+  
 
   return (
     <div className="relative flex flex-col md:my-0 my-12 justify-center items-center md:h-[90vh] text-gray-800">
@@ -64,7 +53,7 @@ export const TeachersDashboard = () => {
         >
           <option value="">Select Grade</option>
           {grades.map((grade) => (
-            <option key={grade.gradeId} value={grade.gradeId}>
+            <option key={grade.gradeId} value={String(grade.gradeId)}>
               {grade.grade}
             </option>
           ))}
@@ -84,7 +73,7 @@ export const TeachersDashboard = () => {
         </select>
       </div>
 
-      {selectedGrade && (
+      {selectedGrade && selectedSubject && (
         <table className="table-auto border-collapse border border-gray-300 w-3/4">
           <thead>
             <tr>
@@ -99,7 +88,7 @@ export const TeachersDashboard = () => {
           <tbody>
             {selectedLearners.map((learner) =>
               learner.marks
-                .filter((mark) => !selectedSubject || mark.subjectId === selectedSubject)
+                .filter((mark) => mark.subjectId === selectedSubject)
                 .map((mark, index) => {
                   const subject = subjects.find(
                     (sub) => sub.subjectId === mark.subjectId
@@ -111,8 +100,8 @@ export const TeachersDashboard = () => {
                   const status = calculateStatus(parseFloat(percentage));
                   return (
                     <tr key={learner.id + "-" + index}>
-                      <td className="border border-gray-300 px-4 py-2">{learner.name}</td>
-                      <td className="border border-gray-300 px-4 py-2">{subject?.subject}</td>
+                      <td className="border border-gray-300 px-4 py-2">{learner.fullName + " " + learner.surname}</td>
+                      <td className="border border-gray-300 px-4 py-2">{subject?.subject || "N/A"}</td>
                       <td className="border border-gray-300 px-4 py-2">{mark.totalMark}</td>
                       <td className="border border-gray-300 px-4 py-2">{mark.markObtained}</td>
                       <td className="border border-gray-300 px-4 py-2">{percentage}%</td>

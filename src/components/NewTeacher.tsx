@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import data from "../Data/data.json";
 import { toast } from "react-toastify";
-import { Grade } from "../Types/types";
-import { Subjects } from "../Types/types";
+import { Grade, Subjects, teachers } from "../Types/types"; // Ensure all imports are correct
 import { useApi } from "../hooks/ApiContext";
-import { teachers } from "../Types/types"; // Ensure this import is correct
 
 export const NewTeacher = () => {
   const { apiUrl } = useApi();
@@ -33,9 +31,9 @@ export const NewTeacher = () => {
   const toggleSubjectSelection = (subjectId: number) => {
     setSelectedSubjectIds((prevIds) => {
       if (prevIds.includes(subjectId)) {
-        return prevIds.filter(id => id !== subjectId); // Remove subject if it's already selected
+        return prevIds.filter(id => id !== subjectId);
       }
-      return [...prevIds, subjectId]; // Add subject to selection
+      return [...prevIds, subjectId];
     });
   };
 
@@ -49,7 +47,7 @@ export const NewTeacher = () => {
           [selectedGradeId]: [...updatedSubjects, ...newSubjects],
         };
       });
-      setSelectedSubjectIds([]); // Clear selected subjects
+      setSelectedSubjectIds([]);
     }
   };
 
@@ -83,6 +81,17 @@ export const NewTeacher = () => {
   const handleNextStep = () => setStep((prevStep) => prevStep + 1);
   const handlePrevStep = () => setStep((prevStep) => prevStep - 1);
 
+  // Function to generate a random password
+  const generateRandomPassword = (length = 12) => {
+    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+    let password = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      password += charset[randomIndex];
+    }
+    return password;
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -92,6 +101,9 @@ export const NewTeacher = () => {
     const gradeIds = Object.keys(gradeSubjectMap).map(Number);
     const subjectIds = Object.values(gradeSubjectMap).flat();
 
+    // Generate a random password
+    const password = generateRandomPassword(); // Generate password here
+
     const teacherData: teachers = {
       id: Date.now(), // Placeholder for ID; adjust as necessary
       fullName: formData.fullName,
@@ -100,8 +112,9 @@ export const NewTeacher = () => {
       address: formData.address,
       emailAddress: formData.emailAddress,
       phoneNumber: formData.phoneNumber,
-      gradeId: gradeIds, // Use the collected grade IDs
-      subjects: subjectIds, // Use the collected subject IDs
+      gradeId: gradeIds,
+      subjects: subjectIds,
+      password, // Add the generated password to the teacher data
     };
 
     try {
@@ -124,7 +137,7 @@ export const NewTeacher = () => {
           emailAddress: "",
           phoneNumber: "",
         });
-        setGradeSubjectMap({}); // Clear the grade-subject map
+        setGradeSubjectMap({});
       } else {
         const errorText = await response.text();
         console.error("Failed to submit teacher data:", errorText);
