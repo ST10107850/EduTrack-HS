@@ -1,12 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-
-interface Article {
-  title: string;
-  description: string;
-  date: string;
-  image: string | null;
-  schoolName: string;
-}
+import { Article } from "../Types/types";
 
 export const Newsletter = () => {
   const [articles, setArticles] = useState<Article[]>([]);

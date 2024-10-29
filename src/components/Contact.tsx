@@ -1,20 +1,14 @@
 import { useState } from "react";
 import {toast} from "react-toastify"
 
-type FormData = {
-  name: string;
-  surname: string;
-  email: string;
-  phone: string;
-  message: string;
-};
+import { notifications } from "../Types/types";
 
 export const Contact = () => {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<notifications>({
     name: "",
     surname: "",
     email: "",
-    phone: "",
+    phone: 0,
     message: "",
   });
 
@@ -54,7 +48,7 @@ export const Contact = () => {
             name: "",
             surname: "",
             email: "",
-            phone: "",
+            phone: 0,
             message: "",
         });
 
