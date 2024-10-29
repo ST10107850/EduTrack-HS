@@ -8,7 +8,7 @@ export interface User {
 }
 
 // API base URL for the JSON Server
-const API_URL = 'http://localhost:8000/users';
+const API_URL = 'http://localhost:8000/parents';
 
 // Function to register a new user
 export const registerUser = async (userData: User): Promise<User> => {

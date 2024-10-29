@@ -57,7 +57,7 @@ const LoginForm: React.FC = () => {
                 </div>
                 <button 
                     type="submit" 
-                    disabled={!isFormFilled} // Disable the button if not all fields are filled
+                    disabled={!isFormFilled}
                     className={`w-full py-2 rounded transition duration-200 ${isFormFilled ? "bg-[#060721] text-white hover:bg-gray-700" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
                 >
                     Sign in
