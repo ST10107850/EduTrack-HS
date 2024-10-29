@@ -28,26 +28,31 @@
 
 
 
+
 import React, { useState } from "react";
-import Navbar2 from "./components/Navbar2";
 import Sidebar from "./components/Sidebar";
+import Navbar2 from "./components/Navbar2";
+import { ParentDashboard } from "./components/ParentDashboard";
+
 
 const App: React.FC = () => {
-  const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const toggleSidebar = () => {
-    setSidebarCollapsed(!isSidebarCollapsed);
+    setIsCollapsed(!isCollapsed);
   };
 
   return (
-    <div className="flex h-screen">
-      <Sidebar isCollapsed={isSidebarCollapsed} toggleSidebar={toggleSidebar} />
-      <div className={`flex flex-col flex-grow transition-all ${isSidebarCollapsed ? 'ml-16' : 'ml-64'}`}>
-        <Navbar2 toggleSidebar={toggleSidebar} />
-        <main className="p-4">
-          {/* Main content goes here */}
-          <h1 className="text-2xl font-bold">Welcome to the Home Page</h1>
-        </main>
+    <div className="flex flex-col h-screen">
+      <Navbar2 isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />   
+      <div className="flex flex-1">
+        <Sidebar isCollapsed={isCollapsed} />
+        <div className={`flex-1 ml-${isCollapsed ? "16" : "64"} transition-all duration-300`}>
+          <div className="pt-20 p-4">
+          
+           <ParentDashboard />
+          </div>
+        </div>
       </div>
     </div>
   );
