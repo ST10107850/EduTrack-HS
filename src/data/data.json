@@ -309,14 +309,12 @@
           "assignmentName": "Exam",
           "markObtained": 50,
           "totalMark": 60
-        }
-        ,
-        
+        },
         {
           "subjectId": "10",
           "assignmentName": "Exam",
           "markObtained": 50,
-          "totalMark": 60
+          "totalMarks": 60
         }
       ],
       "gradeId": "3",
@@ -331,23 +329,6 @@
     }
   ],
   "teachers": [
-    {
-      "id": "1730124130210",
-      "fullName": "Samuel",
-      "surname": "Nsundwane",
-      "idNumber": "1234567890123",
-      "address": "sdfghjkl;",
-      "emailAddress": "sam@gmail.com",
-      "phoneNumber": "1234567890",
-      "gradeId": [
-        1,
-        2
-      ],
-      "subjects": [
-        "1",
-        "2"
-      ]
-    },
     {
       "id": "1730193102818",
       "fullName": "Elizabeth ",
@@ -366,6 +347,24 @@
         "2"
       ],
       "password": "9hDcDr7v(wb4"
+    },
+    {
+      "id": 1730212861833,
+      "fullName": "Thando",
+      "surname": "Ndlovu",
+      "idNumber": "1234567890123",
+      "address": "Juta Street, Johannesburg",
+      "emailAddress": "eli@tshimologong.co.za",
+      "phoneNumber": "1234567890",
+      "gradeId": [
+        1,
+        3
+      ],
+      "subjects": [
+        "1",
+        "3"
+      ],
+      "password": "Wv34Cju8Zt38"
     }
   ],
   "assignments": [

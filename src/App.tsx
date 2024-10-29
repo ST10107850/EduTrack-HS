@@ -5,9 +5,9 @@ import { AuthLayout } from './components/AuthLayout'; // Make sure to create thi
 import  LoginForm  from './components/LoginForm';
 import RegisterForm  from './components/RegisterForm';
 import {ParentDashboard}   from './components/ParentDashboard';
-import { TeachersDashboard } from './components/TeachersDashboard';
 import { Navbar } from './components/Navbar';
 import Footer from './components/Footer';
+import { TeachersDashboard } from './components/TeachersDashboard';
 
 function App() {
   const { state } = useAuth(); // Access authentication state

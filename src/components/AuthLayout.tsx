@@ -3,7 +3,7 @@ import { Navbar } from './Navbar';
 import { Newsletter } from './Newsletter';
 import { Contact } from './Contact';
 import { NewUsers } from '../Pages/NewUsers';
-import { TeachersDashboard } from './TeachersDashboard';
+
 
 export const AuthLayout = () => {
   return (
@@ -11,7 +11,6 @@ export const AuthLayout = () => {
       <Navbar />
       <Newsletter />
       <Contact />
-      <TeachersDashboard/>
       <NewUsers/>
 
     </>

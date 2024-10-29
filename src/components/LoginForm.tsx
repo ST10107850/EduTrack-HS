@@ -1,7 +1,7 @@
-import React, { useState } from "react"; // Import useState to manage local state for errors
+import React, { useState } from "react";
 import { useForm } from "../hooks/useForm";
 import { useAuthActions } from "../hooks/useAuthActions";
-import { Link, useNavigate } from "react-router-dom"; // Import Link for navigation
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const LoginForm: React.FC = () => {
@@ -10,37 +10,59 @@ const LoginForm: React.FC = () => {
     password: "",
   });
   const { handleLogin } = useAuthActions();
-  const navigate = useNavigate(); // Initialize useNavigate
-  const [error, setError] = useState<string | null>(null); // State to store error messages
+  const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
 
-  // Submit handler for login
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null); // Clear previous errors
+    setError(null);
+
     try {
-      const user = await handleLogin(values.email, values.password); // Log in the user
-      resetForm(); // Reset the form fields
-      // Pass both full name and surname to the dashboard
-      navigate("/parent-dashboard", {
-        state: { fullName: user.fullName, surname: user.surname },
-      });
+      if (
+        values.email === "Admin12345@tshmologong.co.za" &&
+        values.password === "@Tshimologong12345"
+      ) {
+
+        console.log("You have logged in as admin");
+        // Navigate to admin dashboard if credentials match
+        navigate("/admin-dashboard");
+      } else {
+        // Attempt login as parent or teacher
+        const user = await handleLogin(values.email, values.password);
+        resetForm();
+
+        // Navigate based on user role
+        if (user.role === "parent") {
+
+          console.log("You have logged in as parent");
+          navigate("/parent-dashboard", {
+            state: { fullName: user.fullName, surname: user.surname },
+          });
+        } else if (user.role === "teacher") {
+
+          console.log("You have logged in as teacher");
+          navigate("/teachers-dashboard", {
+            state: { fullName: user.fullName, surname: user.surname },
+          });
+        } else {
+          setError("Unknown role");
+        }
+      }
     } catch (error) {
-      console.error("Login error: ", error); // Log the error for debugging
-      toast.warning(error instanceof Error ? error.message : "Login failed"); // Show the error if login fails
+      console.error("Login error: ", error);
+      toast.warning(error instanceof Error ? error.message : "Login failed");
     }
   };
+
   const isFormFilled = values.email && values.password;
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-white">
-      {" "}
-      {/* Change background to white */}
       <form onSubmit={onSubmit} className="bg-white p-8 rounded shadow-md w-96">
         <h2 className="text-2xl font-bold text-center mb-4 text-primaryColor">
           Login
         </h2>
 
-        {/* Display error message if there is an error */}
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
         <div className="mb-4">

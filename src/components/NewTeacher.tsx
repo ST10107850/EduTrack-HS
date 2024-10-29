@@ -19,11 +19,15 @@ export const NewTeacher = () => {
     phoneNumber: "",
   });
 
-  const [gradeSubjectMap, setGradeSubjectMap] = useState<{ [key: number]: number[] }>({});
+  const [gradeSubjectMap, setGradeSubjectMap] = useState<{
+    [key: number]: number[];
+  }>({});
   const [selectedGradeId, setSelectedGradeId] = useState<number | null>(null);
   const [selectedSubjectIds, setSelectedSubjectIds] = useState<number[]>([]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
@@ -31,7 +35,7 @@ export const NewTeacher = () => {
   const toggleSubjectSelection = (subjectId: number) => {
     setSelectedSubjectIds((prevIds) => {
       if (prevIds.includes(subjectId)) {
-        return prevIds.filter(id => id !== subjectId);
+        return prevIds.filter((id) => id !== subjectId);
       }
       return [...prevIds, subjectId];
     });
@@ -41,7 +45,9 @@ export const NewTeacher = () => {
     if (selectedGradeId !== null) {
       setGradeSubjectMap((prevMap) => {
         const updatedSubjects = prevMap[selectedGradeId] || [];
-        const newSubjects = selectedSubjectIds.filter(id => !updatedSubjects.includes(id));
+        const newSubjects = selectedSubjectIds.filter(
+          (id) => !updatedSubjects.includes(id)
+        );
         return {
           ...prevMap,
           [selectedGradeId]: [...updatedSubjects, ...newSubjects],
@@ -53,7 +59,9 @@ export const NewTeacher = () => {
 
   const removeSubjectFromGrade = (gradeId: number, subjectId: number) => {
     setGradeSubjectMap((prevMap) => {
-      const updatedSubjects = prevMap[gradeId]?.filter(id => id !== subjectId);
+      const updatedSubjects = prevMap[gradeId]?.filter(
+        (id) => id !== subjectId
+      );
       return {
         ...prevMap,
         [gradeId]: updatedSubjects || [],
@@ -64,6 +72,7 @@ export const NewTeacher = () => {
   const validateInputs = () => {
     const idNumberRegex = /^\d{13}$/;
     const phoneNumberRegex = /^\d{10}$/;
+    const emailDomainRegex = /@tshimologong\.co\.za$/; // Regex to check for the specific email domain
 
     if (!idNumberRegex.test(formData.idNumber)) {
       toast.error("ID Number must be 13 digits.");
@@ -75,6 +84,11 @@ export const NewTeacher = () => {
       return false;
     }
 
+    if (!emailDomainRegex.test(formData.emailAddress)) {
+      toast.error("Email address must be a @tshimologong.co.za domain.");
+      return false;
+    }
+
     return true;
   };
 
@@ -83,7 +97,8 @@ export const NewTeacher = () => {
 
   // Function to generate a random password
   const generateRandomPassword = (length = 12) => {
-    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+    const charset =
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
     let password = "";
     for (let i = 0; i < length; i++) {
       const randomIndex = Math.floor(Math.random() * charset.length);
@@ -156,10 +171,14 @@ export const NewTeacher = () => {
 
         <div className="flex justify-between mb-6">
           <span
-            className={`flex-1 ${step >= 1 ? "bg-blue-500" : "bg-gray-300"} h-2 mr-1 rounded`}
+            className={`flex-1 ${
+              step >= 1 ? "bg-blue-500" : "bg-gray-300"
+            } h-2 mr-1 rounded`}
           />
           <span
-            className={`flex-1 ${step >= 2 ? "bg-blue-500" : "bg-gray-300"} h-2 rounded`}
+            className={`flex-1 ${
+              step >= 2 ? "bg-blue-500" : "bg-gray-300"
+            } h-2 rounded`}
           />
         </div>
 
@@ -186,7 +205,7 @@ export const NewTeacher = () => {
             <div className="mb-4">
               <input
                 name="idNumber"
-                type="text" 
+                type="text"
                 placeholder="ID Number"
                 value={formData.idNumber}
                 onChange={handleInputChange}
@@ -219,7 +238,7 @@ export const NewTeacher = () => {
               <div className="mb-4">
                 <input
                   name="phoneNumber"
-                  type="text" 
+                  type="text"
                   placeholder="Phone Number"
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
@@ -262,7 +281,10 @@ export const NewTeacher = () => {
               <h3 className="text-lg font-semibold">Select Subjects</h3>
               <div className="flex flex-col max-h-40 overflow-y-auto border border-gray-300 rounded">
                 {subjects.map((subject) => (
-                  <label key={subject.subjectId} className="flex items-center p-2 hover:bg-gray-100">
+                  <label
+                    key={subject.subjectId}
+                    className="flex items-center p-2 hover:bg-gray-100"
+                  >
                     <input
                       type="checkbox"
                       checked={selectedSubjectIds.includes(subject.subjectId)}
@@ -288,13 +310,21 @@ export const NewTeacher = () => {
             <div>
               {Object.entries(gradeSubjectMap).map(([gradeId, subjectIds]) => (
                 <div key={gradeId} className="mb-4">
-                  <h4 className="font-semibold">Grade: {grades.find(g => g.gradeId === Number(gradeId))?.grade}</h4>
+                  <h4 className="font-semibold">
+                    Grade:{" "}
+                    {grades.find((g) => g.gradeId === Number(gradeId))?.grade}
+                  </h4>
                   <ul className="list-disc pl-5">
-                    {subjectIds.map(subjectId => (
+                    {subjectIds.map((subjectId) => (
                       <li key={subjectId}>
-                        {subjects.find(s => s.subjectId === subjectId)?.subject}
+                        {
+                          subjects.find((s) => s.subjectId === subjectId)
+                            ?.subject
+                        }
                         <button
-                          onClick={() => removeSubjectFromGrade(Number(gradeId), subjectId)}
+                          onClick={() =>
+                            removeSubjectFromGrade(Number(gradeId), subjectId)
+                          }
                           className="ml-2 text-red-600 hover:text-red-800"
                         >
                           Remove

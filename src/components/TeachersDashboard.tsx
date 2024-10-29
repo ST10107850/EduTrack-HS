@@ -1,8 +1,16 @@
 import { useState, useEffect } from "react";
 import data from "../data/data.json";
 import types from "../Types/types";
+import { useLocation } from "react-router-dom";
 
 export const TeachersDashboard = () => {
+
+  const location = useLocation();
+  const {fullName, surname} = location.state || {fullName: "Teacher", surname: ""}
+
+  const formattedFullName = `${fullName} ${surname}`
+
+
   const grades: types.Grade[] = data.grades;
   const subjects: types.Subject[] = data.subjects;
   const learners: types.Learner[] = data.learners;
@@ -84,7 +92,7 @@ const overallResults = selectedLearners.map((learner) => {
   return (
     <div className="relative flex flex-col md:my-0 my-12 justify-center items-center md:h-[90vh] text-gray-800">
       <h1 className="text-5xl mx-7 md:mx-0 text-secondaryColor mb-16 font-bold">
-        Welcome {selectedGrade || "Select a Grade"}
+        Welcome {formattedFullName}
       </h1>
 
       <div className="mb-6 flex sm:flex-row flex-col space-x-4">

@@ -30,20 +30,30 @@ export const registerUser = async (userData: User): Promise<User> => {
 };
 
 
-// Function to log in an existing user
-export const loginUser = async (email: string, password: string): Promise<User> => {
-    const response = await fetch(`${API_URL}?email=${email}&password=${password}`);
+// Define the URLs for parents and teachers
+const PARENTS_API_URL = '/api/parents';
+const TEACHERS_API_URL = '/api/teachers';
 
-    if (!response.ok) {
-        const errorText = await response.text();
-        console.error('Login error:', response.status, errorText);
-        throw new Error("Failed to connect to the server. Status: " + response.status + ". Response: " + errorText);
+// Function to log in an existing user
+export const loginUser = async (email: string, password: string): Promise<User & { role: string }> => {
+    // Check if user exists in parents API
+    let response = await fetch(`${PARENTS_API_URL}?email=${email}&password=${password}`);
+
+    if (response.ok) {
+        const users = await response.json();
+        if (users.length > 0) return { ...users[0], role: 'parent' };
     }
 
-    const users = await response.json();
-    if (users.length === 0) throw new Error("Invalid credentials");
+    // If not found in parents, check teachers API
+    response = await fetch(`${TEACHERS_API_URL}?email=${email}&password=${password}`);
+    
+    if (response.ok) {
+        const users = await response.json();
+        if (users.length > 0) return { ...users[0], role: 'teacher' };
+    }
 
-    return users[0]; // Ensure this user object has the surname
+    // If not found in either parents or teachers, throw an error
+    throw new Error("Invalid credentials");
 };
 
 
