@@ -151,8 +151,9 @@ const Navbar2: React.FC<NavbarProps> = ({ isCollapsed, toggleSidebar }) => {
 
         {/* Profile Button */}
         <div className="relative" onClick={toggleProfile}>
-          <img src="https://via.placeholder.com/30" alt="Profile" className="w-8 h-8 rounded-full" />
+          
           <div className="flex items-center space-x-1">
+          <img src="https://via.placeholder.com/30" alt="Profile" className="w-8 h-8 rounded-full" />
             <div>
               <span className="text-sm font-medium text-gray-700">Cody Cubes</span>
               <span className="text-xs text-gray-500 block">Free Plan</span>
