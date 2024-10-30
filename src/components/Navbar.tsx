@@ -5,7 +5,7 @@ import { MdNotificationsNone } from "react-icons/md"; // Import notification ico
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
-import { BiUserCircle } from "react-icons/bi";
+// import { BiUserCircle } from "react-icons/bi";
 
 export const Navbar = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -136,8 +136,8 @@ export const Navbar = () => {
               </Link>
             </li>
             <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
+              <Link
+                to="#"
                 onClick={() => handleTabClick("contact")}
                 className={`${
                   activeTab === "contact"

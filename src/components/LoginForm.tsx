@@ -22,7 +22,6 @@ const LoginForm: React.FC = () => {
         values.email === "Admin12345@tshmologong.co.za" &&
         values.password === "@Tshimologong12345"
       ) {
-
         console.log("You have logged in as admin");
         // Navigate to admin dashboard if credentials match
         navigate("/admin-dashboard");
@@ -33,17 +32,46 @@ const LoginForm: React.FC = () => {
 
         // Navigate based on user role
         if (user.role === "parent") {
-
           console.log("You have logged in as parent");
           navigate("/parent-dashboard", {
             state: { fullName: user.fullName, surname: user.surname },
           });
         } else if (user.role === "teacher") {
+          console.log("Logging in as teacher with data:", user);
 
-          console.log("You have logged in as teacher");
-          navigate("/teachers-dashboard", {
-            state: { fullName: user.fullName, surname: user.surname },
-          });
+          // Check if user.subjects is defined and has content
+          if (
+            user.subjects &&
+            Array.isArray(user.subjects) &&
+            user.subjects.length > 0
+          ) {
+            const gradeIds = user.subjects.flatMap(
+              (subject) => subject.gradeIds || []
+            );
+
+            const teacherData = {
+              fullName: user.fullName,
+              surname: user.surname,
+              teacherId: user.id,
+              gradeId: gradeIds,
+            };
+
+            console.log("Extracted gradeIds:", gradeIds);
+            navigate("/teachers-dashboard", { state: teacherData });
+          } else {
+            console.warn(
+              "No subjects or gradeIds found for this teacher:",
+              user
+            );
+            navigate("/teachers-dashboard", {
+              state: {
+                fullName: user.fullName,
+                surname: user.surname,
+                teacherId: user.id,
+                gradeId: [],
+              },
+            });
+          }
         } else {
           setError("Unknown role");
         }
