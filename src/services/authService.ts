@@ -2,12 +2,17 @@
 // Define a User interface for type safety
 export interface User {
     id?: number;
+    subjects: Array<{
+      subjectId: string;
+      subject: string;
+      gradeIds: number[];
+    }>;
     fullName: string;
     surname: string;
     email: string;
     password: string;
-}
-
+  }
+  
 // API base URL for the JSON Server
 const API_URL = '/api/parents';
 
