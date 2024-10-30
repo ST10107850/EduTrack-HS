@@ -17,28 +17,47 @@ const LoginForm: React.FC = () => {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-  
+
     try {
+      // Check if credentials match admin credentials
+      // if (
+      //     values.email === "Admin12345@tshmologong.co.za" &&
+      //     values.password === "@Tshimologong12345"
+      // ) {
+      //     console.log("You have logged in as admin");
+      //     handleLogin(values.email, values.password, "admin"); // Pass role to handleLogin
+      //     resetForm();
+      //     navigate("/admin-dashboard");
+      //     return;
+      // }
+
+      // Attempt login as parent or teacher
       const user = await handleLogin(values.email, values.password);
       resetForm();
-  
+
       // Navigate based on user role
       if (user.role === "parent") {
         console.log("You have logged in as parent");
-        navigate("/parent-dashboard");
+        navigate("/parent-dashboard", {
+          state: { fullName: user.fullName, surname: user.surname },
+        });
       } else if (user.role === "teacher") {
         console.log("Logging in as teacher with data:", user);
-        const gradeIds = user.subjects?.flatMap((subject) => subject.gradeIds) || [];
+        const gradeIds =
+          user.subjects?.flatMap((subject) => subject.gradeIds) || [];
         const teacherData = {
           fullName: user.fullName,
           surname: user.surname,
           teacherId: user.id,
           gradeId: gradeIds,
         };
-        navigate("/teacher-dashboard", { state: teacherData });
+        console.log("Extracted gradeIds:", gradeIds);
+        navigate("/teachers-dashboard", { state: teacherData });
       } else if (user.role === "admin") {
         console.log("You have logged in as admin");
-        navigate("/admin-dashboard");
+        navigate("/admin-dashboard", {
+          state: { fullName: user.fullName, surname: user.surname },
+        });
       } else {
         setError("Unknown role");
       }
@@ -47,7 +66,6 @@ const LoginForm: React.FC = () => {
       toast.warning(error instanceof Error ? error.message : "Login failed");
     }
   };
-  
 
   const isFormFilled = values.email && values.password;
 

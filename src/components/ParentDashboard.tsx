@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar2 from "./Navbar2";
 import Sidebar from "./Sidebar";
@@ -10,8 +10,7 @@ import ParentComponent from "./ParentComponent";
 
 export const ParentDashboard = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [userType, setUserType] = useState<string>("parents");
-
+  
   const toggleSidebar = () => {
     setIsCollapsed((prev) => !prev);
   };
@@ -20,26 +19,17 @@ export const ParentDashboard = () => {
     <div className="w-full h-screen flex flex-col">
       <Navbar2 toggleSidebar={toggleSidebar} isCollapsed={isCollapsed} />
       <div className="flex h-full">
-        <Sidebar
-          isCollapsed={isCollapsed}
-          onSelectUserType={setUserType}
-          IsAdmin={false}
-        />
-        <main
-          className={`transition-all duration-300 p-4 ${isCollapsed ? "ml-16" : "ml-64"} w-full`}
-        >
+        <Sidebar isCollapsed={isCollapsed} IsAdmin={false}/>
+        <main className={`transition-all duration-300 p-4 ${isCollapsed ? 'ml-16' : 'ml-64'} w-full`}>
           <Routes>
-            {/* Use path="/" for the default component in this dashboard */}
-            <Route path="teacher-dashboard" element={<ParentComponent />} />
-            <Route path="about" element={
-              <>
-                <About />
-                <Staff />
-              </>
-            } />
+            {/* Default Route */}
+            <Route path="/" element={<ParentComponent />} />
+            {/* Nested Routes */}
+            <Route path="about" element={<About />} />
+            <Route path="staff" element={<Staff />} />
             <Route path="newsletter" element={<Newsletter />} />
             <Route path="contact" element={<Contact />} />
-            {/* Redirect to ParentComponent if no routes match */}
+            {/* Redirect to Default if No Match */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>

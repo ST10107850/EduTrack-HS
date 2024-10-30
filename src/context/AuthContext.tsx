@@ -1,53 +1,39 @@
+// src/context/AuthContext.tsx
+import React, { createContext, useContext, useReducer } from 'react';
 
-import React, { createContext, useReducer, useContext, ReactNode, ReactElement } from 'react';
-import { User } from '../services/authService';
-
-// Define the structure of the authentication state
 interface AuthState {
-    isAuthenticated: boolean;
-    user: User | null;
-    
+  isAuthenticated: boolean;
 }
 
-// Define action types for the reducer
-type AuthAction = 
-    | { type: 'REGISTER' | 'LOGIN'; payload: User }
-    | { type: 'LOGOUT' };
-
-// Initialize the authentication state
 const initialState: AuthState = {
-    isAuthenticated: false,
-    user: null,
+  isAuthenticated: false,
 };
 
-// Reducer function to handle state changes based on action types
+type AuthAction = { type: 'LOGIN' } | { type: 'LOGOUT' };
+
+const AuthContext = createContext<any>(null);
+
 const authReducer = (state: AuthState, action: AuthAction): AuthState => {
-    switch (action.type) {
-        case 'REGISTER':
-            return { ...state, isAuthenticated: true, user: action.payload };
-        case 'LOGIN':
-            // Set user and authentication status when logged in or registered
-            return { ...state, isAuthenticated: true, user: action.payload };
-        case 'LOGOUT':
-            // Clear user and authentication status on logout
-            return { ...state, isAuthenticated: false, user: null };
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case 'LOGIN':
+      return { ...state, isAuthenticated: true };
+    case 'LOGOUT':
+      return { ...state, isAuthenticated: false };
+    default:
+      return state;
+  }
 };
 
-// Create a context to provide and consume authentication state
-const AuthContext = createContext<{ state: AuthState; dispatch: React.Dispatch<AuthAction> } | undefined>(undefined);
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [state, dispatch] = useReducer(authReducer, initialState);
 
-// Provider component to wrap the application and provide authentication state
-export const AuthProvider = ({ children }: { children: ReactNode }): ReactElement => {
-    const [state, dispatch] = useReducer(authReducer, initialState);
-    return <AuthContext.Provider value={{ state, dispatch }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ state, dispatch }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
-// Custom hook to use the authentication context
 export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if (!context) throw new Error("useAuth must be used within an AuthProvider");
-    return context;
+  return useContext(AuthContext);
 };

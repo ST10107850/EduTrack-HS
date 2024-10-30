@@ -53,7 +53,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           </Link>
 
           <Link
-            to="about"
+            to="/teachers-dashboard/about"
             onClick={() => handleItemClick("about")}
             className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
               activeItem === "about" ? "bg-gray-300 text-secondaryColor" : ""

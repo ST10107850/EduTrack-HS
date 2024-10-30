@@ -10,29 +10,30 @@ import { Teachers } from "./Teachers";
 
 export const TeachersDashboard = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [userType, setUserType] = useState<string>("teachers");
-
+  
   const toggleSidebar = () => {
     setIsCollapsed((prev) => !prev);
   };
 
   return (
     <div className="w-full h-screen flex flex-col">
-    <Navbar2 toggleSidebar={toggleSidebar} isCollapsed={isCollapsed} />
-    <div className="flex h-full">
-      <Sidebar isCollapsed={isCollapsed} onSelectUserType={setUserType} IsAdmin={false} />
-      <main className={`transition-all duration-300 p-4 ${isCollapsed ? 'ml-16' : 'ml-64'} w-full`}>
-        <Routes>
-          <Route path="teachers-dashboard" element={<Teachers />}/>
-          <Route path="teachers-dashboard" element={<Teachers />} />
-         <Route path="about" element={<><About/><Staff/></>}/>
-          <Route path="newsletter" element={<Newsletter/>}/>
-          <Route path="contact" element={<Contact/>}/>
-          {/* Redirect to Manage Users if no routes match */}
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </main>
+      <Navbar2 toggleSidebar={toggleSidebar} isCollapsed={isCollapsed} />
+      <div className="flex h-full">
+        <Sidebar isCollapsed={isCollapsed} IsAdmin={false}/>
+        <main className={`transition-all duration-300 p-4 ${isCollapsed ? 'ml-16' : 'ml-64'} w-full`}>
+          <Routes>
+            {/* Default Route */}
+            <Route path="/" element={<Teachers />} />
+            {/* Nested Routes */}
+            <Route path="about" element={<About />} />
+            <Route path="staff" element={<Staff />} />
+            <Route path="newsletter" element={<Newsletter />} />
+            <Route path="contact" element={<Contact />} />
+            {/* Redirect to Default if No Match */}
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </main>
+      </div>
     </div>
-  </div>
   );
 };
