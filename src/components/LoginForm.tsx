@@ -72,6 +72,11 @@ const LoginForm: React.FC = () => {
               },
             });
           }
+        } else if (user.role === "admin") {
+          console.log("You have logged in as admin");
+          navigate("/parent-dashboard", {
+            state: { fullName: user.fullName, surname: user.surname },
+          });
         } else {
           setError("Unknown role");
         }

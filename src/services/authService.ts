@@ -38,6 +38,7 @@ export const registerUser = async (userData: User): Promise<User> => {
 // Define the URLs for parents and teachers
 const PARENTS_API_URL = '/api/parents';
 const TEACHERS_API_URL = '/api/teachers';
+const ADMIN_API_URL = '/api/admin'
 
 // Function to log in an existing user
 export const loginUser = async (email: string, password: string): Promise<User & { role: string }> => {
@@ -55,6 +56,13 @@ export const loginUser = async (email: string, password: string): Promise<User &
     if (response.ok) {
         const users = await response.json();
         if (users.length > 0) return { ...users[0], role: 'teacher' };
+    }
+
+    response = await fetch(`${ADMIN_API_URL}?email=${email}&password=${password}`);
+    
+    if (response.ok) {
+        const users = await response.json();
+        if (users.length > 0) return { ...users[0], role: 'admin' };
     }
 
     // If not found in either parents or teachers, throw an error
