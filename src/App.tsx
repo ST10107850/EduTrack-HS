@@ -15,10 +15,11 @@ import Footer from "./components/Footer";
 import { TeachersDashboard } from "./components/TeachersDashboard";
 import AdminDashboard from "./components/AdminDashboard";
 
-function App() {
+export function App() {
   const { state } = useAuth(); // Access authentication state
 
   return (
+  
     <Router>
       <Routes>
         {/* Public Routes */}

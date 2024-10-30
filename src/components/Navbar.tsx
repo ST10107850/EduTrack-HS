@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { BiUserCircle } from "react-icons/bi";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { MdNotificationsNone } from "react-icons/md"; // Import notification icon
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
@@ -9,18 +7,13 @@ import { Link } from "react-router-dom"; // Import Link from react-router-dom
 export const Navbar = ({ isAuthenticated }) => {
   const [activeTab, setActiveTab] = useState("home");
   const [isMenuOpened, setIsMenuOpened] = useState(false);
-  const [isProfileMenuOpened, setIsProfileMenuOpened] = useState(false);
 
-  const handleTabClick = (tab) => {
+  const handleTabClick = (tab: React.SetStateAction<string>) => {
     setActiveTab(tab);
   };
 
   const toggleMenuBar = () => {
     setIsMenuOpened(!isMenuOpened);
-  };
-
-  const toggleProfileMenu = () => {
-    setIsProfileMenuOpened(!isProfileMenuOpened);
   };
 
   return (
@@ -195,6 +188,27 @@ export const Navbar = ({ isAuthenticated }) => {
               >
                 Contact Us
               </Link>
+            </li>
+            <li className="relative group hover:rounded-md hover:text-secondaryColor">
+              <span
+                onClick={() => handleTabClick("account")}
+                className={`${
+                  activeTab === "account"
+                    ? "text-secondaryColor py-1 px-1 rounded-md"
+                    : "bg-transparent"
+                }`}
+              >
+                Account
+              </span>
+              {/* Dropdown for Login and Register */}
+              <div className="absolute hidden group-hover:block bg-white text-black mt-2 p-2 rounded shadow-lg">
+                <Link to="/login" className="block px-4 py-2 hover:bg-gray-200">
+                  Login
+                </Link>
+                <Link to="/register" className="block px-4 py-2 hover:bg-gray-200">
+                  Register
+                </Link>
+              </div>
             </li>
           </ul>
         )}
