@@ -13,6 +13,7 @@ import { ParentDashboard } from "./components/ParentDashboard";
 import { Navbar } from "./components/Navbar";
 import Footer from "./components/Footer";
 import { TeachersDashboard } from "./components/TeachersDashboard";
+import AdminDashboard from "./components/AdminDashboard";
 
 function App() {
   const { state } = useAuth(); // Access authentication state
@@ -21,7 +22,7 @@ function App() {
     <Router>
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<AuthLayout />} />
+        <Route path="/" element={<AdminDashboard />} />
         <Route
           path="/login"
           element={
@@ -46,9 +47,10 @@ function App() {
           <>
             <Route path="/parent-dashboard" element={<ParentDashboard />} />
             <Route path="/teachers-dashboard" element={<TeachersDashboard />} />
+            <Route path="/admin" element={<AdminDashboard/>}/>
           </>
         ) : (
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<Navigate to="/admin" />} />
         )}
       </Routes>
     </Router>

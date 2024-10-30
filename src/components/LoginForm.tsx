@@ -24,7 +24,7 @@ const LoginForm: React.FC = () => {
       ) {
         console.log("You have logged in as admin");
         // Navigate to admin dashboard if credentials match
-        navigate("/admin-dashboard");
+        navigate("/admin");
       } else {
         // Attempt login as parent or teacher
         const user = await handleLogin(values.email, values.password);
