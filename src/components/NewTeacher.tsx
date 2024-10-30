@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import data from "../data/data.json";
 import { toast } from "react-toastify";
-import { Grade, Subjects, teachers } from "../Types/types"; // Ensure all imports are correct
+import { Grade, Subjects, teachers } from "../Types/types";
 import { useApi } from "../hooks/ApiContext";
 
 export const NewTeacher = () => {
@@ -19,11 +19,31 @@ export const NewTeacher = () => {
     phoneNumber: "",
   });
 
+  // Change state to store multiple grades with subjects
   const [gradeSubjectMap, setGradeSubjectMap] = useState<{
-    [key: number]: number[];
+    [key: number]: { subjectId: number; subject: string }[];
   }>({});
-  const [selectedGradeId, setSelectedGradeId] = useState<number | null>(null);
+  const [selectedGrades, setSelectedGrades] = useState<number[]>([]);
   const [selectedSubjectIds, setSelectedSubjectIds] = useState<number[]>([]);
+  const [existingTeachers, setExistingTeachers] = useState<teachers[]>([]);
+
+  useEffect(() => {
+    const fetchTeachers = async () => {
+      try {
+        const response = await fetch(apiUrl);
+        if (response.ok) {
+          const data = await response.json();
+          setExistingTeachers(data);
+        } else {
+          console.error("Failed to fetch teachers");
+        }
+      } catch (error) {
+        console.error("Error fetching teachers:", error);
+      }
+    };
+
+    fetchTeachers();
+  }, [apiUrl]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -42,12 +62,17 @@ export const NewTeacher = () => {
   };
 
   const addSubjectsToGrade = () => {
+    const selectedGradeId = selectedGrades[selectedGrades.length - 1]; // Get the last selected grade ID
     if (selectedGradeId !== null) {
       setGradeSubjectMap((prevMap) => {
         const updatedSubjects = prevMap[selectedGradeId] || [];
-        const newSubjects = selectedSubjectIds.filter(
-          (id) => !updatedSubjects.includes(id)
-        );
+        const newSubjects = selectedSubjectIds
+          .map((id) => {
+            const subjectDetails = subjects.find((subject) => subject.subjectId === id);
+            return { subjectId: id, subject: subjectDetails?.subject || "" };
+          })
+          .filter((subject) => !updatedSubjects.some((s) => s.subjectId === subject.subjectId));
+
         return {
           ...prevMap,
           [selectedGradeId]: [...updatedSubjects, ...newSubjects],
@@ -60,7 +85,7 @@ export const NewTeacher = () => {
   const removeSubjectFromGrade = (gradeId: number, subjectId: number) => {
     setGradeSubjectMap((prevMap) => {
       const updatedSubjects = prevMap[gradeId]?.filter(
-        (id) => id !== subjectId
+        (subject) => subject.subjectId !== subjectId
       );
       return {
         ...prevMap,
@@ -72,7 +97,14 @@ export const NewTeacher = () => {
   const validateInputs = () => {
     const idNumberRegex = /^\d{13}$/;
     const phoneNumberRegex = /^\d{10}$/;
-    const emailDomainRegex = /@tshimologong\.co\.za$/; // Regex to check for the specific email domain
+    const emailDomainRegex = /@tshimologong\.co\.za$/;
+
+    if (
+      existingTeachers.some((teacher) => teacher.idNumber === formData.idNumber)
+    ) {
+      toast.error("ID Number already exists.");
+      return false;
+    }
 
     if (!idNumberRegex.test(formData.idNumber)) {
       toast.error("ID Number must be 13 digits.");
@@ -95,7 +127,6 @@ export const NewTeacher = () => {
   const handleNextStep = () => setStep((prevStep) => prevStep + 1);
   const handlePrevStep = () => setStep((prevStep) => prevStep - 1);
 
-  // Function to generate a random password
   const generateRandomPassword = (length = 12) => {
     const charset =
       "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
@@ -112,24 +143,30 @@ export const NewTeacher = () => {
 
     if (!validateInputs()) return;
 
-    // Create arrays for grades and subjects
-    const gradeIds = Object.keys(gradeSubjectMap).map(Number);
-    const subjectIds = Object.values(gradeSubjectMap).flat();
+    const subjectsToSave = Object.entries(gradeSubjectMap).flatMap(
+      ([gradeId, subjectList]) => {
+        return subjectList.map((subject) => {
+          return {
+            subjectId: subject.subjectId.toString(),
+            subject: subject.subject,
+            gradeIds: [Number(gradeId)],
+          };
+        });
+      }
+    );
 
-    // Generate a random password
-    const password = generateRandomPassword(); // Generate password here
+    const password = generateRandomPassword();
 
-    const teacherData: teachers = {
-      id: Date.now(), // Placeholder for ID; adjust as necessary
+    const teacherData = {
+      id: Date.now(),
       fullName: formData.fullName,
       surname: formData.surname,
       idNumber: formData.idNumber,
       address: formData.address,
       emailAddress: formData.emailAddress,
       phoneNumber: formData.phoneNumber,
-      gradeId: gradeIds,
-      subjects: subjectIds,
-      password, // Add the generated password to the teacher data
+      password,
+      subjects: subjectsToSave,
     };
 
     try {
@@ -153,6 +190,7 @@ export const NewTeacher = () => {
           phoneNumber: "",
         });
         setGradeSubjectMap({});
+        setSelectedGrades([]); // Clear selected grades
       } else {
         const errorText = await response.text();
         console.error("Failed to submit teacher data:", errorText);
@@ -162,23 +200,28 @@ export const NewTeacher = () => {
     }
   };
 
+  const handleGradeSelection = (gradeId: number) => {
+    setSelectedGrades((prevGrades) => {
+      if (prevGrades.includes(gradeId)) {
+        return prevGrades; // Prevent adding the same grade
+      }
+      return [...prevGrades, gradeId];
+    });
+  };
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-10 rounded shadow-md w-full max-w-3xl">
         <h2 className="text-3xl font-bold text-center mb-6 text-primaryColor">
-          Teachers Registration
+          Teacher Registration
         </h2>
 
         <div className="flex justify-between mb-6">
           <span
-            className={`flex-1 ${
-              step >= 1 ? "bg-blue-500" : "bg-gray-300"
-            } h-2 mr-1 rounded`}
+            className={`flex-1 ${step >= 1 ? "bg-blue-500" : "bg-gray-300"} h-2 mr-1 rounded`}
           />
           <span
-            className={`flex-1 ${
-              step >= 2 ? "bg-blue-500" : "bg-gray-300"
-            } h-2 rounded`}
+            className={`flex-1 ${step >= 2 ? "bg-blue-500" : "bg-gray-300"} h-2 rounded`}
           />
         </div>
 
@@ -238,8 +281,8 @@ export const NewTeacher = () => {
               <div className="mb-4">
                 <input
                   name="phoneNumber"
-                  type="text"
                   placeholder="Phone Number"
+                  type="tel"
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
                   required
@@ -248,9 +291,8 @@ export const NewTeacher = () => {
               </div>
             </div>
             <button
-              type="button"
               onClick={handleNextStep}
-              className="w-full py-3 bg-blue-500 text-white rounded mt-4 text-lg"
+              className="bg-primaryColor text-white px-4 py-2 rounded mt-4"
             >
               Next
             </button>
@@ -258,100 +300,81 @@ export const NewTeacher = () => {
         )}
 
         {step === 2 && (
-          <form onSubmit={handleSubmit}>
-            <div className="flex justify-center mb-4">
-              <div className="mr-2">
-                <select
-                  value={selectedGradeId ?? ""}
-                  onChange={(e) => setSelectedGradeId(Number(e.target.value))}
-                  required
-                  className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-secondaryColor"
-                >
-                  <option value="">Select Grade</option>
-                  {grades.map((grade) => (
-                    <option value={grade.gradeId} key={grade.gradeId}>
-                      {grade.grade}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
+          <>
             <div className="mb-4">
-              <h3 className="text-lg font-semibold">Select Subjects</h3>
-              <div className="flex flex-col max-h-40 overflow-y-auto border border-gray-300 rounded">
-                {subjects.map((subject) => (
-                  <label
-                    key={subject.subjectId}
-                    className="flex items-center p-2 hover:bg-gray-100"
-                  >
-                    <input
-                      type="checkbox"
-                      checked={selectedSubjectIds.includes(subject.subjectId)}
-                      onChange={() => toggleSubjectSelection(subject.subjectId)}
-                      className="mr-2"
-                    />
+              <select
+                onChange={(e) => handleGradeSelection(Number(e.target.value))}
+                className="p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-secondaryColor w-full"
+              >
+                <option value="">Select Grade</option>
+                {grades.map((grade) => (
+                  <option key={grade.gradeId} value={grade.gradeId}>
+                    {grade.grade}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold">Select Subjects:</h3>
+              {subjects.map((subject) => (
+                <div key={subject.subjectId} className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id={`subject-${subject.subjectId}`}
+                    checked={selectedSubjectIds.includes(subject.subjectId)}
+                    onChange={() => toggleSubjectSelection(subject.subjectId)}
+                  />
+                  <label htmlFor={`subject-${subject.subjectId}`} className="ml-2">
                     {subject.subject}
                   </label>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
-
-            <div className="flex justify-center mb-6">
-              <button
-                type="button"
-                onClick={addSubjectsToGrade}
-                className="bg-blue-500 text-white px-8 py-2 text-center rounded text-lg"
-              >
-                Add Subjects to Grade
-              </button>
-            </div>
-
-            <div>
-              {Object.entries(gradeSubjectMap).map(([gradeId, subjectIds]) => (
-                <div key={gradeId} className="mb-4">
-                  <h4 className="font-semibold">
-                    Grade:{" "}
-                    {grades.find((g) => g.gradeId === Number(gradeId))?.grade}
-                  </h4>
-                  <ul className="list-disc pl-5">
-                    {subjectIds.map((subjectId) => (
-                      <li key={subjectId}>
-                        {
-                          subjects.find((s) => s.subjectId === subjectId)
-                            ?.subject
-                        }
+            <button
+              onClick={addSubjectsToGrade}
+              className="bg-primaryColor text-white px-4 py-2 rounded mt-4"
+            >
+              Add Subjects
+            </button>
+            <div className="mt-4 p-4 border border-gray-300 rounded">
+              <h3 className="text-lg font-semibold">Selected Grades and Subjects:</h3>
+              {selectedGrades.map((gradeId) => (
+                <div key={gradeId}>
+                  <p className="font-bold">
+                    Grade: {grades.find((grade) => grade.gradeId === gradeId)?.grade}
+                  </p>
+                  <p>Subjects:</p>
+                  <ul>
+                    {gradeSubjectMap[gradeId]?.map(({ subjectId, subject }) => (
+                      <li key={subjectId} className="flex justify-between">
+                        {subject} (ID: {subjectId})
                         <button
-                          onClick={() =>
-                            removeSubjectFromGrade(Number(gradeId), subjectId)
-                          }
-                          className="ml-2 text-red-600 hover:text-red-800"
+                          onClick={() => removeSubjectFromGrade(gradeId, subjectId)}
+                          className="text-red-500 ml-4"
                         >
                           Remove
                         </button>
                       </li>
-                    ))}
+                    )) || <li>No subjects added.</li>}
                   </ul>
                 </div>
               ))}
             </div>
-
             <div className="flex justify-between mt-4">
               <button
-                type="button"
                 onClick={handlePrevStep}
-                className="py-2 px-4 bg-gray-300 text-black rounded"
+                className="bg-gray-300 text-gray-700 px-4 py-2 rounded"
               >
                 Back
               </button>
               <button
-                type="submit"
-                className="py-2 px-4 bg-blue-500 text-white rounded"
+                onClick={handleSubmit}
+                className="bg-primaryColor text-white px-4 py-2 rounded"
               >
                 Submit
               </button>
             </div>
-          </form>
+          </>
         )}
       </div>
     </div>

@@ -3,6 +3,7 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
+// import { BiUserCircle } from "react-icons/bi";
 
 export const Navbar = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -131,7 +132,7 @@ export const Navbar = () => {
             </li>
             <li className="hover:rounded-md hover:text-secondaryColor">
               <Link
-                to="/contact"
+                to="#"
                 onClick={() => handleTabClick("contact")}
                 className={`${
                   activeTab === "contact"
