@@ -8,16 +8,21 @@ import {ParentDashboard}   from './components/ParentDashboard';
 import { Navbar } from './components/Navbar';
 import Footer from './components/Footer';
 import { TeachersDashboard } from './components/TeachersDashboard';
+import { AdminDashboard } from './components/AdminDashboard';
+import { NewTeacher } from './components/NewTeacher';
+import { NewLearner } from './components/NewLearner';
 
-function App() {
+export function App() {
   const { state } = useAuth(); // Access authentication state
 
   return (
+  
     <Router>
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<AuthLayout />} />
-        <Route path="/login" element={<><Navbar /><LoginForm /></>} />
+        {/* <Route path="/" element={<AuthLayout />} /> */}
+        {/* <Route path="/login" element={<><Navbar /><LoginForm /></>} /> */}
+        <Route path="/" element={<AdminDashboard />} />
         <Route path="/register" element={<><Navbar /><RegisterForm /></>} />
         <Route path="/footer" element={<Footer/>}/> 
 
@@ -26,6 +31,8 @@ function App() {
           <>
             <Route path="/parent-dashboard" element={<ParentDashboard />} />
             <Route path="/teachers-dashboard" element={<TeachersDashboard />} />
+            <Route path='/new-teacher' element={<NewTeacher />} />
+            <Route path='/new-learner' element={<NewLearner />} />
            
           </>
         ) : (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsNewspaper } from "react-icons/bs";
 import { FcAbout, FcContacts } from "react-icons/fc";
 import { GiTeacher } from "react-icons/gi";
@@ -9,9 +9,17 @@ import { SiAboutdotme } from "react-icons/si";
 
 interface SidebarProps {
   isCollapsed: boolean;
+  onSelectUserType: (userType: string) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isCollapsed }) => {
+const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onSelectUserType }) => {
+  const [activeItem, setActiveItem] = useState<string>("");
+
+  const handleItemClick = (itemName: string) => {
+    setActiveItem(itemName);
+    onSelectUserType(itemName);
+  };
+
   return (
     <aside
       className={`fixed top-16 left-0 h-[calc(100%-64px)] bg-white text-[#4A4A4A] ${
@@ -19,59 +27,83 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed }) => {
       } transition-all duration-300 ease-in-out shadow-md`}
     >
       <nav className="flex flex-col gap-4 mt-4 space-y-2">
-        {/* Main Section */}
         <div>
-
-        <div className={`mt-8 px-4 ${isCollapsed ? "hidden" : "text-gray-500 text-sm font-bold"}`}>
-          MAIN
+          <div className={`mt-8 px-4 ${isCollapsed ? "hidden" : "text-gray-500 text-sm font-bold"}`}>
+            MAIN
+          </div>
+          <a
+            href="#"
+            onClick={() => handleItemClick("home")}
+            className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
+              activeItem === "home" ? "bg-gray-300 text-secondaryColor" : ""
+            }`}
+          >
+            <HiHome />
+            {!isCollapsed && <span className="ml-3">Home</span>}
+          </a>
+          <a
+            href="#"
+            onClick={() => handleItemClick("about")}
+            className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
+              activeItem === "about" ? "bg-gray-300 text-secondaryColor" : ""
+            }`}
+          >
+            <FcAbout />
+            {!isCollapsed && <span className="ml-3">About Us</span>}
+          </a>
         </div>
-        <a href="#" className="flex items-center py-3 px-4 hover:bg-gray-200 hover:text-secondaryColor transition-colors">
-          <HiHome />
-          {!isCollapsed && <span className="ml-3">Home</span>}
-        </a>
 
-        <a href="#" className="flex items-center py-3 px-4 hover:bg-gray-200 hover:text-secondaryColor transition-colors">
-          <FcAbout />
-          {!isCollapsed && <span className="ml-3">About Us</span>}
-        </a>
-
-    
-        </div>
-
-
-        {/* Tools Section */}
         <div>
-        <div className={`px-4 ${isCollapsed ? "hidden" : "text-gray-500 text-sm font-bold mt-6"}`}>
-          MANAGE USERS
-        </div>
-        <a href="#" className="flex items-center py-3 px-4 hover:bg-gray-200 hover:text-secondaryColor transition-colors">
+          <div className={`px-4 ${isCollapsed ? "hidden" : "text-gray-500 text-sm font-bold mt-6"}`}>
+            MANAGE USERS
+          </div>
+          <a
+            href="#"
+            onClick={() => handleItemClick("teachers")}
+            className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
+              activeItem === "teachers" ? "bg-gray-300 text-secondaryColor" : ""
+            }`}
+          >
             <GiTeacher />
-          {!isCollapsed && <span className="ml-3">Teachers</span>}
-        </a>
-        <a href="#" className="flex items-center py-3 px-4 hover:bg-gray-200 hover:text-secondaryColor transition-colors">
-          <PiStudent />
-          {!isCollapsed && <span className="ml-3">Learners</span>}
-        </a>
+            {!isCollapsed && <span className="ml-3">Teachers</span>}
+          </a>
+          <a
+            href="#"
+            onClick={() => handleItemClick("learners")}
+            className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
+              activeItem === "learners" ? "bg-gray-300 text-secondaryColor" : ""
+            }`}
+          >
+            <PiStudent />
+            {!isCollapsed && <span className="ml-3">Learners</span>}
+          </a>
         </div>
 
-
-        {/* Conversation Section */}
         <div>
-        <div className={`px-4 ${isCollapsed ? "hidden" : "text-gray-500 text-sm font-bold mt-6"}`}>
-          COMMUNICATION
+          <div className={`px-4 ${isCollapsed ? "hidden" : "text-gray-500 text-sm font-bold mt-6"}`}>
+            COMMUNICATION
+          </div>
+          <a
+            href="#"
+            onClick={() => handleItemClick("newsletter")}
+            className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
+              activeItem === "newsletter" ? "bg-gray-300 text-secondaryColor" : ""
+            }`}
+          >
+            <BsNewspaper />
+            {!isCollapsed && <span className="ml-3">Newsletter</span>}
+          </a>
+          <a
+            href="#"
+            onClick={() => handleItemClick("contact")}
+            className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
+              activeItem === "contact" ? "bg-gray-300 text-secondaryColor" : ""
+            }`}
+          >
+            <LuContact />
+            {!isCollapsed && <span className="ml-3">Contact Us</span>}
+          </a>
         </div>
-        <a href="#" className="flex items-center py-3 px-4 hover:bg-gray-200 hover:text-secondaryColor transition-colors">
-          <BsNewspaper />
-          {!isCollapsed && <span className="ml-3">Newsletter</span>}
-        </a>
-
-        <a href="#" className="flex items-center py-3 px-4 hover:bg-gray-200 hover:text-secondaryColor transition-colors">
-          <LuContact />
-          {!isCollapsed && <span className="ml-3">Contact Us</span>}
-        </a>
-        </div>
-
-
       </nav>
     </aside>
   );

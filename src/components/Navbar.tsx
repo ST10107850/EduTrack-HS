@@ -1,27 +1,19 @@
 import React, { useState } from "react";
-import { BiUserCircle } from "react-icons/bi";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { MdNotificationsNone } from "react-icons/md"; // Import notification icon
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
-import { BiUserCircle } from "react-icons/bi";
 
 export const Navbar = () => {
   const [activeTab, setActiveTab] = useState("home");
   const [isMenuOpened, setIsMenuOpened] = useState(false);
-  const [isProfileMenuOpened, setIsProfileMenuOpened] = useState(false);
 
-  const handleTabClick = (tab) => {
+  const handleTabClick = (tab: React.SetStateAction<string>) => {
     setActiveTab(tab);
   };
 
   const toggleMenuBar = () => {
     setIsMenuOpened(!isMenuOpened);
-  };
-
-  const toggleProfileMenu = () => {
-    setIsProfileMenuOpened(!isProfileMenuOpened);
   };
 
   return (
@@ -76,26 +68,28 @@ export const Navbar = () => {
                 Contact Us
               </Link>
             </li>
+            <li className="relative group hover:rounded-md hover:text-secondaryColor">
+              <span
+                onClick={() => handleTabClick("account")}
+                className={`${
+                  activeTab === "account"
+                    ? "text-secondaryColor py-1 px-1 rounded-md"
+                    : "bg-transparent"
+                }`}
+              >
+                Account
+              </span>
+              {/* Dropdown for Login and Register */}
+              <div className="absolute hidden group-hover:block bg-white text-black mt-2 p-2 rounded shadow-lg">
+                <Link to="/login" className="block px-4 py-2 hover:bg-gray-200">
+                  Login
+                </Link>
+                <Link to="/register" className="block px-4 py-2 hover:bg-gray-200">
+                  Register
+                </Link>
+              </div>
+            </li>
           </ul>
-
-          {/* Notifications and Profile Icons */}
-          <div className="flex items-center space-x-4 text-white">
-            <MdNotificationsNone size={25} className="cursor-pointer" />
-            <div className="relative">
-              <BiUserCircle size={29} onClick={toggleProfileMenu} className="cursor-pointer" />
-              
-              {isProfileMenuOpened && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 text-black">
-                  <div className="px-4 py-2 font-bold">Boitshepo Mashamaite</div>
-                  <hr className="my-1" />
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-200">Switch account</a>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-200">Sign out</a>
-                  <hr className="my-1" />
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-200">Settings</a>
-                </div>
-              )}
-            </div>
-          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -136,8 +130,8 @@ export const Navbar = () => {
               </Link>
             </li>
             <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
+              <Link
+                to="/contact"
                 onClick={() => handleTabClick("contact")}
                 className={`${
                   activeTab === "contact"
@@ -147,6 +141,27 @@ export const Navbar = () => {
               >
                 Contact Us
               </Link>
+            </li>
+            <li className="relative group hover:rounded-md hover:text-secondaryColor">
+              <span
+                onClick={() => handleTabClick("account")}
+                className={`${
+                  activeTab === "account"
+                    ? "text-secondaryColor py-1 px-1 rounded-md"
+                    : "bg-transparent"
+                }`}
+              >
+                Account
+              </span>
+              {/* Dropdown for Login and Register */}
+              <div className="absolute hidden group-hover:block bg-white text-black mt-2 p-2 rounded shadow-lg">
+                <Link to="/login" className="block px-4 py-2 hover:bg-gray-200">
+                  Login
+                </Link>
+                <Link to="/register" className="block px-4 py-2 hover:bg-gray-200">
+                  Register
+                </Link>
+              </div>
             </li>
           </ul>
         )}
