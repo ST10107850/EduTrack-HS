@@ -8,6 +8,7 @@ import { ParentDashboard } from './components/ParentDashboard';
 import { TeachersDashboard } from './components/TeachersDashboard';
 import { Navbar } from './components/Navbar';
 import Footer from './components/Footer';
+import MarksEntryTable from './components/MarksEntryTable';
 
 function App() {
   const { state } = useAuth(); // Access authentication state
@@ -20,6 +21,8 @@ function App() {
         <Route path="/login" element={<><Navbar /><LoginForm /></>} />
         <Route path="/register" element={<><Navbar /><RegisterForm /></>} />
         <Route path="/footer" element={<Footer/>}/> 
+        <Route path="/markentering" element={<MarksEntryTable/>}/>
+
 
         {/* Conditional Routes for Authenticated Users */}
         {state.isAuthenticated ? (
