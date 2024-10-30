@@ -1,48 +1,70 @@
-import React, { useState } from "react"; // Import useState to manage local state for errors
+import React from "react"; 
 import { useForm } from "../hooks/useForm";
 import { useAuthActions } from "../hooks/useAuthActions";
-import { Link, useNavigate } from "react-router-dom"; // Import Link for navigation
+import { Link, useNavigate } from "react-router-dom"; 
 import { toast } from "react-toastify";
+import learnersData from "../data/data.json"; // Adjust the path to your JSON file
 
 const RegisterForm: React.FC = () => {
   const { values, handleChange, resetForm } = useForm({
     fullName: "",
-    emailAddress: "", // Update to match input field
+    emailAddress: "",
     password: "",
     surname: "",
     idNumber: "",
     address: "",
     phoneNumber: "",
     learnerID: "",
-    confirmPassword: "" // Added learner ID field
+    confirmPassword: "",
   });
 
   const { handleRegister } = useAuthActions();
-  const navigate = useNavigate(); // Initialize useNavigate
-  const [error, setError] = useState<string | null>(null); // State to store error messages
+  const navigate = useNavigate(); 
 
-  // Submit handler for registration
+  // Check if the provided idNumber is valid
+  const isIdNumberValid = (idNumber: string) => {
+    return learnersData.learners.some(learner => learner.idNumber === idNumber);
+  };
+
+  // Check if the provided learnerID is valid against the JSON data
+  const isLearnerIDValid = (learnerID: string) => {
+    return learnersData.learners.some(learner => learner.idNumber === learnerID);
+  };
+
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Check if passwords match
     if (values.password !== values.confirmPassword) {
-        toast.warn("Passwords do not match");
-        return;
+      toast.warn("Passwords do not match");
+      return;
+    }
+
+    // Validate learnerID
+    if (!isLearnerIDValid(values.learnerID)) {
+      toast.error("Learner ID not found in the database");
+      console.log("Invalid learner ID");
+      return; // Stop the submission if learnerID is invalid
+    }
+
+    // Validate idNumber
+    if (!isIdNumberValid(values.idNumber)) {
+      toast.error("ID Number not found in learners");
+      return; // Stop the submission if idNumber is invalid
     }
 
     try {
-        await handleRegister(values); // Register the user
-        resetForm(); 
-        toast.success("Registered successfully")// Reset the form fields
-        navigate("/login"); // Navigate to login page upon successful registration
+      await handleRegister(values); 
+      resetForm();
+      toast.success("Registered successfully");
+      navigate("/login"); 
     } catch (error) {
-        toast.error(error instanceof Error ? error.message : "Registration failed"); // Show the error if registration fails
+      toast.error(
+        error instanceof Error ? error.message : "Registration failed"
+      );
     }
-};
+  };
 
-
-  // Check if all fields are filled
   const isFormFilled =
     values.fullName &&
     values.emailAddress &&
@@ -51,16 +73,17 @@ const RegisterForm: React.FC = () => {
     values.idNumber &&
     values.address &&
     values.phoneNumber &&
-    values.learnerID; // Ensure learnerID is also checked
+    values.learnerID;
 
   return (
-    <div className="flex items-center justify-center h-auto bg-white">
-      {/* Change background to white */}
-      <form onSubmit={onSubmit} className="bg-white my-5 p-8 rounded shadow-md max-w-4xl">
-        <h2 className="text-2xl font-bold text-center mb-4 text-primaryColor">Register</h2>
-
-        {/* Display error message if there is an error */}
-        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+    <div className="flex items-center w-full justify-center h-screen bg-white">
+      <form
+        onSubmit={onSubmit}
+        className="bg-white my-5 p-8 rounded shadow-md max-w-5xl"
+      >
+        <h2 className="text-2xl font-bold text-center mb-4 text-primaryColor">
+          Register
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <input
@@ -80,7 +103,7 @@ const RegisterForm: React.FC = () => {
             className="p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-secondaryColor"
           />
         </div>
-        
+
         <div className="mb-4">
           <input
             name="idNumber"
@@ -145,7 +168,7 @@ const RegisterForm: React.FC = () => {
             <input
               name="password"
               placeholder="Create Password"
-              type="password" // Use password type for secure input
+              type="password"
               value={values.password}
               onChange={handleChange}
               required
@@ -154,11 +177,11 @@ const RegisterForm: React.FC = () => {
           </div>
           <div className="mb-4">
             <input
-              name="confirmPassword" // Add confirm password field
+              name="confirmPassword"
               placeholder="Confirm Password"
               value={values.confirmPassword}
               onChange={handleChange}
-              type="password" // Use password type for secure input
+              type="password"
               required
               className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-secondaryColor"
             />
@@ -167,14 +190,16 @@ const RegisterForm: React.FC = () => {
 
         <button
           type="submit"
-          disabled={!isFormFilled} // Disable the button if not all fields are filled
+          disabled={!isFormFilled}
           className={`w-full py-2 rounded transition duration-200 ${
-            isFormFilled ? "bg-[#060721] text-white hover:bg-gray-700" : "bg-gray-300 text-gray-500 cursor-not-allowed"
+            isFormFilled
+              ? "bg-[#060721] text-white hover:bg-gray-700"
+              : "bg-gray-300 text-gray-500 cursor-not-allowed"
           }`}
         >
           Signup
         </button>
-        
+
         <p className="mt-4 text-center">
           Already have an account?{" "}
           <Link to="/login" className="text-secondaryColor underline">
