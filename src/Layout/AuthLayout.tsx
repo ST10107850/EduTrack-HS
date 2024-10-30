@@ -5,6 +5,7 @@ import { Contact } from "../components/Contact";
 import About from "../components/About";
 import Staff from "../components/Staff";
 import Footer from "../components/Footer";
+import { NewUsers } from "../Pages/NewUsers";
 
 export const AuthLayout = () => {
   return (
