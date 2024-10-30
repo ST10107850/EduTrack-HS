@@ -6,7 +6,7 @@ const calculatePercentage = (marksObtained, totalMarks) => {
   return ((marksObtained / totalMarks) * 100).toFixed(2);
 };
 
-const ParentConponent = () => {
+const ParentComponent = () => {
   const location = useLocation();
   const { fullName, surname } = location.state || {
     fullName: "Parent",
@@ -189,4 +189,4 @@ const ParentConponent = () => {
   );
 };
 
-export default ParentConponent;
+export default ParentComponent;

@@ -13,6 +13,7 @@ import { Navbar } from "./components/Navbar";
 import { AdminDashboard } from "./components/AdminDashboard";
 import { TeachersDashboard } from "./components/TeachersDashboard";
 import { ParentDashboard } from "./components/ParentDashboard";
+import { Teachers } from "./components/Teachers";
 import MarksEntryTable from "./components/MarksEntryTable";
 
 export function App() {
@@ -28,7 +29,7 @@ export function App() {
     <Router>
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<MarksEntryTable />} />
+        <Route path="/" element={<AuthLayout />} />
         <Route
           path="/login"
           element={
@@ -47,15 +48,13 @@ export function App() {
             </>
           }
         />
+        <Route path="/mark-entry" element={<MarksEntryTable/>}/>
 
         {/* Protected Routes */}
         {state.isAuthenticated ? (
           <>
             <Route path="/parent-dashboard/*" element={<ParentDashboard />} />
-            <Route
-              path="/teachers-dashboard/*"
-              element={<TeachersDashboard />}
-            />
+            <Route path="/teacher-dashboard/*" element={<TeachersDashboard />} />
             <Route path="/admin-dashboard/*" element={<AdminDashboard />} />
           </>
         ) : (

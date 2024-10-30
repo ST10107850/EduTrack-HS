@@ -6,11 +6,11 @@ import About from "./About";
 import Staff from "./Staff";
 import { Newsletter } from "./Newsletter";
 import { Contact } from "./Contact";
-import ParentConponent from "./ParentConponent";
+import ParentComponent from "./ParentComponent";
 
 export const ParentDashboard = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [userType, setUserType] = useState<string>("teachers");
+  const [userType, setUserType] = useState<string>("parents");
 
   const toggleSidebar = () => {
     setIsCollapsed((prev) => !prev);
@@ -26,25 +26,20 @@ export const ParentDashboard = () => {
           IsAdmin={false}
         />
         <main
-          className={`transition-all duration-300 p-4 ${
-            isCollapsed ? "ml-16" : "ml-64"
-          } w-full`}
+          className={`transition-all duration-300 p-4 ${isCollapsed ? "ml-16" : "ml-64"} w-full`}
         >
           <Routes>
-            <Route path="parent-dashboard" element={<ParentConponent />} />
-            <Route path="/" element={<ParentConponent />} />
-            <Route
-              path="about"
-              element={
-                <>
-                  <About />
-                  <Staff />
-                </>
-              }
-            />
+            {/* Use path="/" for the default component in this dashboard */}
+            <Route path="teacher-dashboard" element={<ParentComponent />} />
+            <Route path="about" element={
+              <>
+                <About />
+                <Staff />
+              </>
+            } />
             <Route path="newsletter" element={<Newsletter />} />
             <Route path="contact" element={<Contact />} />
-            {/* Redirect to Manage Users if no routes match */}
+            {/* Redirect to ParentComponent if no routes match */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>

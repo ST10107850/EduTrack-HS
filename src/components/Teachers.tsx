@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import data from "../data/data.json";
 import types from "../Types/types";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { calculatePercentage, calculateStatus } from "../utils/Calculations";
 
 export const Teachers = () => {
   const location = useLocation();
-  const { fullName, surname, teacherId, gradeId = [] } = location.state || {
+  const {
+    fullName,
+    surname,
+    teacherId,
+    gradeId = [],
+  } = location.state || {
     fullName: "Teacher",
     surname: "",
     teacherId: null,
@@ -17,7 +22,9 @@ export const Teachers = () => {
   const grades = data.grades;
   const learners = data.learners;
 
-  const currentTeacher = data.teachers.find((teacher) => teacher.id === teacherId);
+  const currentTeacher = data.teachers.find(
+    (teacher) => teacher.id === teacherId
+  );
   const teacherSubjects = currentTeacher ? currentTeacher.subjects : [];
 
   const teacherGrades = Array.isArray(gradeId)
@@ -25,7 +32,9 @@ export const Teachers = () => {
     : [];
 
   const [selectedGrade, setSelectedGrade] = useState<string | null>(null);
-  const [availableSubjects, setAvailableSubjects] = useState<types.Subject[]>([]);
+  const [availableSubjects, setAvailableSubjects] = useState<types.Subject[]>(
+    []
+  );
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
   const [selectedLearners, setSelectedLearners] = useState<types.Learner[]>([]);
 
@@ -56,10 +65,21 @@ export const Teachers = () => {
   }, [selectedGrade, selectedSubject]);
 
   const overallResults = selectedLearners.map((learner) => {
-    const subjectMarks = learner.marks.filter((mark) => mark.subjectId === selectedSubject);
-    const totalObtained = subjectMarks.reduce((sum, mark) => sum + (mark.markObtained || 0), 0);
-    const overRollMark = subjectMarks.reduce((sum, mark) => sum + (mark.totalMark || 0), 0);
-    const percentage = overRollMark > 0 ? calculatePercentage(totalObtained, overRollMark) : "0.00";
+    const subjectMarks = learner.marks.filter(
+      (mark) => mark.subjectId === selectedSubject
+    );
+    const totalObtained = subjectMarks.reduce(
+      (sum, mark) => sum + (mark.markObtained || 0),
+      0
+    );
+    const overRollMark = subjectMarks.reduce(
+      (sum, mark) => sum + (mark.totalMark || 0),
+      0
+    );
+    const percentage =
+      overRollMark > 0
+        ? calculatePercentage(totalObtained, overRollMark)
+        : "0.00";
     return {
       learnerName: `${learner.fullName} ${learner.surname}`,
       totalObtained,
@@ -107,9 +127,15 @@ export const Teachers = () => {
           <table className="table-auto border-collapse border border-gray-300 max-w-7xl">
             <thead>
               <tr>
-                <th className="border border-gray-300 px-4 py-2">Learner Name</th>
-                <th className="border border-gray-300 px-4 py-2">Total Obtained</th>
-                <th className="border border-gray-300 px-4 py-2">Total Marks</th>
+                <th className="border border-gray-300 px-4 py-2">
+                  Learner Name
+                </th>
+                <th className="border border-gray-300 px-4 py-2">
+                  Total Obtained
+                </th>
+                <th className="border border-gray-300 px-4 py-2">
+                  Total Marks
+                </th>
                 <th className="border border-gray-300 px-4 py-2">Percentage</th>
                 <th className="border border-gray-300 px-4 py-2">Status</th>
               </tr>
@@ -117,17 +143,29 @@ export const Teachers = () => {
             <tbody>
               {overallResults.map((result, index) => (
                 <tr key={index}>
-                  <td className="border border-gray-300 px-4 py-2">{result.learnerName}</td>
-                  <td className="border border-gray-300 px-4 py-2">{result.totalObtained}</td>
-                  <td className="border border-gray-300 px-4 py-2">{result.overRollMark}</td>
-                  <td className="border border-gray-300 px-4 py-2">{result.percentage}%</td>
-                  <td className="border border-gray-300 px-4 py-2">{result.status}</td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {result.learnerName}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {result.totalObtained}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {result.overRollMark}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {result.percentage}%
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {result.status}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
+         
         </div>
       )}
+       <Link to="/mark-entry" className="bg-secondaryColor text-white py-2 px-4 rounded-md"> Add Marks</Link>
     </div>
   );
 };
