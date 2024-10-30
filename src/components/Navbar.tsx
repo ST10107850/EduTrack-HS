@@ -5,6 +5,7 @@ import { MdNotificationsNone } from "react-icons/md"; // Import notification ico
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { BiUserCircle } from "react-icons/bi";
 
 export const Navbar = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -82,6 +83,7 @@ export const Navbar = () => {
             <MdNotificationsNone size={25} className="cursor-pointer" />
             <div className="relative">
               <BiUserCircle size={29} onClick={toggleProfileMenu} className="cursor-pointer" />
+              
               {isProfileMenuOpened && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 text-black">
                   <div className="px-4 py-2 font-bold">Boitshepo Mashamaite</div>
