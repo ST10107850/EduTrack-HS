@@ -4,6 +4,7 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { MdNotificationsNone } from "react-icons/md"; // Import notification icon
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 export const Navbar = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -36,8 +37,8 @@ export const Navbar = () => {
           {/* Desktop Menu */}
           <ul className="hidden md:flex text-white space-x-4 items-center text-xl">
             <li className={`hover:rounded-md hover:text-secondaryColor`}>
-              <a
-                href="#"
+              <Link
+                to="/"
                 onClick={() => handleTabClick("home")}
                 className={`${
                   activeTab === "home"
@@ -46,11 +47,11 @@ export const Navbar = () => {
                 }`}
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
+              <Link
+                to="/about" // Assuming you have an About route
                 onClick={() => handleTabClick("about")}
                 className={`${
                   activeTab === "about"
@@ -59,11 +60,11 @@ export const Navbar = () => {
                 }`}
               >
                 About Us
-              </a>
+              </Link>
             </li>
             <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
+              <Link
+                to="/contact" // Assuming you have a Contact route
                 onClick={() => handleTabClick("contact")}
                 className={`${
                   activeTab === "contact"
@@ -72,7 +73,7 @@ export const Navbar = () => {
                 }`}
               >
                 Contact Us
-              </a>
+              </Link>
             </li>
           </ul>
 
@@ -107,8 +108,8 @@ export const Navbar = () => {
         {isMenuOpened && (
           <ul className="flex flex-col bg-primaryColor text-white p-4 space-y-4 items-start md:hidden mt-4">
             <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
+              <Link
+                to="/"
                 onClick={() => handleTabClick("home")}
                 className={`${
                   activeTab === "home"
@@ -117,11 +118,11 @@ export const Navbar = () => {
                 }`}
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li className="hover:rounded-md hover:text-secondaryColor">
-              <a
-                href="#"
+              <Link
+                to="/about"
                 onClick={() => handleTabClick("about")}
                 className={`${
                   activeTab === "about"
@@ -130,7 +131,7 @@ export const Navbar = () => {
                 }`}
               >
                 About Us
-              </a>
+              </Link>
             </li>
             <li className="hover:rounded-md hover:text-secondaryColor">
               <a
@@ -143,7 +144,7 @@ export const Navbar = () => {
                 }`}
               >
                 Contact Us
-              </a>
+              </Link>
             </li>
           </ul>
         )}

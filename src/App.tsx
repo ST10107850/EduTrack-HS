@@ -1,55 +1,38 @@
-// import AdminDashboard from "./components/AdminDashboard";
-// import { Boards } from "./components/Boards";
-// import { Contact } from "./components/Contact";
-// import {Navbar} from "./components/Navbar";
-// import { Newsletter } from "./components/Newsletter";
-// import { ParentDashboard } from "./components/ParentDashboard";
-// import { TeachersDashboard } from "./components/TeachersDashboard";
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { useAuth } from './context/AuthContext';
+import { AuthLayout } from './components/AuthLayout'; // Make sure to create this component
+import  LoginForm  from './components/LoginForm';
+import RegisterForm  from './components/RegisterForm';
+import {ParentDashboard}   from './components/ParentDashboard';
+import { Navbar } from './components/Navbar';
+import Footer from './components/Footer';
+import { TeachersDashboard } from './components/TeachersDashboard';
 
-// function App() {
-//   return (
-//     <div className="">
-//       <Navbar />
-//       <AdminDashboard />
-//       <Newsletter/>
-//       <Contact/> 
-//       <ParentDashboard/>
-//       <TeachersDashboard/>
-//       {/* <Boards/> */}
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
-
-
-
-
-
-import React, { useState } from "react";
-import Navbar2 from "./components/Navbar2";
-import Sidebar from "./components/Sidebar";
-
-const App: React.FC = () => {
-  const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
-
-  const toggleSidebar = () => {
-    setSidebarCollapsed(!isSidebarCollapsed);
-  };
+function App() {
+  const { state } = useAuth(); // Access authentication state
 
   return (
-    <div className="flex h-screen">
-      <Sidebar isCollapsed={isSidebarCollapsed} toggleSidebar={toggleSidebar} />
-      <div className={`flex flex-col flex-grow transition-all ${isSidebarCollapsed ? 'ml-16' : 'ml-64'}`}>
-        <Navbar2 toggleSidebar={toggleSidebar} />
-        <main className="p-4">
-          {/* Main content goes here */}
-          <h1 className="text-2xl font-bold">Welcome to the Home Page</h1>
-        </main>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<AuthLayout />} />
+        <Route path="/login" element={<><Navbar /><LoginForm /></>} />
+        <Route path="/register" element={<><Navbar /><RegisterForm /></>} />
+        <Route path="/footer" element={<Footer/>}/> 
+
+        {/* Conditional Routes for Authenticated Users */}
+        {state.isAuthenticated ? (
+          <>
+            <Route path="/parent-dashboard" element={<ParentDashboard />} />
+            <Route path="/teachers-dashboard" element={<TeachersDashboard />} />
+           
+          </>
+        ) : (
+          <Route path="*" element={<Navigate to="/" />} />
+        )}
+      </Routes>
+    </Router>
   );
 };
 

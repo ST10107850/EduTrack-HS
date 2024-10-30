@@ -1,4 +1,30 @@
 {
+  "parents": [
+    {
+      "id": "f60e",
+      "fullName": "motshabi maleke",
+      "email": "motshabielizabeth1@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "208b",
+      "fullName": "motshabi",
+      "email": "email@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "9461",
+      "fullName": "Elizabeth",
+      "emailAddress": "eli@gmail.com",
+      "password": "123456",
+      "surname": "Maleke",
+      "idNumber": "1234567890123",
+      "address": "xcvbnm,./",
+      "phoneNumber": "1234567890",
+      "learnerID": "1234567890123",
+      "confirmPassword": "123456"
+    }
+  ],
   "schoolNews": [
     {
       "id": "1",
@@ -109,181 +135,250 @@
   ],
   "grades": [
     {
-      "gradeId": "1",
+      "gradeId": 1,
       "grade": "Grade 8",
-      "id": "cbc5"
+      "id": "da0a"
     },
     {
-      "gradeId": "2",
+      "gradeId": 2,
       "grade": "Grade 9",
-      "id": "e895"
+      "id": "cb22"
     },
     {
-      "gradeId": "3",
+      "gradeId": 3,
       "grade": "Grade 10",
-      "id": "b342"
+      "id": "f96c"
     },
     {
-      "gradeId": "4",
+      "gradeId": 4,
       "grade": "Grade 11",
-      "id": "8a7f"
+      "id": "6489"
     },
     {
-      "gradeId": "5",
+      "gradeId": 5,
       "grade": "Grade 12",
-      "id": "1abe"
+      "id": "b8d6"
     }
   ],
   "subjects": [
     {
       "subjectId": "1",
       "subject": "Maths",
-      "id": "1b4f"
+      "id": "76a4"
     },
     {
       "subjectId": "2",
       "subject": "Science",
-      "id": "ca63"
+      "id": "56bf"
     },
     {
       "subjectId": "3",
       "subject": "History",
-      "id": "df02"
+      "id": "b521"
     },
     {
       "subjectId": "4",
       "subject": "Geography",
-      "id": "7d74"
+      "id": "f2c8"
     },
     {
       "subjectId": "5",
       "subject": "English",
-      "id": "718b"
+      "id": "44b4"
     },
     {
       "subjectId": "6",
       "subject": "Afrikaans",
-      "id": "d63b"
+      "id": "c92b"
     },
     {
       "subjectId": "7",
       "subject": "Art",
-      "id": "d5c4"
+      "id": "8fb9"
     },
     {
       "subjectId": "8",
       "subject": "Economics",
-      "id": "cb44"
+      "id": "7156"
     },
     {
       "subjectId": "9",
       "subject": "Biology",
-      "id": "29e6"
+      "id": "449c"
     },
     {
       "subjectId": "10",
       "subject": "Physical Education",
-      "id": "de94"
+      "id": "91cd"
     }
   ],
   "learners": [
     {
-      "id": "1",
-      "name": "Learner 1",
-      "gradeId": "1",
+      "id": "be59",
+      "fullName": "G Nsundwane",
+      "idNumber": "1234567890123",
+      "emailAddress": "sdfg@gmail.com",
       "marks": [
         {
           "subjectId": "1",
-          "markObtained": 80,
+          "assignmentName": "Assignment 1",
+          "markObtained": 90,
+          "totalMark": 100
+        },
+        {
+          "subjectId": "1",
+          "assignmentName": "Assignment 2",
+          "markObtained": 50,
           "totalMark": 60
         },
         {
-          "subjectId": "2",
-          "markObtained": 70,
+          "subjectId": "1",
+          "assignmentName": "Test",
+          "markObtained": 90,
           "totalMark": 100
         },
         {
-          "subjectId": "3",
-          "markObtained": 85,
+          "subjectId": "1",
+          "assignmentName": "Exam",
+          "markObtained": 50,
+          "totalMark": 60
+        }
+      ],
+      "gradeId": "3",
+      "subjects": [
+        "1",
+        "2",
+        "5"
+      ]
+    },
+    {
+      "id": "be591",
+      "fullName": "Elizabeth Jiyane",
+      "idNumber": "1234567890123",
+      "emailAddress": "sdfg@gmail.com",
+      "marks": [
+        {
+          "subjectId": "1",
+          "assignmentName": "Assignment 1",
+          "markObtained": 90,
           "totalMark": 100
-        }
-      ]
-    },
-    {
-      "id": "2",
-      "name": "Learner 2",
-      "gradeId": "1",
-      "marks": [
+        },
         {
           "subjectId": "1",
-          "markObtained": 55
-        },
-        {
-          "subjectId": "2",
-          "markObtained": 66
-        },
-        {
-          "subjectId": "3",
-          "markObtained": 58
+          "assignmentName": "Assignment 2",
+          "markObtained": 50,
+          "totalMark": 60
         }
-      ]
-    },
-    {
-      "id": "3",
-      "name": "Learner 3",
-      "gradeId": "1",
-      "marks": [
-        {
-          "subjectId": "1",
-          "markObtained": 90
-        },
-        {
-          "subjectId": "2",
-          "markObtained": 85
-        },
-        {
-          "subjectId": "3",
-          "markObtained": 80
-        }
-      ]
-    },
-    {
-      "id": "4",
-      "name": "Learner 5",
-      "gradeId": "2",
-      "marks": [
-        {
-          "subjectId": "1",
-          "markObtained": 90
-        },
-        {
-          "subjectId": "2",
-          "markObtained": 85
-        },
-        {
-          "subjectId": "3",
-          "markObtained": 80
-        }
-      ]
-    },
-    {
-      "id": "5",
-      "name": "Learner 5",
+      ],
       "gradeId": "5",
+      "subjects": [
+        "3",
+        "4",
+        "6"
+      ]
+    },
+    {
+      "id": "c7d7",
+      "fullName": "Thando",
+      "surname": "Ndlovu",
+      "idNumber": "0987654321234",
+      "address": "Juta Street, Johannesburg",
+      "emailAddress": "thando@gmail.com",
+      "phoneNumber": "1234567890",
       "marks": [
         {
           "subjectId": "1",
-          "markObtained": 90
+          "assignmentName": "Assignment 1",
+          "markObtained": 90,
+          "totalMark": 100
         },
         {
-          "subjectId": "2",
-          "markObtained": 85
+          "subjectId": "1",
+          "assignmentName": "Assignment 2",
+          "markObtained": 50,
+          "totalMark": 60
         },
         {
-          "subjectId": "3",
-          "markObtained": 80
+          "subjectId": "1",
+          "assignmentName": "Test",
+          "markObtained": 90,
+          "totalMark": 100
+        },
+        {
+          "subjectId": "1",
+          "assignmentName": "Exam",
+          "markObtained": 50,
+          "totalMark": 60
+        },
+        {
+          "subjectId": "10",
+          "assignmentName": "Exam",
+          "markObtained": 50,
+          "totalMarks": 60
         }
+      ],
+      "gradeId": "3",
+      "subjects": [
+        "4",
+        "6",
+        "8",
+        "10",
+        "1",
+        "5"
       ]
+    }
+  ],
+  "teachers": [
+    {
+      "id": "1730193102818",
+      "fullName": "Elizabeth ",
+      "surname": "Maleke",
+      "idNumber": "1234567890123",
+      "address": "Juta Street",
+      "emailAddress": "eli@gmail.com",
+      "phoneNumber": "1234567890",
+      "gradeId": [
+        1,
+        2
+      ],
+      "subjects": [
+        "1",
+        "2",
+        "2"
+      ],
+      "password": "9hDcDr7v(wb4"
+    },
+    {
+      "id": 1730212861833,
+      "fullName": "Thando",
+      "surname": "Ndlovu",
+      "idNumber": "1234567890123",
+      "address": "Juta Street, Johannesburg",
+      "emailAddress": "eli@tshimologong.co.za",
+      "phoneNumber": "1234567890",
+      "gradeId": [
+        1,
+        3
+      ],
+      "subjects": [
+        "1",
+        "3"
+      ],
+      "password": "Wv34Cju8Zt38"
+    }
+  ],
+  "assignments": [
+    {
+      "id": 1,
+      "type": "Assignment 1"
+    },
+    {
+      "id": 2,
+      "type": "Test"
+    },
+    {
+      "id": 3,
+      "type": "Exam"
     }
   ]
 }

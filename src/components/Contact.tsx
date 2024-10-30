@@ -1,20 +1,14 @@
 import { useState } from "react";
 import {toast} from "react-toastify"
 
-type FormData = {
-  name: string;
-  surname: string;
-  email: string;
-  phone: string;
-  message: string;
-};
+import { notifications } from "../Types/types";
 
 export const Contact = () => {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<notifications>({
     name: "",
     surname: "",
     email: "",
-    phone: "",
+    phone: 0,
     message: "",
   });
 
@@ -54,7 +48,7 @@ export const Contact = () => {
             name: "",
             surname: "",
             email: "",
-            phone: "",
+            phone: 0,
             message: "",
         });
 
@@ -66,11 +60,11 @@ export const Contact = () => {
 
 
   return (
-    <div className="flex flex-col justify-center py-20 text-gray-800">
-      <h1 className="text-center text-4xl uppercase font-bold text-secondaryColor mb-16">
+    <div className="flex flex-col justify-center py-20 w-full text-gray-800">
+      <h1 className="text-center text-4xl uppercase font-bold text-secondaryColor ">
         Contact Us
       </h1>
-      <div className="flex flex-wrap md:flex-nowrap px-8 py-12 space-y-8 md:space-y-0 md:space-x-12 text-gray-800 w-[70vw] mx-auto">
+      <div className="flex flex-wrap md:flex-nowrap px-8 py-12 space-y-8 md:space-y-0 md:space-x-16 text-gray-800 w-[70vw] mx-auto">
         <div className="md:w-1/2 flex flex-col space-y-6">
           <h2 className="text-2xl font-bold text-primaryColor">
             Call to Action

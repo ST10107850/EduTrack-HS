@@ -1,76 +1,67 @@
-import  { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import data from "../data/data.json"; // Adjust the path based on your project structure
+
+const calculatePercentage = (marksObtained, totalMarks) => {
+  return ((marksObtained / totalMarks) * 100).toFixed(2);
+};
 
 export const ParentDashboard = () => {
+  const location = useLocation();
+  const { fullName, surname } = location.state || { fullName: "Parent", surname: "" };
   
-  const learners = ["Elizabeth Maleke", "John Doe", "Jane Smith"];
-  const subjects = ["Math", "Science", "History"];
-  const terms = ["Term 1", "Term 2", "Term 3"];
-
-  
-  const assignments = [
-    { name: "Assignment 1", totalMark: 100, markObtained: 85 },
-    { name: "Assignment 2", totalMark: 100, markObtained: 80 },
-    { name: "Assignment 3", totalMark: 100, markObtained: 80 },
-  ];
+  const formattedFullName = `${fullName} ${surname}`;
+  const [parents] = useState(data.parents);
+  const [learners] = useState(data.learners);
+  const [subjects] = useState(data.subjects);
 
   const [selectedLearner, setSelectedLearner] = useState(null);
   const [selectedSubject, setSelectedSubject] = useState(null);
-  const [selectedTerm, setSelectedTerm] = useState(null);
   const [status, setStatus] = useState("");
 
-  const calculatePercentage = (markObtained, totalMark) => {
-    return ((markObtained / totalMark) * 100).toFixed(2);
-  };
+  const currentParent = parents.find((parent) => parent.fullName === fullName);
+  const relatedLearners = learners.filter(learner => learner.idNumber === currentParent?.learnerID);
 
-  const calculateAverageGrade = () => {
-    const totalObtained = assignments.reduce(
-      (acc, assignment) => acc + assignment.markObtained,
-      0
-    );
-    const totalMarks = assignments.length * 100;
-    return ((totalObtained / totalMarks) * 100).toFixed(2);
-  };
-
-  const calculateTotalPercentage = () => {
-    const totalMarksObtained = assignments.reduce(
-      (acc, assignment) => acc + assignment.markObtained,
-      0
-    );
-    const totalMarks = assignments.length * 100;
-    return ((totalMarksObtained / totalMarks) * 100).toFixed(2);
-  };
-
+  // Calculate the status based on the selected learner's marks in a subject
   useEffect(() => {
-    const totalMarksObtained = assignments.reduce(
-      (acc, assignment) => acc + assignment.markObtained,
-      0
-    );
+    if (selectedLearner && selectedSubject) {
+      const subjectMarks = selectedLearner.marks.find(mark => mark.subjectId === selectedSubject);
+      const totalMarks = subjectMarks?.totalMarks || 100;
+      const marksObtained = subjectMarks?.markObtained || 0;
+      const percentage = calculatePercentage(marksObtained, totalMarks);
 
-    if (totalMarksObtained >= 0 && totalMarksObtained < 30) {
-      setStatus("Failed");
-    } else if (totalMarksObtained >= 30 && totalMarksObtained < 70) {
-      setStatus("Passed");
-    } else if (totalMarksObtained >= 70) {
-      setStatus("Passed With Distinction");
+      if (percentage < 30) {
+        setStatus("Failed");
+      } else if (percentage < 70) {
+        setStatus("Passed");
+      } else {
+        setStatus("Passed With Distinction");
+      }
+    } else {
+      setStatus(""); // Reset status if no learner or subject is selected
     }
-  }, [assignments]);
+  }, [selectedLearner, selectedSubject]);
 
   return (
     <div className="relative flex flex-col md:my-0 my-12 justify-center items-center md:h-[90vh] text-gray-800">
       <h1 className="text-5xl mx-7 md:mx-0 text-secondaryColor mb-16 font-bold">
-        Welcome {selectedLearner || "Select a Learner"}
+        Welcome {formattedFullName}
       </h1>
 
       <div className="mb-6 flex sm:flex-row flex-col space-x-4">
         <select
-          value={selectedLearner || ""}
-          onChange={(e) => setSelectedLearner(e.target.value)}
+          value={selectedLearner ? selectedLearner.id : ""}
+          onChange={(e) => {
+            const learner = relatedLearners.find(l => l.id === e.target.value);
+            setSelectedLearner(learner || null);
+            setSelectedSubject(null); // Reset selected subject
+          }}
           className="p-2 border rounded"
         >
           <option value="">Select Learner</option>
-          {learners.map((learner, index) => (
-            <option key={index} value={learner}>
-              {learner}
+          {relatedLearners.map((learner) => (
+            <option key={learner.id} value={learner.id}>
+              {learner.fullName} {learner.surname}
             </option>
           ))}
         </select>
@@ -79,99 +70,90 @@ export const ParentDashboard = () => {
           value={selectedSubject || ""}
           onChange={(e) => setSelectedSubject(e.target.value)}
           className="p-2 border rounded"
+          disabled={!selectedLearner} // Disable if no learner is selected
         >
           <option value="">Select Subject</option>
-          {subjects.map((subject, index) => (
-            <option key={index} value={subject}>
-              {subject}
-            </option>
-          ))}
-        </select>
-
-        <select
-          value={selectedTerm || ""}
-          onChange={(e) => setSelectedTerm(e.target.value)}
-          className="p-2 border rounded"
-        >
-          <option value="">Select Term</option>
-          {terms.map((term, index) => (
-            <option key={index} value={term}>
-              {term}
-            </option>
-          ))}
+          {selectedLearner && selectedLearner.marks && Object.keys(selectedLearner.marks).map((subjectId) => {
+            const subject = subjects.find(s => s.subjectId === subjectId);
+            return (
+              subject && (
+                <option key={subject.subjectId} value={subject.subjectId}>
+                  {subject.subject}
+                </option>
+              )
+            );
+          })}
         </select>
       </div>
 
-      {selectedLearner && selectedSubject && selectedTerm && (
+      {selectedLearner && selectedSubject && (
         <div className="grid md:grid-cols-3 grid-cols-1 gap-4 md: mb-8 w-3/4">
           <div className="bg-primaryColor p-4 rounded shadow text-white">
             <h3 className="text-lg font-bold">Subject Details</h3>
             <div className="flex items-center text-xl justify-between">
-              <p> Learner Name:</p>
-              <p> {selectedLearner}</p>
+              <p>Learner Name:</p>
+              <p>{selectedLearner.fullName} {selectedLearner.surname}</p>
             </div>
 
             <div className="flex items-center text-xl justify-between">
               <p>Subject: </p>
-              <p>{selectedSubject}</p>
+              <p>{subjects.find(s => s.subjectId === selectedSubject)?.subject}</p>
             </div>
 
             <div className="flex items-center text-xl justify-between">
-              <p className="text-xl">Term:</p>
-              <p>{selectedTerm}</p>
+              <p>Status: </p>
+              <p>{status}</p>
             </div>
           </div>
 
           <div className="bg-[#A0D3E8] p-4 rounded shadow">
-            <h3 className="text-lg font-bold">Average Grade</h3>
-            <p className="text-2xl">{calculateAverageGrade()}%</p>
+            <h3 className="text-lg font-bold">Marks Obtained</h3>
+            <p className="text-2xl">
+              {selectedLearner.marks.find(mark => mark.subjectId === selectedSubject)?.markObtained}
+            </p>
           </div>
 
-          <div className="bg-[#4A90E2] p-4 rounded shadow text-white">
-            <h3 className="text-lg font-bold">Total Percentage</h3>
-            <p className="text-2xl">{calculateTotalPercentage()}%</p>
-            <p className="text-2xl">Status: {status}</p>
+          <div className="bg-[#A0D3E8] p-4 rounded shadow">
+            <h3 className="text-lg font-bold">Percentage</h3>
+            <p className="text-2xl">
+              {calculatePercentage(
+                selectedLearner.marks.find(mark => mark.subjectId === selectedSubject)?.markObtained || 0,
+                selectedLearner.marks.find(mark => mark.subjectId === selectedSubject)?.totalMarks || 100
+              )}%
+            </p>
           </div>
         </div>
       )}
 
-      {selectedLearner && selectedSubject && selectedTerm && (
-        <table className="table-auto border-collapse border border-gray-300 w-3/4">
-          <thead>
-            <tr>
-              <th className="border border-gray-300 px-4 py-2">
-                Assignment Name
-              </th>
-              <th className="border border-gray-300 px-4 py-2">Total Mark</th>
-              <th className="border border-gray-300 px-4 py-2">
-                Mark Obtained
-              </th>
-              <th className="border border-gray-300 px-4 py-2">Percentage</th>
-            </tr>
-          </thead>
-          <tbody>
-            {assignments.map((assignment, index) => (
-              <tr key={index}>
-                <td className="border border-gray-300 px-4 py-2">
-                  {assignment.name}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {assignment.totalMark}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {assignment.markObtained}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {calculatePercentage(
-                    assignment.markObtained,
-                    assignment.totalMark
-                  )}
-                  %
-                </td>
+      
+      {selectedLearner && selectedSubject && (
+        <div className="mt-8 w-3/4 overflow-x-auto">
+          <h2 className="text-2xl font-bold mb-4">Assignments</h2>
+          <table className="min-w-full bg-white border border-gray-300">
+            <thead>
+              <tr>
+                <th className="py-2 px-4 border-b">Assignment</th>
+                <th className="py-2 px-4 border-b">Total Marks</th>
+                <th className="py-2 px-4 border-b">Marks Obtained</th>
+                <th className="py-2 px-4 border-b">Percentage</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {selectedLearner.marks
+                .filter(mark => mark.subjectId === selectedSubject)
+                .map((mark, index) => (
+                  <tr key={index}>
+                    <td className="py-2 px-4 border-b">{mark.assignmentName || "N/A"}</td>
+                    <td className="py-2 px-4 border-b">{mark.totalMarks || 100}</td>
+                    <td className="py-2 px-4 border-b">{mark.markObtained}</td>
+                    <td className="py-2 px-4 border-b">
+                      {calculatePercentage(mark.markObtained, mark.totalMarks || 100)}%
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
