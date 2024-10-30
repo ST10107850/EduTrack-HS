@@ -18,66 +18,45 @@ const LoginForm: React.FC = () => {
     setError(null);
 
     try {
-      if (
-        values.email === "Admin12345@tshmologong.co.za" &&
-        values.password === "@Tshimologong12345"
-      ) {
-        console.log("You have logged in as admin");
-        // Navigate to admin dashboard if credentials match
-        navigate("/admin-dashboard");
-      } else {
-        // Attempt login as parent or teacher
-        const user = await handleLogin(values.email, values.password);
-        resetForm();
+      // Attempt login and receive the user object with the role
+      const user = await handleLogin(values.email, values.password);
+      resetForm();
 
-        // Navigate based on user role
-        if (user.role === "parent") {
+      // Navigate based on user role
+      switch (user.role) {
+        case "parent": {
           console.log("You have logged in as parent");
           navigate("/parent-dashboard", {
             state: { fullName: user.fullName, surname: user.surname },
           });
-        } else if (user.role === "teacher") {
+          break;
+        }
+        case "teacher": {
           console.log("Logging in as teacher with data:", user);
 
-          // Check if user.subjects is defined and has content
-          if (
-            user.subjects &&
-            Array.isArray(user.subjects) &&
-            user.subjects.length > 0
-          ) {
-            const gradeIds = user.subjects.flatMap(
-              (subject) => subject.gradeIds || []
-            );
+          // Extract gradeIds if teacher
+          const gradeIds =
+            user.subjects?.flatMap((subject) => subject.gradeIds || []) || [];
 
-            const teacherData = {
-              fullName: user.fullName,
-              surname: user.surname,
-              teacherId: user.id,
-              gradeId: gradeIds,
-            };
+          const teacherData = {
+            fullName: user.fullName,
+            surname: user.surname,
+            teacherId: user.id,
+            gradeId: gradeIds,
+          };
 
-            console.log("Extracted gradeIds:", gradeIds);
-            navigate("/teachers-dashboard", { state: teacherData });
-          } else {
-            console.warn(
-              "No subjects or gradeIds found for this teacher:",
-              user
-            );
-            navigate("/teachers-dashboard", {
-              state: {
-                fullName: user.fullName,
-                surname: user.surname,
-                teacherId: user.id,
-                gradeId: [],
-              },
-            });
-          }
-        } else if (user.role === "admin") {
+          console.log("Extracted gradeIds:", gradeIds);
+          navigate("/teachers-dashboard", { state: teacherData });
+          break;
+        }
+        case "admin": {
           console.log("You have logged in as admin");
-          navigate("/parent-dashboard", {
+          navigate("/admin-dashboard", {
             state: { fullName: user.fullName, surname: user.surname },
           });
-        } else {
+          break;
+        }
+        default: {
           setError("Unknown role");
         }
       }

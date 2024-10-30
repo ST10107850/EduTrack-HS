@@ -6,7 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
-import { AuthLayout } from "./components/AuthLayout"; // Make sure to create this component
+import { AuthLayout } from "./components/AuthLayout"; 
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import { ParentDashboard } from "./components/ParentDashboard";
@@ -17,15 +17,17 @@ import { AdminDashboard } from "./components/AdminDashboard";
 import { NewTeacher } from "./components/NewTeacher";
 import { NewLearner } from "./components/NewLearner";
 
+type role ={
+  role:string
+}
 export function App() {
   const { state } = useAuth(); // Access authentication state
+  const { isAuthenticated, user } = state;
 
   return (
     <Router>
       <Routes>
         {/* Public Routes */}
-        {/* <Route path="/" element={<AuthLayout />} /> */}
-        {/* <Route path="/login" element={<><Navbar /><LoginForm /></>} /> */}
         <Route path="/" element={<AuthLayout />} />
         <Route
           path="/login"
@@ -50,13 +52,21 @@ export function App() {
         <Route path="/new-learner" element={<NewLearner />} />
 
         {/* Conditional Routes for Authenticated Users */}
-        {state.isAuthenticated ? (
+        {isAuthenticated ? (
           <>
-            <Route path="/parent-dashboard" element={<ParentDashboard />} />
-            <Route path="/teachers-dashboard" element={<TeachersDashboard />} />
+            {user?.role === "parent" && (
+              <Route path="/parent-dashboard" element={<ParentDashboard />} />
+            )}
+            {user?.role === "teacher" && (
+              <Route path="/teachers-dashboard" element={<TeachersDashboard />} />
+            )}
+            {user?.role === "admin" && (
+              <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            )}
+            <Route path="*" element={<Navigate to="/" />} />
           </>
         ) : (
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<Navigate to="/login" />} />
         )}
       </Routes>
     </Router>
