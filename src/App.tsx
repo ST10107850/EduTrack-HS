@@ -13,6 +13,7 @@ import { Navbar } from "./components/Navbar";
 import { AdminDashboard } from "./components/AdminDashboard";
 import { TeachersDashboard } from "./components/TeachersDashboard";
 import { ParentDashboard } from "./components/ParentDashboard";
+import MarksEntryTable from "./components/MarksEntryTable";
 
 export function App() {
   const { state } = useAuth();
@@ -27,7 +28,7 @@ export function App() {
     <Router>
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<AuthLayout />} />
+        <Route path="/" element={<MarksEntryTable />} />
         <Route
           path="/login"
           element={
