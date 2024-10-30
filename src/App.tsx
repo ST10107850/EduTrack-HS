@@ -25,14 +25,15 @@ export function App() {
         <Route path="/" element={<AdminDashboard />} />
         <Route path="/register" element={<><Navbar /><RegisterForm /></>} />
         <Route path="/footer" element={<Footer/>}/> 
+        <Route path='/new-teacher' element={<NewTeacher />} />
+        <Route path='/new-learner' element={<NewLearner />} />
 
         {/* Conditional Routes for Authenticated Users */}
         {state.isAuthenticated ? (
           <>
             <Route path="/parent-dashboard" element={<ParentDashboard />} />
             <Route path="/teachers-dashboard" element={<TeachersDashboard />} />
-            <Route path='/new-teacher' element={<NewTeacher />} />
-            <Route path='/new-learner' element={<NewLearner />} />
+
            
           </>
         ) : (

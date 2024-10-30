@@ -22,7 +22,7 @@ export const AdminDashboard: React.FC = () => {
       <Navbar2 toggleSidebar={toggleSidebar} isCollapsed={isCollapsed} />
       <div className="flex h-full">
         <Sidebar isCollapsed={isCollapsed} onSelectUserType={setUserType} />
-        <main className={`transition-all duration-300 p-4 ${isCollapsed ? 'ml-16' : 'ml-64'} w-full`}>
+        <main className={`overflow-scrollja transition-all duration-300 p-4 ${isCollapsed ? 'ml-16' : 'ml-64'} w-full`}>
           
           <ManageUsers userType={userType} />
         </main>
