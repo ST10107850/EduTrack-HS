@@ -5,9 +5,9 @@ import data from "../data/data.json"; // Ensure your data import is correct
 const AddMarksForm = ({ learner, onClose, onAddMark }) => {
   const location = useLocation();
   const {
-    fullName = "Teacher",
+    fullName = "Learner",
     surname = "",
-    teacherId,
+    learnerId,
     gradeId = [],
   } = location.state || {};
 
@@ -15,8 +15,8 @@ const AddMarksForm = ({ learner, onClose, onAddMark }) => {
   const grades = data.grades;
   const learners = data.learners;
 
-  const currentTeacher = data.teachers.find(
-    (teacher) => teacher.id === teacherId
+  const currentTeacher = data.learners.find(
+    (learner) => learner.id === learnerId
   );
   const teacherSubjects = currentTeacher ? currentTeacher.subjects : [];
   const teacherGrades = grades.filter((grade) =>
@@ -72,11 +72,12 @@ const AddMarksForm = ({ learner, onClose, onAddMark }) => {
     setErrors({});
   };
 
-  const filteredSubjects = selectedGrade
-    ? teacherSubjects.filter((subject) =>
-        subject.gradeIds.includes(selectedGrade)
-      )
-    : [];
+  const filteredSubjects = selectedGrade 
+  ? teacherSubjects.filter((subject) =>
+      subject.gradeIds.includes(Number(selectedGrade))
+    )
+  : [];
+
 
   const handleSubjectChange = (event) => {
     setSelectedSubjectId(event.target.value);
@@ -138,7 +139,7 @@ const AddMarksForm = ({ learner, onClose, onAddMark }) => {
   return (
     <div className="p-5">
       <h1 className="text-2xl font-bold mb-4">
-        Enter Marks for {formattedName}
+        Enter Marks for {formattedName}/
       </h1>
       <form onSubmit={handleSubmitMarks}>
         <div className="flex mb-4 space-x-4">

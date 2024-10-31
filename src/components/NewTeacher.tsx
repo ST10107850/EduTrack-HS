@@ -68,10 +68,15 @@ export const NewTeacher = () => {
         const updatedSubjects = prevMap[selectedGradeId] || [];
         const newSubjects = selectedSubjectIds
           .map((id) => {
-            const subjectDetails = subjects.find((subject) => subject.subjectId === id);
+            const subjectDetails = subjects.find(
+              (subject) => subject.subjectId === id
+            );
             return { subjectId: id, subject: subjectDetails?.subject || "" };
           })
-          .filter((subject) => !updatedSubjects.some((s) => s.subjectId === subject.subjectId));
+          .filter(
+            (subject) =>
+              !updatedSubjects.some((s) => s.subjectId === subject.subjectId)
+          );
 
         return {
           ...prevMap,
@@ -128,8 +133,7 @@ export const NewTeacher = () => {
   const handlePrevStep = () => setStep((prevStep) => prevStep - 1);
 
   const generateRandomPassword = (length = 12) => {
-    const charset =
-      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let password = "";
     for (let i = 0; i < length; i++) {
       const randomIndex = Math.floor(Math.random() * charset.length);
@@ -218,10 +222,14 @@ export const NewTeacher = () => {
 
         <div className="flex justify-between mb-6">
           <span
-            className={`flex-1 ${step >= 1 ? "bg-blue-500" : "bg-gray-300"} h-2 mr-1 rounded`}
+            className={`flex-1 ${
+              step >= 1 ? "bg-blue-500" : "bg-gray-300"
+            } h-2 mr-1 rounded`}
           />
           <span
-            className={`flex-1 ${step >= 2 ? "bg-blue-500" : "bg-gray-300"} h-2 rounded`}
+            className={`flex-1 ${
+              step >= 2 ? "bg-blue-500" : "bg-gray-300"
+            } h-2 rounded`}
           />
         </div>
 
@@ -324,7 +332,10 @@ export const NewTeacher = () => {
                     checked={selectedSubjectIds.includes(subject.subjectId)}
                     onChange={() => toggleSubjectSelection(subject.subjectId)}
                   />
-                  <label htmlFor={`subject-${subject.subjectId}`} className="ml-2">
+                  <label
+                    htmlFor={`subject-${subject.subjectId}`}
+                    className="ml-2"
+                  >
                     {subject.subject}
                   </label>
                 </div>
@@ -337,11 +348,14 @@ export const NewTeacher = () => {
               Add Subjects
             </button>
             <div className="mt-4 p-4 border border-gray-300 rounded">
-              <h3 className="text-lg font-semibold">Selected Grades and Subjects:</h3>
+              <h3 className="text-lg font-semibold">
+                Selected Grades and Subjects:
+              </h3>
               {selectedGrades.map((gradeId) => (
                 <div key={gradeId}>
                   <p className="font-bold">
-                    Grade: {grades.find((grade) => grade.gradeId === gradeId)?.grade}
+                    Grade:{" "}
+                    {grades.find((grade) => grade.gradeId === gradeId)?.grade}
                   </p>
                   <p>Subjects:</p>
                   <ul>
@@ -349,7 +363,9 @@ export const NewTeacher = () => {
                       <li key={subjectId} className="flex justify-between">
                         {subject} (ID: {subjectId})
                         <button
-                          onClick={() => removeSubjectFromGrade(gradeId, subjectId)}
+                          onClick={() =>
+                            removeSubjectFromGrade(gradeId, subjectId)
+                          }
                           className="text-red-500 ml-4"
                         >
                           Remove

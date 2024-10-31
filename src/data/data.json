@@ -131,6 +131,14 @@
       "email": "samuelnhlakanipho123456@gmail.com",
       "phone": "0799453446",
       "message": "asdefthjklmmjgdfsasfnhm,mngds"
+    },
+    {
+      "id": "0d97",
+      "name": "Nhlakanipho",
+      "surname": "Nsundwane",
+      "email": "eli@tshimologong.co.za",
+      "phone": "0799453446",
+      "message": "Hy"
     }
   ],
   "grades": [
@@ -557,6 +565,156 @@
           "subject": "English",
           "gradeIds": [
             2
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1730361753112,
+      "fullName": "Michael",
+      "surname": "Thulare",
+      "idNumber": "1123123123123",
+      "address": "24 Barnato Street",
+      "emailAddress": "hvgb@tshimologong.co.za",
+      "phoneNumber": "0799453446",
+      "password": "x7GSsMrLMbBL",
+      "subjects": [
+        {
+          "subjectId": "3",
+          "subject": "History",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "2",
+          "subject": "Science",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "1",
+          "subject": "Maths",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "4",
+          "subject": "Geography",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "5",
+          "subject": "English",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "6",
+          "subject": "Afrikaans",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "7",
+          "subject": "Art",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "8",
+          "subject": "Economics",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "10",
+          "subject": "Physical Education",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "9",
+          "subject": "Biology",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "1",
+          "subject": "Maths",
+          "gradeIds": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1730362753008,
+      "fullName": "Nhlakanipho Nsundwane",
+      "surname": "Nsundwane",
+      "idNumber": "2111111111111",
+      "address": "24 Barnato Street",
+      "emailAddress": "nsu@tshimologong.co.za",
+      "phoneNumber": "0799453446",
+      "password": "rSCegGJXeJSQ",
+      "subjects": [
+        {
+          "subjectId": "1",
+          "subject": "Maths",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "2",
+          "subject": "Science",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "4",
+          "subject": "Geography",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "5",
+          "subject": "English",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "10",
+          "subject": "Physical Education",
+          "gradeIds": [
+            3
+          ]
+        },
+        {
+          "subjectId": "9",
+          "subject": "Biology",
+          "gradeIds": [
+            3
+          ]
+        },
+        {
+          "subjectId": "8",
+          "subject": "Economics",
+          "gradeIds": [
+            3
           ]
         }
       ]

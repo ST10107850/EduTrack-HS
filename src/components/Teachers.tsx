@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import data from "../data/data.json";
-import types from "../Types/types";
+import data from "../data/data.json"; // Adjust the path if necessary
+import types from "../Types/types"; // Make sure this imports correctly
 import { Link, useLocation } from "react-router-dom";
 import { calculatePercentage, calculateStatus } from "../utils/Calculations";
 import AddMarksForm from "../components/AddMarkForm";
@@ -20,14 +20,15 @@ export const Teachers = () => {
   };
 
   const formattedFullName = `${fullName} ${surname}`;
-  const grades = data.grades;
-  const learners = data.learners;
+  const grades = data.grades || [];
+  const learners = data.learners || [];
 
   const currentTeacher = data.teachers.find(
     (teacher) => teacher.id === teacherId
   );
-  const teacherSubjects = currentTeacher ? currentTeacher.subjects : [];
 
+
+  const teacherSubjects = currentTeacher.subjects || [];
   const teacherGrades = Array.isArray(gradeId)
     ? grades.filter((grade) => gradeId.includes(grade.gradeId))
     : [];
@@ -40,18 +41,21 @@ export const Teachers = () => {
   const [selectedLearner, setSelectedLearner] = useState(null);
   const [assignments, setAssignments] = useState([]); // State to manage assignments
 
+  // Effect to filter subjects based on the selected grade
   useEffect(() => {
     if (selectedGrade) {
       const filteredSubjects = teacherSubjects.filter((subject) =>
-        subject.gradeIds.includes(Number(selectedGrade))
+        subject.gradeIds.includes(Number(selectedGrade)) // Filter subjects that match selected grade
       );
+
       setAvailableSubjects(filteredSubjects);
-      setSelectedSubject(null);
+      setSelectedSubject(null); // Reset subject when grade changes
     } else {
-      setAvailableSubjects([]);
+      setAvailableSubjects([]); // Reset subjects if no grade is selected
     }
   }, [selectedGrade, teacherSubjects]);
 
+  // Effect to filter learners based on selected grade and subject
   useEffect(() => {
     if (selectedGrade && selectedSubject) {
       const filteredLearners = learners.filter(
@@ -64,7 +68,7 @@ export const Teachers = () => {
     } else {
       setSelectedLearners([]);
     }
-  }, [selectedGrade, selectedSubject]);
+  }, [selectedGrade, selectedSubject, learners]);
 
   const overallResults = selectedLearners.map((learner) => {
     const subjectMarks = learner.marks.filter(
@@ -114,44 +118,54 @@ export const Teachers = () => {
   };
 
   const handleEditAssignment = (assignmentToEdit) => {
-    // Implement the logic to edit an assignment.
-    // You can open a form pre-filled with the assignment details.
-    // For now, we can just log the assignment to edit.
-    console.log('Editing assignment:', assignmentToEdit);
+    console.log("Editing assignment:", assignmentToEdit);
   };
 
   return (
     <div className="relative flex flex-col md:my-0 my-12 justify-center items-center md:h-[90vh] text-gray-800">
+      <h1>Welcome</h1>
       <h1 className="text-5xl mx-7 md:mx-0 text-secondaryColor mb-16 font-bold">
         Welcome {formattedFullName}
       </h1>
       <div className="mb-6 flex sm:flex-row flex-col space-x-4">
+        {/* Grade Selection Dropdown */}
         <select
           value={selectedGrade || ""}
           onChange={(e) => setSelectedGrade(e.target.value)}
           className="p-2 border rounded"
         >
           <option value="">Select Grade</option>
-          {teacherGrades.map((grade) => (
-            <option key={grade.gradeId} value={String(grade.gradeId)}>
-              {grade.grade}
-            </option>
-          ))}
+          {teacherGrades.length > 0 ? (
+            teacherGrades.map((grade) => (
+              <option key={grade.gradeId} value={String(grade.gradeId)}>
+                {grade.grade}
+              </option>
+            ))
+          ) : (
+            <option disabled>No grades available</option>
+          )}
         </select>
+
+        {/* Subject Selection Dropdown */}
         <select
           value={selectedSubject || ""}
           onChange={(e) => setSelectedSubject(e.target.value)}
           className="p-2 border rounded"
         >
           <option value="">Select Subject</option>
-          {availableSubjects.map((subject) => (
-            <option key={subject.subjectId} value={subject.subjectId}>
-              {subject.subject}
-            </option>
-          ))}
+          {availableSubjects.length > 0 ? (
+            availableSubjects.map((subject) => (
+              <option key={subject.subjectId} value={subject.subjectId}>
+                {subject.subject}
+              </option>
+            ))
+          ) : (
+            <option disabled>No subjects available</option>
+          )}
         </select>
       </div>
 
+      {/* Display Results and Assignments */}
       {selectedGrade && selectedSubject && (
         <div>
           <h2 className="text-xl font-bold mb-4">Overall Results</h2>
@@ -167,25 +181,37 @@ export const Teachers = () => {
               </tr>
             </thead>
             <tbody>
-              {overallResults.map((result, index) => (
-                <tr key={index}>
-                  <td className="border border-gray-300 px-4 py-2">{result.learnerName}</td>
-                  <td className="border border-gray-300 px-4 py-2">{result.totalObtained}</td>
-                  <td className="border border-gray-300 px-4 py-2">{result.overRollMark}</td>
-                  <td className="border border-gray-300 px-4 py-2">{result.percentage}%</td>
-                  <td className="border border-gray-300 px-4 py-2">{result.status}</td>
-                  <td className="border border-gray-300 px-4 py-2 text-blue-600">
-                    <button onClick={() => handleAddMarksClick(result)}>Add Marks</button>
+              {overallResults.length > 0 ? (
+                overallResults.map((result, index) => (
+                  <tr key={index}>
+                    <td className="border border-gray-300 px-4 py-2">{result.learnerName}</td>
+                    <td className="border border-gray-300 px-4 py-2">{result.totalObtained}</td>
+                    <td className="border border-gray-300 px-4 py-2">{result.overRollMark}</td>
+                    <td className="border border-gray-300 px-4 py-2">{result.percentage}%</td>
+                    <td className="border border-gray-300 px-4 py-2">{result.status}</td>
+                    <td className="border border-gray-300 px-4 py-2 text-blue-600">
+                      <button onClick={() => handleAddMarksClick(result)}>Add Marks</button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="6" className="border border-gray-300 px-4 py-2 text-center">
+                    No results available
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
       )}
 
       {isFormOpen && (
-        <AddMarksForm learner={selectedLearner} onClose={handleCloseForm} onAddMark={handleAddMark} />
+        <AddMarksForm
+          learner={selectedLearner}
+          onClose={handleCloseForm}
+          onAddMark={handleAddMark}
+        />
       )}
 
       {/* Display the list of assignments */}
@@ -197,16 +223,14 @@ export const Teachers = () => {
               <tr>
                 <th className="border border-gray-300 px-4 py-2">Assignment</th>
                 <th className="border border-gray-300 px-4 py-2">Marks Obtained</th>
-                <th className="border border-gray-300 px-4 py-2">Total Marks</th>
                 <th className="border border-gray-300 px-4 py-2">Actions</th>
               </tr>
             </thead>
             <tbody>
               {assignments.map((assignment, index) => (
                 <tr key={index}>
-                  <td className="border border-gray-300 px-4 py-2">{assignment.assignmentName}</td>
+                  <td className="border border-gray-300 px-4 py-2">{assignment.title}</td>
                   <td className="border border-gray-300 px-4 py-2">{assignment.markObtained}</td>
-                  <td className="border border-gray-300 px-4 py-2">{assignment.totalMark}</td>
                   <td className="border border-gray-300 px-4 py-2">
                     <button onClick={() => handleEditAssignment(assignment)}>Edit</button>
                     <button onClick={() => handleDeleteAssignment(assignment)}>Delete</button>
@@ -220,3 +244,5 @@ export const Teachers = () => {
     </div>
   );
 };
+
+export default Teachers;
