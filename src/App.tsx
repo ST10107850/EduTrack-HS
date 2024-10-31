@@ -17,6 +17,7 @@ import { ParentDashboard } from "./components/ParentDashboard";
 // import  Teachers  from "./components/Teachers";
 import MarksEntryTable from "./components/MarksEntryTable";
 import ParentComponent from "./components/ParentComponent";
+import { ViewResults } from "./components/ViewResults";
 
 function App() {
   const { state } = useAuth();
@@ -29,6 +30,7 @@ function App() {
         <Route path="/login" element={<><Navbar /><LoginForm /></>} />
         <Route path="/register" element={<><Navbar /><RegisterForm /></>} />
         <Route path="/mark-entry" element={<MarksEntryTable />} />
+        <Route path="/view-user/:userId" element={<ViewResults />} />
         {/* <Route path="/teacher" element={<Teachers />} />
         <Route path="/admin" element={<AdminDashboard />} /> */}
 

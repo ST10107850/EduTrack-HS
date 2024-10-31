@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import data from "../data/data.json";
-import {  Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export const ManageUsers = ({ userType }: { userType: string }) => {
+export const ManageUsers = ({ userType }) => {
   type User = { 
     id: string; 
     fullName: string; 
@@ -34,12 +34,9 @@ export const ManageUsers = ({ userType }: { userType: string }) => {
   const setUsers = userType === "teachers" ? setTeachers : setLearners;
 
   const navigate = useNavigate();
+
   const handleAddNew = () => {
-    if (userType === "teachers") {
-      navigate("/new-teacher");
-    } else if (userType === "learners") {
-      navigate("/new-learner");
-    }
+    navigate(userType === "teachers" ? "/new-teacher" : "/new-learner");
   };
 
   const handleSaveNewUser = () => {
@@ -50,22 +47,13 @@ export const ManageUsers = ({ userType }: { userType: string }) => {
 
   const handleEditUser = (index: number) => {
     setEditingIndex(index);
-    setNewUser(displayedUsers[index]); // Set the newUser to the current user's data
   };
 
   const handleSaveEditUser = (index: number) => {
     const updatedUsers = [...displayedUsers];
-    updatedUsers[index] = { ...newUser }; // Ensure you're updating with newUser data
+    updatedUsers[index] = newUser;
     setUsers(updatedUsers);
     setEditingIndex(null);
-    setNewUser({
-      id: '',
-      fullName: '',
-      phoneNumber: 0,
-      emailAddress: '',
-      address: '',
-      password: '',
-    });
   };
 
   const handleDeleteUser = (index: number) => {
@@ -76,9 +64,14 @@ export const ManageUsers = ({ userType }: { userType: string }) => {
     }
   };
 
+  const handleViewUser = (userId: number) => {
+    navigate(`/view-user/${userId.toString()}`);
+  };
+  
+
   return (
-    <div className="relative  flex flex-col md:my-0 my-12 justify-center items-center md:h-[90vh] text-gray-800">
-      <h1 className="text-5xl mx-7 md:mx-0 text-secondaryColor mb-16 font-bold">
+    <div className="relative flex flex-col justify-center items-center text-gray-800">
+      <h1 className="text-5xl text-secondaryColor mb-16 font-bold">
         Showing Results For "{userType}"
       </h1>
 
@@ -87,12 +80,10 @@ export const ManageUsers = ({ userType }: { userType: string }) => {
           <h3 className="text-lg font-bold">Total Number Of Active Users</h3>
           <p className="text-2xl">100</p>
         </div>
-
         <div className="bg-[#A0D3E8] p-4 rounded shadow">
           <h3 className="text-lg font-bold">Total Number Of Teachers</h3>
           <p className="text-2xl">20</p>
         </div>
-
         <div className="bg-[#4A90E2] p-4 rounded shadow text-white">
           <h3 className="text-lg font-bold">Total Number Of Parents</h3>
           <p className="text-2xl">80</p>
@@ -100,7 +91,7 @@ export const ManageUsers = ({ userType }: { userType: string }) => {
       </div>
 
       <div className="flex w-3/4 justify-end mb-4">
-        <Link to={`${userType == "teachers"? "new-teachers" : "new-learners"}`}  className="bg-secondaryColor text-white rounded-md px-3 py-1">
+        <Link to={userType === "teachers" ? "/new-teacher" : "/new-learner"} className="bg-secondaryColor text-white rounded-md px-3 py-1">
           Add New
         </Link>
       </div>
@@ -152,7 +143,7 @@ export const ManageUsers = ({ userType }: { userType: string }) => {
                   <td className="border border-gray-300 px-4 py-2 flex gap-2 justify-center">
                     <a href="#" className="text-blue-500" onClick={() => handleEditUser(index)}>Edit</a>
                     <a href="#" className="text-red-500" onClick={() => handleDeleteUser(index)}>Delete</a>
-                    <a href="#" className="text-[#A0D3E8]">View</a>
+                    <a href="#" className="text-[#A0D3E8]" onClick={() => handleViewUser(user.id)}>View</a>
                   </td>
                 </>
               )}
