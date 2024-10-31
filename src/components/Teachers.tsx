@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import data from "../data/data.json"; // Importing data
-import types from "../Types/types"; // Type definitions
-import { Link, useLocation } from "react-router-dom"; // React Router
-import { calculatePercentage, calculateStatus } from "../utils/Calculations"; // Utility functions
-import AddMarksForm from "../components/AddMarkForm"; // Form component for adding marks
+import data from "../data/data.json";
+import types from "../Types/types";
+import { Link, useLocation } from "react-router-dom";
+import { calculatePercentage, calculateStatus } from "../utils/Calculations";
+import AddMarksForm from "../components/AddMarkForm";
 
 export const Teachers = () => {
   const location = useLocation();
@@ -20,45 +20,44 @@ export const Teachers = () => {
   };
 
   const formattedFullName = `${fullName} ${surname}`;
-  const grades = data.grades; // Fetch grades from data
-  const learners = data.learners; // Fetch learners from data
+  const grades = data.grades;
+  const learners = data.learners;
 
   const currentTeacher = data.teachers.find(
     (teacher) => teacher.id === teacherId
   );
-  const teacherSubjects = currentTeacher ? currentTeacher.subjects : []; // Get subjects for the current teacher
+  const teacherSubjects = currentTeacher ? currentTeacher.subjects : [];
 
-  // Filter grades that the teacher is associated with
   const teacherGrades = Array.isArray(gradeId)
     ? grades.filter((grade) => gradeId.includes(grade.gradeId))
     : [];
 
-  // State variables
   const [selectedGrade, setSelectedGrade] = useState<string | null>(null);
-  const [availableSubjects, setAvailableSubjects] = useState<types.Subject[]>([]);
+  const [availableSubjects, setAvailableSubjects] = useState<types.Subject[]>(
+    []
+  );
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
-  const [selectedLearner, setSelectedLearner] = useState<types.Learner | null>(null);
+  const [selectedLearner, setSelectedLearner] = useState<types.Learner | null>(
+    null
+  );
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [assignments, setAssignments] = useState<types.Assignment[]>([]);
-  const [currentAssignment, setCurrentAssignment] = useState<types.Assignment | null>(null);
+  const [currentAssignment, setCurrentAssignment] =
+    useState<types.Assignment | null>(null);
   const [selectedLearners, setSelectedLearners] = useState<types.Learner[]>([]);
 
-  // Filter subjects based on selected grade
   useEffect(() => {
     if (selectedGrade) {
       const filteredSubjects = teacherSubjects.filter((subject) =>
         subject.gradeIds.includes(Number(selectedGrade))
       );
       setAvailableSubjects(filteredSubjects);
-      setSelectedSubject(null); // Reset selected subject when grade changes
+      setSelectedSubject(null);
     } else {
-      setAvailableSubjects([]); // Clear subjects if no grade is selected
+      setAvailableSubjects([]);
     }
-    console.log("Selected Grade:", selectedGrade);
-    console.log("Available Subjects:", availableSubjects);
   }, [selectedGrade, teacherSubjects]);
 
-  // Filter learners based on selected grade and subject
   useEffect(() => {
     if (selectedGrade && selectedSubject) {
       const filteredLearners = learners.filter(
@@ -73,7 +72,6 @@ export const Teachers = () => {
     }
   }, [selectedGrade, selectedSubject]);
 
-  // Calculate overall results
   const overallResults = selectedLearners.map((learner) => {
     const subjectMarks = learner.marks.filter(
       (mark) => mark.subjectId === selectedSubject
@@ -125,12 +123,14 @@ export const Teachers = () => {
 
   const handleAddMark = (newMark) => {
     if (currentAssignment) {
+      // Update the assignment
       handleEditAssignment(newMark, currentAssignment);
     } else {
+      // Add a new assignment
       setAssignments((prevAssignments) => [...prevAssignments, newMark]);
     }
 
-    // Update the learner's marks
+    // Update the learner's marks in the JSON data
     const updatedLearners = learners.map((learner) => {
       if (learner.id === selectedLearner.id) {
         return {
@@ -142,6 +142,8 @@ export const Teachers = () => {
     });
 
     // Update JSON data (simulated in state here)
+    // Assuming you have a setLearners function to update the state
+    // setLearners(updatedLearners);
     setIsFormOpen(false);
   };
 
@@ -246,37 +248,71 @@ export const Teachers = () => {
           <h2 className="text-xl font-bold mb-4">
             Assignments For: {selectedLearner.fullName}
           </h2>
-          <ul>
-            {assignments.map((assignment, index) => (
-              <li key={index} className="flex justify-between mb-2">
-                <span>{assignment.assignmentName}</span>
-                <button onClick={() => handleEditAssignmentClick(assignment)}>
-                  Edit
-                </button>
-                <button onClick={() => handleDeleteAssignment(assignment)}>
-                  Delete
-                </button>
-              </li>
-            ))}
-          </ul>
-          <button onClick={handleAddNewMarkClick} className="mt-4">
-            Add New Mark
+          <table className="table-auto border-collapse border border-gray-300 max-w-7xl">
+            <thead>
+              <tr>
+                <th className="border border-gray-300 px-4 py-2">
+                  Assignment Name
+                </th>
+                <th className="border border-gray-300 px-4 py-2">
+                  Marks Obtained
+                </th>
+                <th className="border border-gray-300 px-4 py-2">
+                  Total Marks
+                </th>
+                <th className="border border-gray-300 px-4 py-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {assignments.map((assignment, index) => (
+                <tr key={index}>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {assignment.assignmentName}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {assignment.markObtained}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {assignment.totalMark}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    <button
+                      onClick={() => handleEditAssignmentClick(assignment)}
+                      className="text-blue-600 mr-2"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDeleteAssignment(assignment)}
+                      className="text-red-600"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <button
+            onClick={handleAddNewMarkClick}
+            className="mt-4 bg-blue-500 text-white p-2 rounded"
+          >
+            Add New Marks
           </button>
+          
         </div>
       )}
 
       {isFormOpen && (
         <AddMarksForm
+          onAddMark={handleAddMark}
           onClose={handleCloseForm}
           selectedLearner={selectedLearner}
           currentAssignment={currentAssignment}
-          onAddMark={handleAddMark}
         />
       )}
-
-      <Link to="/teachers">
-        <button className="mt-4 bg-blue-500 text-white p-2 rounded">Back</button>
-      </Link>
     </div>
   );
 };
+
+export default Teachers;

@@ -48,6 +48,8 @@ const LoginForm: React.FC = () => {
         const teacherData = {
           fullName: user.fullName,
           surname: user.surname,
+          emailAddress: user.email,
+          phoneNumber: user.phoneNumber,
           teacherId: user.id,
           gradeId: gradeIds,
         };

@@ -6,8 +6,8 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import { useAuth } from "./context/AuthContext";
-import {AuthLayout} from "./Layout/AuthLayout";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import { AuthLayout } from "./Layout/AuthLayout";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import { Navbar } from "./components/Navbar";
@@ -15,8 +15,11 @@ import { AdminDashboard } from "./components/AdminDashboard";
 import { TeachersDashboard } from "./components/TeachersDashboard";
 import { ParentDashboard } from "./components/ParentDashboard";
 // import  Teachers  from "./components/Teachers";
+
 import MarksEntryTable from "./components/MarksEntryTable";
 import ParentComponent from "./components/ParentComponent";
+import Profile from "./components/ProfDetails";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const { state } = useAuth();
@@ -25,18 +28,33 @@ function App() {
     <Router>
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<AuthLayout />} />
-        <Route path="/login" element={<><Navbar /><LoginForm /></>} />
-        <Route path="/register" element={<><Navbar /><RegisterForm /></>} />
-        <Route path="/mark-entry" element={<MarksEntryTable />} />
-        {/* <Route path="/teacher" element={<Teachers />} />
-        <Route path="/admin" element={<AdminDashboard />} /> */}
-
+        <Route path="/" element={<Dashboard />} />
+        <Route
+          path="/login"
+          element={
+            <>
+              <Navbar />
+              <LoginForm />
+            </>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <>
+              <Navbar />
+              <RegisterForm />
+            </>
+          }
+        />
         {/* Protected Routes */}
         {state.isAuthenticated ? (
           <>
             <Route path="/parent-dashboard/*" element={<ParentDashboard />} />
-            <Route path="/teachers-dashboard/*" element={<TeachersDashboard />} />
+            <Route
+              path="/teachers-dashboard/*"
+              element={<TeachersDashboard />}
+            />
             <Route path="/admin-dashboard/*" element={<AdminDashboard />} />
           </>
         ) : (
@@ -46,6 +64,5 @@ function App() {
     </Router>
   );
 }
-
 
 export default App;

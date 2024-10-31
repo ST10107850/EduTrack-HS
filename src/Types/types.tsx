@@ -40,7 +40,7 @@ export type Learner = {
 };
 
 export type teachers = {
-  id: number;
+  id: string;
   fullName: string;
   surname: string;
   idNumber: string;
