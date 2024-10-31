@@ -39,7 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({
               isCollapsed ? "hidden" : "text-gray-500 text-sm font-bold"
             }`}
           >
-            MAIN
+           
           </div>
           <Link
             to={`${IsAdmin ? "admin-dashboard" : "teachers-dashboard"}`}
@@ -52,7 +52,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             {!isCollapsed && <span className="ml-3">Home</span>}
           </Link>
 
-          <Link
+          {/* <Link
             to="/teachers-dashboard/about"
             onClick={() => handleItemClick("about")}
             className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
@@ -61,7 +61,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           >
             <FcAbout />
             {!isCollapsed && <span className="ml-3">About Us</span>}
-          </Link>
+          </Link> */}
         </div>
 
         <div>
@@ -70,7 +70,7 @@ const Sidebar: React.FC<SidebarProps> = ({
               isCollapsed ? "hidden" : "text-gray-500 text-sm font-bold mt-6"
             }`}
           >
-            MANAGE USERS
+            
           </div>
           <a
             href="#"
@@ -105,7 +105,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           </a>
         </div>
 
-        <div>
+        {/* <div>
           <div
             className={`px-4 ${
               isCollapsed ? "hidden" : "text-gray-500 text-sm font-bold mt-6"
@@ -135,7 +135,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             <LuContact />
             {!isCollapsed && <span className="ml-3">Contact Us</span>}
           </Link>
-        </div>
+        </div> */}
       </nav>
     </aside>
   );
