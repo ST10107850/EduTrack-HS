@@ -2,7 +2,7 @@
 // Define a User interface for type safety
 export interface User {
     id?: number;
-    subjects: Array<{
+    subject: Array<{
       subjectId: string;
       subject: string;
       gradeIds: number[];
@@ -13,6 +13,7 @@ export interface User {
     password: string;
   }
   
+
 // API base URL for the JSON Server
 const API_URL = '/api/parents';
 
@@ -38,7 +39,7 @@ export const registerUser = async (userData: User): Promise<User> => {
 // Define the URLs for parents and teachers
 const PARENTS_API_URL = '/api/parents';
 const TEACHERS_API_URL = '/api/teachers';
-const ADMIN_API_URL = '/api/admin'
+const ADMIN_API_URL= '/api/admin';
 
 // Function to log in an existing user
 export const loginUser = async (email: string, password: string): Promise<User & { role: string }> => {

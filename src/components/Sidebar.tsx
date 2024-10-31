@@ -6,13 +6,19 @@ import { HiHome } from "react-icons/hi";
 import { LuContact } from "react-icons/lu";
 import { PiStudent } from "react-icons/pi";
 import { SiAboutdotme } from "react-icons/si";
+import { Link } from "react-router-dom";
 
 interface SidebarProps {
   isCollapsed: boolean;
   onSelectUserType: (userType: string) => void;
+  IsAdmin: boolean;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onSelectUserType }) => {
+const Sidebar: React.FC<SidebarProps> = ({
+  isCollapsed,
+  onSelectUserType,
+  IsAdmin = true,
+}) => {
   const [activeItem, setActiveItem] = useState<string>("");
 
   const handleItemClick = (itemName: string) => {
@@ -28,11 +34,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onSelectUserType }) => {
     >
       <nav className="flex flex-col gap-4 mt-4 space-y-2">
         <div>
-          <div className={`mt-8 px-4 ${isCollapsed ? "hidden" : "text-gray-500 text-sm font-bold"}`}>
+          <div
+            className={`mt-8 px-4 ${
+              isCollapsed ? "hidden" : "text-gray-500 text-sm font-bold"
+            }`}
+          >
             MAIN
           </div>
-          <a
-            href="#"
+          <Link
+            to={`${IsAdmin ? "admin-dashboard" : "teachers-dashboard"}`}
             onClick={() => handleItemClick("home")}
             className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
               activeItem === "home" ? "bg-gray-300 text-secondaryColor" : ""
@@ -40,9 +50,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onSelectUserType }) => {
           >
             <HiHome />
             {!isCollapsed && <span className="ml-3">Home</span>}
-          </a>
-          <a
-            href="#"
+          </Link>
+
+          <Link
+            to="/teachers-dashboard/about"
             onClick={() => handleItemClick("about")}
             className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
               activeItem === "about" ? "bg-gray-300 text-secondaryColor" : ""
@@ -50,11 +61,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onSelectUserType }) => {
           >
             <FcAbout />
             {!isCollapsed && <span className="ml-3">About Us</span>}
-          </a>
+          </Link>
         </div>
 
         <div>
-          <div className={`px-4 ${isCollapsed ? "hidden" : "text-gray-500 text-sm font-bold mt-6"}`}>
+          <div
+            className={`px-4 ${
+              isCollapsed ? "hidden" : "text-gray-500 text-sm font-bold mt-6"
+            }`}
+          >
             MANAGE USERS
           </div>
           <a
@@ -65,8 +80,14 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onSelectUserType }) => {
             }`}
           >
             <GiTeacher />
-            {!isCollapsed && <span className="ml-3">Teachers</span>}
+            {!isCollapsed &&
+              (IsAdmin ? (
+                <span className="ml-3">Teachers</span>
+              ) : (
+                <span className="ml-3">Grades</span>
+              ))}
           </a>
+
           <a
             href="#"
             onClick={() => handleItemClick("learners")}
@@ -75,26 +96,37 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onSelectUserType }) => {
             }`}
           >
             <PiStudent />
-            {!isCollapsed && <span className="ml-3">Learners</span>}
+            {!isCollapsed &&
+              (IsAdmin ? (
+                <span className="ml-3">Learners</span>
+              ) : (
+                <span className="ml-3">Subject</span>
+              ))}
           </a>
         </div>
 
         <div>
-          <div className={`px-4 ${isCollapsed ? "hidden" : "text-gray-500 text-sm font-bold mt-6"}`}>
+          <div
+            className={`px-4 ${
+              isCollapsed ? "hidden" : "text-gray-500 text-sm font-bold mt-6"
+            }`}
+          >
             COMMUNICATION
           </div>
-          <a
-            href="#"
+          <Link
+            to="newsletter"
             onClick={() => handleItemClick("newsletter")}
             className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
-              activeItem === "newsletter" ? "bg-gray-300 text-secondaryColor" : ""
+              activeItem === "newsletter"
+                ? "bg-gray-300 text-secondaryColor"
+                : ""
             }`}
           >
             <BsNewspaper />
             {!isCollapsed && <span className="ml-3">Newsletter</span>}
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="contact"
             onClick={() => handleItemClick("contact")}
             className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
               activeItem === "contact" ? "bg-gray-300 text-secondaryColor" : ""
@@ -102,7 +134,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onSelectUserType }) => {
           >
             <LuContact />
             {!isCollapsed && <span className="ml-3">Contact Us</span>}
-          </a>
+          </Link>
         </div>
       </nav>
     </aside>

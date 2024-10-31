@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import data from "../data/data.json";
-import { useNavigate } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
 
 export const ManageUsers = ({ userType }: { userType: string }) => {
   type User = { 
@@ -100,9 +100,9 @@ export const ManageUsers = ({ userType }: { userType: string }) => {
       </div>
 
       <div className="flex w-3/4 justify-end mb-4">
-        <button onClick={handleAddNew} className="bg-secondaryColor text-white rounded-md px-3 py-1">
+        <Link to={`${userType == "teachers"? "new-teachers" : "new-learners"}`}  className="bg-secondaryColor text-white rounded-md px-3 py-1">
           Add New
-        </button>
+        </Link>
       </div>
 
       <table className="table-auto border-collapse border border-gray-300 w-3/4">

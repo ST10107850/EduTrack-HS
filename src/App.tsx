@@ -1,4 +1,5 @@
-import React from "react";
+// src/App.tsx
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -6,64 +7,37 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
-import { AuthLayout } from "./components/AuthLayout"; 
+import {AuthLayout} from "./Layout/AuthLayout";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
-import { ParentDashboard } from "./components/ParentDashboard";
 import { Navbar } from "./components/Navbar";
-import Footer from "./components/Footer";
-import { TeachersDashboard } from "./components/TeachersDashboard";
 import { AdminDashboard } from "./components/AdminDashboard";
-import { NewTeacher } from "./components/NewTeacher";
-import { NewLearner } from "./components/NewLearner";
+import { TeachersDashboard } from "./components/TeachersDashboard";
+import { ParentDashboard } from "./components/ParentDashboard";
+// import  Teachers  from "./components/Teachers";
+import MarksEntryTable from "./components/MarksEntryTable";
+import ParentComponent from "./components/ParentComponent";
 
-type role ={
-  role:string
-}
-export function App() {
-  const { state } = useAuth(); // Access authentication state
-  const { isAuthenticated, user } = state;
+function App() {
+  const { state } = useAuth();
 
   return (
     <Router>
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<AuthLayout />} />
-        <Route
-          path="/login"
-          element={
-            <>
-              <Navbar />
-              <LoginForm />
-            </>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <>
-              <Navbar />
-              <RegisterForm />
-            </>
-          }
-        />
-        <Route path="/footer" element={<Footer />} />
-        <Route path="/new-teacher" element={<NewTeacher />} />
-        <Route path="/new-learner" element={<NewLearner />} />
+        <Route path="/login" element={<><Navbar /><LoginForm /></>} />
+        <Route path="/register" element={<><Navbar /><RegisterForm /></>} />
+        <Route path="/mark-entry" element={<MarksEntryTable />} />
+        {/* <Route path="/teacher" element={<Teachers />} />
+        <Route path="/admin" element={<AdminDashboard />} /> */}
 
-        {/* Conditional Routes for Authenticated Users */}
-        {isAuthenticated ? (
+        {/* Protected Routes */}
+        {state.isAuthenticated ? (
           <>
-            {user?.role === "parent" && (
-              <Route path="/parent-dashboard" element={<ParentDashboard />} />
-            )}
-            {user?.role === "teacher" && (
-              <Route path="/teachers-dashboard" element={<TeachersDashboard />} />
-            )}
-            {user?.role === "admin" && (
-              <Route path="/admin-dashboard" element={<AdminDashboard />} />
-            )}
-            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/parent-dashboard/*" element={<ParentDashboard />} />
+            <Route path="/teachers-dashboard/*" element={<TeachersDashboard />} />
+            <Route path="/admin-dashboard/*" element={<AdminDashboard />} />
           </>
         ) : (
           <Route path="*" element={<Navigate to="/login" />} />
@@ -72,5 +46,7 @@ export function App() {
     </Router>
   );
 }
+}
+
 
 export default App;
