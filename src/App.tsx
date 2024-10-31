@@ -40,12 +40,11 @@ function App() {
             <Route path="/admin-dashboard/*" element={<AdminDashboard />} />
           </>
         ) : (
-          <Route path="*" element={<Navigate to="/login" />} />
+          <Route path="*" element={<Navigate to="/" />} />
         )}
       </Routes>
     </Router>
   );
-}
 }
 
 
