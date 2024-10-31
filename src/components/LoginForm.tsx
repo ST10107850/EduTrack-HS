@@ -39,7 +39,13 @@ const LoginForm: React.FC = () => {
       if (user.role === "parent") {
         console.log("You have logged in as parent");
         navigate("/parent-dashboard", {
-          state: { fullName: user.fullName, surname: user.surname },
+          state: {
+            fullName: user.fullName,
+            surname: user.surname,
+            emailAddress: user.email,
+            phoneNumber: user.phoneNumber,
+            parentId: user.id
+          },
         });
       } else if (user.role === "teacher") {
         console.log("Logging in as teacher with data:", user);

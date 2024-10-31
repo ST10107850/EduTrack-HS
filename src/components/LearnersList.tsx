@@ -9,18 +9,18 @@ export const LearnersList: React.FC = () => {
 
     useEffect(() => {
         if (data.learners && Array.isArray(data.learners)) {
-            // Filter out learners with undefined gradeId
+            
             const validLearners = data.learners.filter(learner => learner.gradeId !== undefined);
             setLearners(validLearners); 
         } else {
             setError("No learners data found.");
         }
 
-        // Create a mapping of gradeId to grade name
+      
         const map: { [key: string]: string } = {};
         if (data.grades && Array.isArray(data.grades)) {
             data.grades.forEach(grade => {
-                map[grade.gradeId] = grade.grade; // Assuming gradeId is a string in your data
+                map[grade.gradeId] = grade.grade; 
             });
         }
         setGradesMap(map);

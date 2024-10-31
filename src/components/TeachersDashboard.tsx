@@ -9,6 +9,7 @@ import { Contact } from "./Contact";
 import { Teachers } from "./Teachers";
 import Profile from "./ProfDetails";
 import { AuthProvider } from "../context/AuthContext";
+import DashboardTeacher from "../TeachersDashboards/DashboardTeacher";
 
 export const TeachersDashboard = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -27,14 +28,13 @@ export const TeachersDashboard = () => {
         >
           <AuthProvider>
             <Routes>
-              {/* Default Route */}
-              <Route path="/" element={<Teachers />} />
-              {/* Nested Routes */}
+              <Route path="/" element={<DashboardTeacher />} />
+              <Route path="" element={<Teachers />} />
               <Route path="about" element={<About />} />
               <Route path="staff" element={<Staff />} />
               <Route path="newsletter" element={<Newsletter />} />
               <Route path="contact" element={<Contact />} />
-              <Route path="profile" element={<Profile />} />
+              {/* <Route path="profile" element={<Profile />} /> */}
               {/* Redirect to Default if No Match */}
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
