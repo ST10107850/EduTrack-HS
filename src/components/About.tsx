@@ -3,7 +3,7 @@ import { GoGoal } from "react-icons/go";
 import { FaEye, FaUser } from "react-icons/fa";
 import { GiStairs } from "react-icons/gi";
 
-const AboutUs: React.FC = () => {
+const About: React.FC = () => {
   return (
     <section className="text-lg bg-blue-100 py-6 px-10">
       <h1 className="font-bold text-center text-3xl mb-8">About Us</h1>
@@ -48,4 +48,4 @@ const AboutUs: React.FC = () => {
   );
 };
 
-export default AboutUs;
+export default About;

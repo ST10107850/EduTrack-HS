@@ -244,7 +244,7 @@
           "totalMark": 60
         }
       ],
-      "gradeId": "3",
+      "gradeId": "1",
       "subjects": [
         "1",
         "2",
@@ -270,7 +270,7 @@
           "totalMark": 60
         }
       ],
-      "gradeId": "5",
+      "gradeId": "2",
       "subjects": [
         "3",
         "4",
@@ -330,25 +330,6 @@
   ],
   "teachers": [
     {
-      "id": "1730193102818",
-      "fullName": "Elizabeth ",
-      "surname": "Maleke",
-      "idNumber": "1234567890123",
-      "address": "Juta Street",
-      "emailAddress": "eli@gmail.com",
-      "phoneNumber": "1234567890",
-      "gradeId": [
-        1,
-        2
-      ],
-      "subjects": [
-        "1",
-        "2",
-        "2"
-      ],
-      "password": "9hDcDr7v(wb4"
-    },
-    {
       "id": 1730212861833,
       "fullName": "Thando",
       "surname": "Ndlovu",
@@ -356,15 +337,238 @@
       "address": "Juta Street, Johannesburg",
       "emailAddress": "eli@tshimologong.co.za",
       "phoneNumber": "1234567890",
-      "gradeId": [
-        1,
-        3
-      ],
       "subjects": [
-        "1",
-        "3"
+        {
+          "subjectId": "1",
+          "subject": "Mathematics",
+          "gradeIds": [
+            1,
+            2
+          ]
+        },
+        {
+          "subjectId": "2",
+          "subject": "Science",
+          "gradeIds": [
+            1
+          ]
+        }
       ],
       "password": "Wv34Cju8Zt38"
+    },
+    {
+      "id": 1730278473444,
+      "fullName": "Elizabeth",
+      "surname": "Maleke",
+      "idNumber": "0987654321098",
+      "address": "Juta Street",
+      "emailAddress": "maleke@tshimologong.co.za",
+      "phoneNumber": "0987654321",
+      "gradeId": [
+        1,
+        2
+      ],
+      "subjects": [
+        2
+      ],
+      "password": "&z^z8)9KHdl7"
+    },
+    {
+      "id": 1730279357421,
+      "fullName": "nhlakanipho",
+      "surname": "Nsundwane",
+      "idNumber": "1234567890124",
+      "address": "xcvbnm,./",
+      "emailAddress": "eli12345@tshimologong.co.za",
+      "phoneNumber": "1234567890",
+      "gradeId": [
+        1,
+        2
+      ],
+      "subjects": [
+        2,
+        3,
+        1,
+        2,
+        1
+      ],
+      "password": "%X)RI1kPB0bI"
+    },
+    {
+      "id": 1730279502108,
+      "fullName": "Elizabeth",
+      "surname": "Nsundwane",
+      "idNumber": "1234567890121",
+      "address": "xcvbnm,./",
+      "emailAddress": "eli12@tshimologong.co.za",
+      "phoneNumber": "1234567890",
+      "password": "k^rUBr3*9HVZ",
+      "subjects": [
+        {
+          "subjectId": "1",
+          "subject": "",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "4",
+          "subject": "",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "4",
+          "subject": "",
+          "gradeIds": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1730279676037,
+      "fullName": "Elizabeth",
+      "surname": "Maleke",
+      "idNumber": "1234567890128",
+      "address": "xcvbnm,./",
+      "emailAddress": "eli123@tshimologong.co.za",
+      "phoneNumber": "1234567890",
+      "password": "7a7%TJtwWo#I",
+      "subjects": [
+        {
+          "subjectId": "1",
+          "subject": "",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "3",
+          "subject": "",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "4",
+          "subject": "",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "4",
+          "subject": "",
+          "gradeIds": [
+            5
+          ]
+        },
+        {
+          "subjectId": "1",
+          "subject": "",
+          "gradeIds": [
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1730279952140,
+      "fullName": "Elizabeth",
+      "surname": "Maleke",
+      "idNumber": "1234567890132",
+      "address": "xcvbnm,./",
+      "emailAddress": "eli@tshimologong.co.za",
+      "phoneNumber": "1234567890",
+      "password": "Qglb(6gJG7U8",
+      "subjects": [
+        {
+          "subjectId": "1",
+          "subject": "Maths",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "4",
+          "subject": "Geography",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "3",
+          "subject": "History",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "1",
+          "subject": "Maths",
+          "gradeIds": [
+            2
+          ]
+        },
+        {
+          "subjectId": "2",
+          "subject": "Science",
+          "gradeIds": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1730280979620,
+      "fullName": "Elizabeth",
+      "surname": "Nsundwane",
+      "idNumber": "1234567890143",
+      "address": "xcvbnm,./",
+      "emailAddress": "eli09@tshimologong.co.za",
+      "phoneNumber": "1234567890",
+      "password": "x7GSsMrLMbBL",
+      "subjects": [
+        {
+          "subjectId": "1",
+          "subject": "Maths",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "2",
+          "subject": "Science",
+          "gradeIds": [
+            1
+          ]
+        },
+        {
+          "subjectId": "4",
+          "subject": "Geography",
+          "gradeIds": [
+            2
+          ]
+        },
+        {
+          "subjectId": "5",
+          "subject": "English",
+          "gradeIds": [
+            2
+          ]
+        }
+      ]
+    }
+  ],
+  "admin": [
+    {
+      "id": "1",
+      "fullName": "Tshimologong",
+      "surname": "Admin",
+      "emailAddress": "Admin123@tshimologong.co.za",
+      "password": "@Tshimologong12345"
     }
   ],
   "assignments": [
