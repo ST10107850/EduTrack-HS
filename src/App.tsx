@@ -14,7 +14,7 @@ import { Navbar } from "./components/Navbar";
 import { AdminDashboard } from "./components/AdminDashboard";
 import { TeachersDashboard } from "./components/TeachersDashboard";
 import { ParentDashboard } from "./components/ParentDashboard";
-import  Teachers  from "./components/Teachers";
+// import  Teachers  from "./components/Teachers";
 import MarksEntryTable from "./components/MarksEntryTable";
 import ParentComponent from "./components/ParentComponent";
 
@@ -36,7 +36,7 @@ function App() {
         {state.isAuthenticated ? (
           <>
             <Route path="/parent-dashboard/*" element={<ParentDashboard />} />
-            <Route path="/teachers-dashboard/*" element={<Teachers />} />
+            <Route path="/teachers-dashboard/*" element={<TeachersDashboard />} />
             <Route path="/admin-dashboard/*" element={<AdminDashboard />} />
           </>
         ) : (

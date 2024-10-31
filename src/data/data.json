@@ -222,10 +222,13 @@
   ],
   "learners": [
     {
+      "learnerName": "G Nsundwane",
+      "totalObtained": 280,
+      "overRollMark": 320,
+      "percentage": "87.50",
+      "status": "Pass",
       "id": "be59",
-      "fullName": "G Nsundwane",
-      "idNumber": "1234567890123",
-      "emailAddress": "sdfg@gmail.com",
+      "subjectId": "1",
       "marks": [
         {
           "subjectId": "1",
@@ -251,12 +254,6 @@
           "markObtained": 50,
           "totalMark": 60
         }
-      ],
-      "gradeId": "1",
-      "subjects": [
-        "1",
-        "2",
-        "5"
       ]
     },
     {
@@ -280,7 +277,7 @@
       ],
       "gradeId": "2",
       "subjects": [
-        "3",
+        "1",
         "4",
         "6"
       ]
@@ -325,7 +322,7 @@
           "totalMarks": 60
         }
       ],
-      "gradeId": "3",
+      "gradeId": "1",
       "subjects": [
         "4",
         "6",

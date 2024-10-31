@@ -6,7 +6,7 @@ import About from "./About";
 import Staff from "./Staff";
 import { Newsletter } from "./Newsletter";
 import { Contact } from "./Contact";
-import Teachers  from "./Teachers";
+import {Teachers}  from "./Teachers";
 
 export const TeachersDashboard = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
