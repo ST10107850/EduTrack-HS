@@ -13,7 +13,10 @@ interface SidebarProps {
   onSelectUserType: (userType: string) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onSelectUserType }) => {
+const TeacherSidebar: React.FC<SidebarProps> = ({
+  isCollapsed,
+  onSelectUserType,
+}) => {
   const [activeItem, setActiveItem] = useState<string>("");
 
   const handleItemClick = (itemName: string) => {
@@ -37,7 +40,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onSelectUserType }) => {
             MAIN
           </div>
           <Link
-            to="/admin-dashboard"
+            to="/teachers-dashboard"
             onClick={() => handleItemClick("home")}
             className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
               activeItem === "home" ? "bg-gray-300 text-secondaryColor" : ""
@@ -47,7 +50,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onSelectUserType }) => {
             {!isCollapsed && <span className="ml-3">Home</span>}
           </Link>
           <Link
-            to="/admin-dashboard/about"
+            to="/teachers-dashboard/about"
             onClick={() => handleItemClick("about")}
             className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
               activeItem === "about" ? "bg-gray-300 text-secondaryColor" : ""
@@ -59,34 +62,22 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onSelectUserType }) => {
         </div>
 
         <div>
-          <Link
-            to="/admin-dashboard/manage-users"
+          <div
             className={`px-4 ${
               isCollapsed ? "hidden" : "text-gray-500 text-sm font-bold mt-6"
             }`}
           >
             MANAGE USERS
-          </Link>
-          <a
-            href="#"
-            onClick={() => handleItemClick("teachers")}
+          </div>
+          <Link
+            to="/teachers-dashboard/teacher"
             className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
               activeItem === "teachers" ? "bg-gray-300 text-secondaryColor" : ""
             }`}
           >
             <GiTeacher />
-            {!isCollapsed && <span className="ml-3">Teachers</span>}
-          </a>
-          <a
-            href="#"
-            onClick={() => handleItemClick("learners")}
-            className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
-              activeItem === "learners" ? "bg-gray-300 text-secondaryColor" : ""
-            }`}
-          >
-            <PiStudent />
             {!isCollapsed && <span className="ml-3">Learners</span>}
-          </a>
+          </Link>
         </div>
 
         <div>
@@ -125,4 +116,4 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onSelectUserType }) => {
   );
 };
 
-export default Sidebar;
+export default TeacherSidebar;

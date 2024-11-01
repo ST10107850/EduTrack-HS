@@ -304,7 +304,7 @@ export const Teachers = () => {
             onClick={handleAddNewMarkClick}
             className="mt-4 bg-blue-500 text-white p-2 rounded"
           >
-            Save Changes
+            Save Chan
           </button>
           
         </div>
