@@ -18,6 +18,8 @@ import { ParentDashboard } from "./components/ParentDashboard";
 import MarksEntryTable from "./components/MarksEntryTable";
 import ParentComponent from "./components/ParentComponent";
 import { ViewResults } from "./components/ViewResults";
+import DashboardLayout from "./Layout/DashboardLayout";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   const { state } = useAuth();
@@ -39,7 +41,7 @@ function App() {
           <>
             <Route path="/parent-dashboard/*" element={<ParentDashboard />} />
             <Route path="/teachers-dashboard/*" element={<TeachersDashboard />} />
-            <Route path="/admin-dashboard/*" element={<AdminDashboard />} />
+            <Route path="/admin-dashboard/*" element={<ErrorBoundary><DashboardLayout /></ErrorBoundary>} />
           </>
         ) : (
           <Route path="*" element={<Navigate to="/" />} />
