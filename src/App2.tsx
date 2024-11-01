@@ -7,6 +7,8 @@ import Section3 from './newComponents/Section3';
 import MeetOurStaff from './newComponents/MeetOurStaff';
 import DashboardLayout from './Layout/DashboardLayout';
 import { useState } from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Dashboard from './Layout/DashboardLayout';
 
 const App2: React.FC = () => {
   const [userType, setUserType] = useState<string>("teachers");
@@ -39,8 +41,12 @@ const App2: React.FC = () => {
       </div> */}
 
 
-
-      <DashboardLayout userType={userType} />
+<Router>
+  <Routes>
+    <Route path='/' element={<Dashboard />} />
+  </Routes>
+</Router>
+      {/* <DashboardLayout userType={userType} /> */}
     </>
   );
 }
