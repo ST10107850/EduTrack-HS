@@ -299,6 +299,13 @@ export const Teachers = () => {
           >
             Add New Marks
           </button>
+
+          <button
+            onClick={handleAddNewMarkClick}
+            className="mt-4 bg-blue-500 text-white p-2 rounded"
+          >
+            Save Changes
+          </button>
           
         </div>
       )}

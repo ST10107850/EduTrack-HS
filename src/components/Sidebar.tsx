@@ -55,7 +55,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           </Link>
 
           <Link
-            to="/teachers-dashboard/about"
+            to="/admin-dashboard/about"
             onClick={() => handleItemClick("about")}
             className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
               activeItem === "about" ? "bg-gray-300 text-secondaryColor" : ""
@@ -74,8 +74,8 @@ const Sidebar: React.FC<SidebarProps> = ({
           >
             MANAGE USERS
           </div>
-          <a
-            href="#"
+          <Link
+            to="/admin-dashboard/new-teachers"
             onClick={() => handleItemClick("teachers")}
             className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
               activeItem === "teachers" ? "bg-gray-300 text-secondaryColor" : ""
@@ -88,10 +88,10 @@ const Sidebar: React.FC<SidebarProps> = ({
               ) : (
                 <span className="ml-3">Grades</span>
               ))}
-          </a>
+          </Link>
 
-          <a
-            href="#"
+          <Link
+            to="#"
             onClick={() => handleItemClick("learners")}
             className={`flex items-center py-3 px-4 hover:bg-gray-200 transition-colors ${
               activeItem === "learners" ? "bg-gray-300 text-secondaryColor" : ""
@@ -104,7 +104,7 @@ const Sidebar: React.FC<SidebarProps> = ({
               ) : (
                 <span className="ml-3">Subject</span>
               ))}
-          </a>
+          </Link>
         </div>
 
         <div>

@@ -28,7 +28,7 @@ export const AdminDashboard: React.FC = () => {
         <main className={`transition-all duration-300 p-4 ${isCollapsed ? 'ml-16' : 'ml-64'} w-full`}>
           <Routes>
             <Route path="admin-dashboard" element={<Dashboard />}/>
-            <Route path="/" element={<Dash />} />
+            <Route path="/" element={<Dashboard />} />
             <Route
               path="new-teachers" // Use relative paths here
               element={

@@ -22,13 +22,14 @@ import Profile from "./components/ProfDetails";
 import Dashboard from "./components/Dashboard";
 import DashboardTeacher from "./TeachersDashboards/DashboardTeacher";
 import ErrorBoundary from "./components/ErrorBoundary";
+import Teachers from "./components/Teachers";
 
 function App() {
   const { state } = useAuth();
 
   return (
     <Router>
-      <ErrorBoundary>
+      {/* <ErrorBoundary> */}
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<AuthLayout />} />
@@ -50,7 +51,6 @@ function App() {
               </>
             }
           />
-          {/* Protected Routes */}
           {state.isAuthenticated ? (
             <>
               <Route path="/parent-dashboard/*" element={<ParentDashboard />} />
@@ -64,7 +64,7 @@ function App() {
             <Route path="*" element={<Navigate to="/" />} />
           )}
         </Routes>
-      </ErrorBoundary>
+      {/* </ErrorBoundary> */}
     </Router>
   );
 }

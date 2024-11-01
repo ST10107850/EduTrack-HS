@@ -22,20 +22,20 @@ export const TeachersDashboard = () => {
     <div className="w-full h-screen flex flex-col">
       <Navbar2 toggleSidebar={toggleSidebar} isCollapsed={isCollapsed} />
       <div className="flex h-full">
-        <Sidebar isCollapsed={isCollapsed} IsAdmin={false} />
+        <Sidebar  isCollapsed={isCollapsed} IsAdmin={false} />
         <main
-          className={`transition-all duration-300 p-4 ${isCollapsed ? "ml-16" : "ml-64"} w-full`}
+          className={`transition-all duration-300 p-4 ${
+            isCollapsed ? "ml-16" : "ml-64"
+          } w-full`}
         >
           <AuthProvider>
             <Routes>
               <Route path="/" element={<DashboardTeacher />} />
-              <Route path="" element={<Teachers />} />
+              <Route path="teacher" element={<Teachers />} />
               <Route path="about" element={<About />} />
               <Route path="staff" element={<Staff />} />
               <Route path="newsletter" element={<Newsletter />} />
               <Route path="contact" element={<Contact />} />
-              {/* <Route path="profile" element={<Profile />} /> */}
-              {/* Redirect to Default if No Match */}
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </AuthProvider>
