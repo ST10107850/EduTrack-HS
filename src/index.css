@@ -2,3 +2,55 @@
 @tailwind components;
 @tailwind utilities;
   
+
+
+:root {
+    --sections: 3;
+    --sectionHeight: 87vh;
+    --sectionTopPadding: 1.5em;
+    --sectionMargin: 4vw;
+  }
+  
+  .stack-container {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-rows: repeat(var(--sections), var(--sectionHeight));
+    gap: var(--sectionMargin);
+    padding-bottom: calc(var(--sections) * var(--sectionTopPadding));
+    margin-bottom: var(--sectionMargin);
+  }
+  
+  .stack-container li {
+    position: sticky;
+    top: 0;
+    padding-top: var(--sectionTopPadding);
+  }
+  
+  #section1 {
+    --index: 1;
+    padding-top: calc(var(--index) * var(--sectionTopPadding));
+  }
+  
+  #section2 {
+    --index: 2;
+    padding-top: calc(var(--index) * var(--sectionTopPadding));
+  }
+  
+  #section3 {
+    --index: 3;
+    padding-top: calc(var(--index) * var(--sectionTopPadding));
+  }
+  
+
+
+  /* Add this to your global CSS or module CSS */
+.scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+  }
+  
