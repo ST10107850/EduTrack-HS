@@ -9,7 +9,7 @@ interface SidebarProps {
   title: string;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ title }) => {
+const Sidebar2: React.FC<SidebarProps> = ({ title }) => {
   return (
     <div className="bg-pink-50  text-tertiaryColor h-screen w-64 flex flex-col">
       <div className="p-6 mb-16 text-4xl font-bold border-b">
@@ -35,4 +35,4 @@ const Sidebar: React.FC<SidebarProps> = ({ title }) => {
   );
 };
 
-export default Sidebar;
+export default Sidebar2;
