@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import data from "../data/data.json";
-import {  Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export const ManageUsers = ({ userType }: { userType: string }) => {
-
-
-  type User = { 
-    id: string; 
-    fullName: string; 
-    phoneNumber: number; 
+export const ManageUsers = ({ userType }) => {
+  type User = {
+    id: string;
+    fullName: string;
+    phoneNumber: number;
     emailAddress: string;
     address: string;
     password: string;
@@ -19,13 +17,20 @@ export const ManageUsers = ({ userType }: { userType: string }) => {
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [isAdding, setIsAdding] = useState(false);
   const [newUser, setNewUser] = useState<User>({
-    id: '',
-    fullName: '',
+    id: "",
+    fullName: "",
     phoneNumber: 0,
-    emailAddress: '',
-    address: '',
-    password: '',
+    emailAddress: "",
+    address: "",
+    password: "",
   });
+
+  const totalLearners = data.learners ? data.learners.length : 0;
+  const totalTeachers = data.teachers ? data.teachers.length : 0;
+  const totalParents = data.parents ? data.parents.length : 0;
+
+  console.log(totalLearners, totalParents, totalTeachers);
+  
 
   useEffect(() => {
     setLearners(data.learners);
@@ -35,28 +40,18 @@ export const ManageUsers = ({ userType }: { userType: string }) => {
   const displayedUsers = userType === "teachers" ? teachers : learners;
   const setUsers = userType === "teachers" ? setTeachers : setLearners;
 
-  // const handleAddNew = () => {
-  //   setIsAdding(true);
-  //   setNewUser({ id: '', fullName: '', phoneNumber: 0, emailAddress: '', address: '', password: '' });
-  // };
-
-
   const navigate = useNavigate();
+
   const handleAddNew = () => {
-    if (userType === "teachers") {
-      navigate("/new-teacher");
-    } else if (userType === "learners") {
-      navigate("/new-learner");
-    }
+    navigate(userType === "teachers" ? "/new-teacher" : "/new-learner");
   };
 
   const handleSaveNewUser = () => {
-    const updatedUsers = [...displayedUsers, { ...newUser, id: Date.now().toString() }];
-    if (userType === "teachers") {
-      setTeachers(updatedUsers);
-    } else {
-      setLearners(updatedUsers);
-    }
+    const updatedUsers = [
+      ...displayedUsers,
+      { ...newUser, id: Date.now().toString() },
+    ];
+    setUsers(updatedUsers);
     setIsAdding(false);
   };
 
@@ -79,31 +74,36 @@ export const ManageUsers = ({ userType }: { userType: string }) => {
     }
   };
 
+  const handleViewUser = (userId: number) => {
+    navigate(`/view-user/${userId.toString()}`);
+  };
+
   return (
-    <div className="relative flex flex-col md:my-0 my-12 justify-center items-center md:h-[90vh] text-gray-800">
-      <h1 className="text-5xl mx-7 md:mx-0 text-secondaryColor mb-16 font-bold">
+    <div className="relative flex flex-col justify-center items-center text-gray-800">
+      <h1 className="text-5xl text-secondaryColor mb-16 font-bold">
         Showing Results For "{userType}"
       </h1>
 
       <div className="grid md:grid-cols-3 grid-cols-1 gap-4 mb-8 w-3/4">
         <div className="bg-primaryColor p-4 text-white rounded shadow">
-          <h3 className="text-lg font-bold">Total Number Of Active Users</h3>
-          <p className="text-2xl">100</p>
+          <h3 className="text-lg font-bold">Total Number Of Learners</h3>
+          <p className="text-2xl">{totalLearners}</p>
         </div>
-
         <div className="bg-[#A0D3E8] p-4 rounded shadow">
           <h3 className="text-lg font-bold">Total Number Of Teachers</h3>
-          <p className="text-2xl">20</p>
+          <p className="text-2xl">{totalTeachers}</p>
         </div>
-
         <div className="bg-[#4A90E2] p-4 rounded shadow text-white">
           <h3 className="text-lg font-bold">Total Number Of Parents</h3>
-          <p className="text-2xl">80</p>
+          <p className="text-2xl">{totalParents}</p>
         </div>
       </div>
 
       <div className="flex w-3/4 justify-end mb-4">
-        <Link to={`${userType == "teachers"? "new-teachers" : "new-learners"}`}  className="bg-secondaryColor text-white rounded-md px-3 py-1">
+        <Link
+          to={userType === "teachers" ? "/new-teacher" : "/new-learner"}
+          className="bg-secondaryColor text-white rounded-md px-3 py-1"
+        >
           Add New
         </Link>
       </div>
@@ -126,36 +126,74 @@ export const ManageUsers = ({ userType }: { userType: string }) => {
                     <input
                       type="text"
                       value={newUser.fullName}
-                      onChange={(e) => setNewUser({ ...newUser, fullName: e.target.value })}
+                      onChange={(e) =>
+                        setNewUser({ ...newUser, fullName: e.target.value })
+                      }
                     />
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
                     <input
                       type="number"
                       value={newUser.phoneNumber}
-                      onChange={(e) => setNewUser({ ...newUser, phoneNumber: Number(e.target.value) })}
+                      onChange={(e) =>
+                        setNewUser({
+                          ...newUser,
+                          phoneNumber: Number(e.target.value),
+                        })
+                      }
                     />
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
                     <input
                       type="email"
                       value={newUser.emailAddress}
-                      onChange={(e) => setNewUser({ ...newUser, emailAddress: e.target.value })}
+                      onChange={(e) =>
+                        setNewUser({ ...newUser, emailAddress: e.target.value })
+                      }
                     />
                   </td>
                   <td className="border border-gray-300 px-4 py-2 flex gap-2 justify-center">
-                    <button className="text-green-500" onClick={() => handleSaveEditUser(index)}>Save</button>
+                    <button
+                      className="text-green-500"
+                      onClick={() => handleSaveEditUser(index)}
+                    >
+                      Save
+                    </button>
                   </td>
                 </>
               ) : (
                 <>
-                  <td className="border border-gray-300 px-4 py-2">{user.fullName}</td>
-                  <td className="border border-gray-300 px-4 py-2">{user.phoneNumber}</td>
-                  <td className="border border-gray-300 px-4 py-2">{user.emailAddress}</td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {user.fullName}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {user.phoneNumber}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {user.emailAddress}
+                  </td>
                   <td className="border border-gray-300 px-4 py-2 flex gap-2 justify-center">
-                    <a href="#" className="text-blue-500" onClick={() => handleEditUser(index)}>Edit</a>
-                    <a href="#" className="text-red-500" onClick={() => handleDeleteUser(index)}>Delete</a>
-                    <a href="#" className="text-[#A0D3E8]">View</a>
+                    <a
+                      href="#"
+                      className="text-blue-500"
+                      onClick={() => handleEditUser(index)}
+                    >
+                      Edit
+                    </a>
+                    <a
+                      href="#"
+                      className="text-red-500"
+                      onClick={() => handleDeleteUser(index)}
+                    >
+                      Delete
+                    </a>
+                    <a
+                      href="#"
+                      className="text-[#A0D3E8]"
+                      onClick={() => handleViewUser(user.id)}
+                    >
+                      View
+                    </a>
                   </td>
                 </>
               )}
@@ -167,25 +205,36 @@ export const ManageUsers = ({ userType }: { userType: string }) => {
                 <input
                   type="text"
                   value={newUser.fullName}
-                  onChange={(e) => setNewUser({ ...newUser, fullName: e.target.value })}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, fullName: e.target.value })
+                  }
                 />
               </td>
               <td className="border border-gray-300 px-4 py-2">
                 <input
                   type="number"
                   value={newUser.phoneNumber}
-                  onChange={(e) => setNewUser({ ...newUser, phoneNumber: Number(e.target.value) })}
+                  onChange={(e) =>
+                    setNewUser({
+                      ...newUser,
+                      phoneNumber: Number(e.target.value),
+                    })
+                  }
                 />
               </td>
               <td className="border border-gray-300 px-4 py-2">
                 <input
                   type="email"
                   value={newUser.emailAddress}
-                  onChange={(e) => setNewUser({ ...newUser, emailAddress: e.target.value })}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, emailAddress: e.target.value })
+                  }
                 />
               </td>
               <td className="border border-gray-300 px-4 py-2 flex gap-2 justify-center">
-                <button className="text-green-500" onClick={handleSaveNewUser}>Save</button>
+                <button className="text-green-500" onClick={handleSaveNewUser}>
+                  Save
+                </button>
               </td>
             </tr>
           )}

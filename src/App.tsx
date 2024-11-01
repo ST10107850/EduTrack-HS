@@ -18,53 +18,36 @@ import { ParentDashboard } from "./components/ParentDashboard";
 
 import MarksEntryTable from "./components/MarksEntryTable";
 import ParentComponent from "./components/ParentComponent";
-import Profile from "./components/ProfDetails";
-import Dashboard from "./components/Dashboard";
-import DashboardTeacher from "./TeachersDashboards/DashboardTeacher";
+import { ViewResults } from "./components/ViewResults";
+import DashboardLayout from "./Layout/DashboardLayout";
 import ErrorBoundary from "./components/ErrorBoundary";
-import Teachers from "./components/Teachers";
 
 function App() {
   const { state } = useAuth();
 
   return (
     <Router>
-      {/* <ErrorBoundary> */}
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<AuthLayout />} />
-          <Route
-            path="/login"
-            element={
-              <>
-                <Navbar />
-                <LoginForm />
-              </>
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <>
-                <Navbar />
-                <RegisterForm />
-              </>
-            }
-          />
-          {state.isAuthenticated ? (
-            <>
-              <Route path="/parent-dashboard/*" element={<ParentDashboard />} />
-              <Route
-                path="/teachers-dashboard/*"
-                element={<TeachersDashboard />}
-              />
-              <Route path="/admin-dashboard/*" element={<AdminDashboard />} />
-            </>
-          ) : (
-            <Route path="*" element={<Navigate to="/" />} />
-          )}
-        </Routes>
-      {/* </ErrorBoundary> */}
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<AuthLayout />} />
+        <Route path="/login" element={<><Navbar /><LoginForm /></>} />
+        <Route path="/register" element={<><Navbar /><RegisterForm /></>} />
+        <Route path="/mark-entry" element={<MarksEntryTable />} />
+        <Route path="/view-user/:userId" element={<ViewResults />} />
+        {/* <Route path="/teacher" element={<Teachers />} />
+        <Route path="/admin" element={<AdminDashboard />} /> */}
+
+        {/* Protected Routes */}
+        {state.isAuthenticated ? (
+          <>
+            <Route path="/parent-dashboard/*" element={<ParentDashboard />} />
+            <Route path="/teachers-dashboard/*" element={<TeachersDashboard />} />
+            <Route path="/admin-dashboard/*" element={<ErrorBoundary><DashboardLayout /></ErrorBoundary>} />
+          </>
+        ) : (
+          <Route path="*" element={<Navigate to="/" />} />
+        )}
+      </Routes>
     </Router>
   );
 }

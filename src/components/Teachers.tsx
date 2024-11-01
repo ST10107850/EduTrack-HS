@@ -163,9 +163,13 @@ export const Teachers = () => {
 
   return (
     <div className="relative flex flex-col md:my-0 my-12 justify-center items-center md:h-[90vh] text-gray-800">
-      <h1 className="text-5xl mx-7 md:mx-0 text-secondaryColor mb-16 font-bold">
-        Welcome {formattedFullName}
-      </h1>
+      <div className="flex flex-col items-center w-full max-w-screen-lg space-y-8 p-8">
+        <div className="w-full h-[10rem] bg-[#6c7f93] rounded-lg flex flex-col items-center justify-center text-white p-4">
+          <h1 className="text-5xl mx-7 md:mx-0 text-secondaryColor  font-bold">
+            Welcome {formattedFullName}
+          </h1>
+        </div>
+      </div>
       <div className="mb-6 flex sm:flex-row flex-col space-x-4">
         <select
           value={selectedGrade || ""}
@@ -306,7 +310,6 @@ export const Teachers = () => {
           >
             Save Chan
           </button>
-          
         </div>
       )}
 
@@ -318,6 +321,12 @@ export const Teachers = () => {
           currentAssignment={currentAssignment}
         />
       )}
+
+      <Link to="/teachers">
+        <button className="mt-4 bg-blue-500 text-white p-2 rounded">
+          Back
+        </button>
+      </Link>
     </div>
   );
 };
