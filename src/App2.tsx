@@ -12,7 +12,7 @@ const App2: React.FC = () => {
   const [userType, setUserType] = useState<string>("teachers");
   return (
     <>
-      <Navbar3 />
+      {/* <Navbar3 />
       <div className="w-full h-screen overflow-y-scroll">
         <ul id="cards" className="list-none p-0 grid grid-cols-1 gap-4">
           <li id="card1" className="card w-full">
@@ -36,11 +36,11 @@ const App2: React.FC = () => {
             </div>
           </li>
         </ul>
-      </div>
+      </div> */}
 
 
 
-      {/* <DashboardLayout userType={userType} /> */}
+      <DashboardLayout userType={userType} />
     </>
   );
 }

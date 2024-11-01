@@ -52,7 +52,7 @@ export const Newsletter = () => {
   return (
     <div className="relative flex flex-col justify-center items-center md:h-screen mt-4 text-gray-800 px-4 sm:px-10">
       {articles.length > 0 && (
-        <h1 className="text-3xl sm:text-4xl md:text-5xl text-secondaryColor mb-8 md:mb-16 font-bold text-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl text-secondaryColor mb-8 md:mb-16 font-bold text-center mt-20 md:mt-0">
           Welcome to {articles[currentIndex].schoolName}
         </h1>
       )}
@@ -73,7 +73,7 @@ export const Newsletter = () => {
               {articles[currentIndex].title}
             </h1>
             <p className="text-sm md:text-base mb-6 overflow-hidden">
-              {articles[currentIndex].description.slice(0, 200)}...
+              {articles[currentIndex].description.slice(0, 300)}...
             </p>
             <button
               onClick={handleReadMoreClick}
