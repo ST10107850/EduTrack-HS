@@ -8,7 +8,7 @@ import { Newsletter } from "./Newsletter";
 import { Contact } from "./Contact";
 import {Teachers}  from "./Teachers";
 import Navbar3 from "../newComponents/Navbar3";
-import Sidebar2 from "./Sidebar2"
+// import Sidebar2 from "./Sidebar2"
 
 export const TeachersDashboard = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
