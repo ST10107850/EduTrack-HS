@@ -14,7 +14,7 @@ import { Navbar } from "./components/Navbar";
 import { AdminDashboard } from "./components/AdminDashboard";
 import { TeachersDashboard } from "./components/TeachersDashboard";
 import { ParentDashboard } from "./components/ParentDashboard";
-import { Teachers } from "./components/Teachers";
+// import  Teachers  from "./components/Teachers";
 import MarksEntryTable from "./components/MarksEntryTable";
 import ParentComponent from "./components/ParentComponent";
 import Profile from "./Pages/ProfDetails";
@@ -44,7 +44,7 @@ function App() {
             <Route path="/admin-dashboard/*" element={<AdminDashboard />} />
           </>
         ) : (
-          <Route path="*" element={<Navigate to="/login" />} />
+          <Route path="*" element={<Navigate to="/" />} />
         )}
       </Routes>
     </Router>

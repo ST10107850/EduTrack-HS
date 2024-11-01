@@ -70,17 +70,8 @@
 
 import React, { useState, useEffect } from "react";
 import { IoNotificationsSharp } from "react-icons/io5";
-
-interface UserData {
-  id: string;
-  fullName: string;
-  emailAddress: string;
-  surname: string;
-  idNumber: string;
-  address: string;
-  phoneNumber: string;
-  learnerID: string;
-}
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface NavbarProps {
   isCollapsed: boolean;
@@ -120,7 +111,8 @@ const Navbar2: React.FC<NavbarProps> = ({ isCollapsed, toggleSidebar }) => {
   };
 
   return (
-    <nav className="flex items-center justify-between bg-purple-100 px-4 py-3 shadow-md fixed top-0 w-full z-10">
+    <nav className="flex items-center justify-between bg-white px-4 py-3 shadow-md fixed top-0 w-full z-10">
+      {/* <ToastContainer/> */}
       {/* Logo and Hamburger Menu */}
       <div className="flex items-center space-x-3 pr-4 border-r border-gray-300">
         <button onClick={toggleSidebar} className="focus:outline-none">
