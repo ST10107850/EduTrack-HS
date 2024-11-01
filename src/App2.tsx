@@ -10,21 +10,21 @@ import DashboardLayout from './Layout/DashboardLayout';
 const App2: React.FC = () => {
   return (
     <>
-      {/* <Navbar3 />
+      <Navbar3 />
       <div className="w-full h-screen overflow-y-scroll">
         <ul id="cards" className="list-none p-0 grid grid-cols-1 gap-4">
           <li id="card1" className="card w-full">
-            <div className="card-body sticky top-0 w-full rounded-2xl shadow-lg flex items-center justify-center min-h-screen">
+            <div className="card-body sticky top-0 w-full rounded-2xl  flex items-center justify-center min-h-screen">
               <Hero />
             </div>
           </li>
           <li id="card2" className="card w-full">
-            <div className="card-body sticky top-0 w-full rounded-2xl shadow-lg flex items-center justify-center h-[150vh] bg-gray-400">
+            <div className="card-body text-tertiaryColor  sticky top-0 w-full rounded-2xl shadow-lg flex items-center justify-center h-[150vh] ">
               <About2 />
             </div>
           </li>
           <li id="card3" className="card w-full">
-            <div className="card-body sticky top-0 w-full rounded-2xl shadow-lg flex items-center justify-center min-h-screen ">
+            <div className="card-body text-tertiaryColor sticky top-0 w-full rounded-2xl shadow-lg flex items-center justify-center min-h-screen ">
               <MeetOurStaff />
             </div>
           </li>
@@ -34,7 +34,7 @@ const App2: React.FC = () => {
             </div>
           </li>
         </ul>
-      </div> */}
+      </div>
 
 
 

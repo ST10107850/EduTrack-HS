@@ -63,10 +63,10 @@ const MeetOurStaff: React.FC = () => {
   };
 
   return (
-    <div className='w-full rounded-3xl px-10 h-[120vh] text-white bg-black flex flex-col items-center'>
+    <div className='w-full rounded-3xl px-10 h-[120vh] bg-black flex flex-col items-center'>
       <div className='justify-center mt-28'>
         <h1 className='text-9xl font-bold'>Meet Our Staff</h1>
-        <p className='text-2xl gap-4 leading-9 mt-7'>
+        <p className='text-2xl gap-4 text-white leading-9 mt-7'>
           Each member of our staff brings a wealth of experience, passion, and a commitment to fostering a positive and engaging learning environment. They are here to inspire, support, and guide every student, making learning an enriching journey for all.
         </p>
       </div>
@@ -84,7 +84,7 @@ const MeetOurStaff: React.FC = () => {
               style={{ backgroundImage: `url(${teacher.src})` }}
             >
               <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 rounded-lg p-4 w-full">
-                <h2 className="text-3xl font-bold text-white">{teacher.name}</h2>
+                <h2 className="text-3xl font-bold ">{teacher.name}</h2>
                 <p className="text-white">{teacher.title}</p>
               </div>
             </div>
