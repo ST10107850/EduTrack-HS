@@ -25,7 +25,7 @@ function App() {
   const { state } = useAuth();
 
   return (
-    <div className="font-serif bg-gradient-to-r  to-cyan-600 from-cyan-200">
+    <div>
     <Router>
       <Routes>
         {/* Public Routes */}

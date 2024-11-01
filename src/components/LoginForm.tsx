@@ -19,19 +19,6 @@ const LoginForm: React.FC = () => {
     setError(null);
 
     try {
-      // Check if credentials match admin credentials
-      // if (
-      //     values.email === "Admin12345@tshmologong.co.za" &&
-      //     values.password === "@Tshimologong12345"
-      // ) {
-      //     console.log("You have logged in as admin");
-      //     handleLogin(values.email, values.password, "admin"); // Pass role to handleLogin
-      //     resetForm();
-      //     navigate("/admin-dashboard");
-      //     return;
-      // }
-
-      // Attempt login as parent or teacher
       const user = await handleLogin(values.email, values.password);
       resetForm();
 
@@ -71,7 +58,7 @@ const LoginForm: React.FC = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <form onSubmit={onSubmit} className="bg-white p-8 rounded shadow-md w-96">
+      <form onSubmit={onSubmit} className="bg-backgroundColor p-8 rounded shadow-md w-96">
         <h2 className="text-2xl font-bold text-center mb-4 text-primaryColor">
           Login
         </h2>
@@ -110,7 +97,7 @@ const LoginForm: React.FC = () => {
         </button>
         <p className="mt-4 text-center">
           Don't have an account?{" "}
-          <Link to="/register" className="text-secondaryColor underline">
+          <Link to="/register" className="text-tertiaryColor underline">
             Register here
           </Link>
         </p>

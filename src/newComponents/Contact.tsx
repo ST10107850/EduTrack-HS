@@ -1,9 +1,9 @@
 import { useState } from "react";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 
 import { notifications } from "../Types/types";
 
-const Section3 = () => {
+export const Contact = () => {
   const [formData, setFormData] = useState<notifications>({
     name: "",
     surname: "",
@@ -19,54 +19,50 @@ const Section3 = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form data submitted:", formData);
 
     try {
-        const response = await fetch("/api/notifications", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-        });
+      const response = await fetch("/api/notifications", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-        if (!response.ok) {
-            const errorText = await response.text(); 
-            console.error("Failed to save notifications:", errorText);
-            toast.warning("Failed to save notifications")
-            return; 
-        }
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Failed to save notifications:", errorText);
+        toast.warning("Failed to save notifications");
+        return;
+      }
 
-        const results = await response.json();
-        console.log("Success:", results.message);
-        toast.success("Your message is submitted successfully!!!!!")
-        
-        setFormData({
-            name: "",
-            surname: "",
-            email: "",
-            phone: 0,
-            message: "",
-        });
+      const results = await response.json();
+      console.log("Success:", results.message);
+      toast.success("Your message is submitted successfully!!!!!");
 
+      setFormData({
+        name: "",
+        surname: "",
+        email: "",
+        phone: 0,
+        message: "",
+      });
     } catch (error) {
-        console.error("Error:", error);
+      console.error("Error:", error);
     }
-};
-
-
+  };
 
   return (
-    <div className="flex flex-col justify-center py-20 w-full text-tertiaryColor ">
-      <h1 className="text-center text-4xl uppercase font-bold ">
+    <div className="flex flex-col justify-center py-20 w-full">
+      <h1 className="text-center text-4xl uppercase font-bold">
         Contact Us
       </h1>
-      <div className="flex flex-wrap md:flex-nowrap px-8 py-12 space-y-8 md:space-y-0 md:space-x-16 w-[70vw] mx-auto">
+      <div className="flex flex-wrap md:flex-nowrap px-4 md:px-8 py-12 space-y-8 md:space-y-0 md:space-x-16 text-gray-800 w-[90vw] md:w-[70vw] mx-auto">
         <div className="md:w-1/2 flex flex-col space-y-6">
-          <h2 className="text-2xl font-bold">
+          <h2 className="text-2xl font-bold text-primaryColor">
             Call to Action
           </h2>
           <p className="text-lg">Email: johannesburg.high@example.com</p>
@@ -85,13 +81,13 @@ const Section3 = () => {
         </div>
 
         <div className="md:w-1/2">
-          <h2 className="text-2xl font-bold mb-6">
+          <h2 className="text-2xl font-bold mb-6 text-primaryColor">
             Get in Touch
           </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="flex space-x-4">
+            <div className="flex flex-col md:flex-row md:space-x-4">
               <div className="flex-1">
-                <label className="block text-sm font-medium">
+                <label className="block text-sm font-medium text-gray-700">
                   Name
                 </label>
                 <input
@@ -104,7 +100,7 @@ const Section3 = () => {
                 />
               </div>
               <div className="flex-1">
-                <label className="block text-sm font-medium">
+                <label className="block text-sm font-medium text-gray-700">
                   Surname
                 </label>
                 <input
@@ -118,7 +114,7 @@ const Section3 = () => {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium">
+              <label className="block text-sm font-medium text-gray-700">
                 Email
               </label>
               <input
@@ -131,7 +127,7 @@ const Section3 = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium">
+              <label className="block text-sm font-medium text-gray-700">
                 Phone Number
               </label>
               <input
@@ -144,7 +140,7 @@ const Section3 = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium">
+              <label className="block text-sm font-medium text-gray-700">
                 Message
               </label>
               <textarea
@@ -158,7 +154,7 @@ const Section3 = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-tertiaryColor text-white py-2 px-4 rounded-full hover:bg-secondaryColor-dark transition"
+              className="w-full bg-primaryColor text-white py-2 px-4 rounded-full hover:bg-secondaryColor-dark transition"
             >
               Submit
             </button>
@@ -168,5 +164,3 @@ const Section3 = () => {
     </div>
   );
 };
-
-export default Section3

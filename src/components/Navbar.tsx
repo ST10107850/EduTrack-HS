@@ -85,7 +85,12 @@ export const Navbar = ({ isAuthenticated }) => {
           <div className="flex items-center space-x-4 text-white">
             {isAuthenticated ? (
               <>
+             
                 <MdNotificationsNone size={25} className="cursor-pointer" />
+            
+                
+
+
                 <div className="relative">
                   <BiUserCircle
                     size={29}

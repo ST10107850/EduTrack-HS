@@ -10,7 +10,9 @@ export default {
       colors:{
         "primaryColor": "#060721",
         "secondaryColor": "#006AFF",
-        "tertiaryColor": "#FF6726"
+        "tertiaryColor": "#FF6726",
+        "backgroundColor": "#F1E6DB",
+        "backgroundColor2": "#FCF7F2"
       }
     },
   },

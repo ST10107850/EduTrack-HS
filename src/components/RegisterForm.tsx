@@ -76,12 +76,12 @@ const RegisterForm: React.FC = () => {
     values.learnerID;
 
   return (
-    <div className="flex items-center w-full justify-center h-screen bg-white">
+    <div className="flex items-center w-full justify-center h-screen bg-backgroundColor">
       <form
         onSubmit={onSubmit}
-        className="bg-white my-5 p-8 rounded shadow-md max-w-5xl"
+        className="bg-backgroundColor my-5 p-8 rounded shadow-md max-w-5xl"
       >
-        <h2 className="text-2xl font-bold text-center mb-4 text-primaryColor">
+        <h2 className="text-2xl font-bold text-center mb-4 text-tertiaryColor">
           Register
         </h2>
 
@@ -92,7 +92,7 @@ const RegisterForm: React.FC = () => {
             value={values.fullName}
             onChange={handleChange}
             required
-            className="p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-secondaryColor"
+            className="p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-tertiaryColor"
           />
           <input
             name="surname"
@@ -100,7 +100,7 @@ const RegisterForm: React.FC = () => {
             value={values.surname}
             onChange={handleChange}
             required
-            className="p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-secondaryColor"
+            className="p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-tertiaryColor"
           />
         </div>
 
@@ -112,7 +112,7 @@ const RegisterForm: React.FC = () => {
             value={values.idNumber}
             onChange={handleChange}
             required
-            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-secondaryColor"
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-tertiaryColor"
           />
         </div>
 
@@ -123,7 +123,7 @@ const RegisterForm: React.FC = () => {
             value={values.address}
             onChange={handleChange}
             required
-            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-secondaryColor"
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-tertiaryColor"
           />
         </div>
 
@@ -136,7 +136,7 @@ const RegisterForm: React.FC = () => {
               value={values.emailAddress}
               onChange={handleChange}
               required
-              className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-secondaryColor"
+              className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-tertiaryColor"
             />
           </div>
           <div className="mb-4">
@@ -147,7 +147,7 @@ const RegisterForm: React.FC = () => {
               value={values.phoneNumber}
               onChange={handleChange}
               required
-              className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-secondaryColor"
+              className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-tertiaryColor"
             />
           </div>
         </div>
@@ -159,7 +159,7 @@ const RegisterForm: React.FC = () => {
             value={values.learnerID}
             onChange={handleChange}
             required
-            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-secondaryColor"
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-tertiaryColor"
           />
         </div>
 
@@ -172,7 +172,7 @@ const RegisterForm: React.FC = () => {
               value={values.password}
               onChange={handleChange}
               required
-              className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-secondaryColor"
+              className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-tertiaryColor"
             />
           </div>
           <div className="mb-4">
@@ -183,7 +183,7 @@ const RegisterForm: React.FC = () => {
               onChange={handleChange}
               type="password"
               required
-              className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-secondaryColor"
+              className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-tertiaryColor"
             />
           </div>
         </div>
@@ -193,7 +193,7 @@ const RegisterForm: React.FC = () => {
           disabled={!isFormFilled}
           className={`w-full py-2 rounded transition duration-200 ${
             isFormFilled
-              ? "bg-[#060721] text-white hover:bg-gray-700"
+              ? "bg-tertiaryColor text-white hover:bg-gray-700"
               : "bg-gray-300 text-gray-500 cursor-not-allowed"
           }`}
         >
@@ -202,7 +202,7 @@ const RegisterForm: React.FC = () => {
 
         <p className="mt-4 text-center">
           Already have an account?{" "}
-          <Link to="/login" className="text-secondaryColor underline">
+          <Link to="/login" className="text-tertiaryColor underline">
             Login here
           </Link>
         </p>
