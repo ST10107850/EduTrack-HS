@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import data from "../data/data.json"; // Load notifications data
 import { FaEllipsis } from 'react-icons/fa6';
 
-const Dashboard: React.FC = () => {
+const DashboardLayout: React.FC = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const notificationsRef = useRef<HTMLDivElement>(null);
@@ -37,6 +37,12 @@ const Dashboard: React.FC = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const totalLearners = data.learners ? data.learners.length : 0;
+  const totalTeachers = data.teachers ? data.teachers.length : 0;
+  const totalParents = data.parents ? data.parents.length : 0;
+
+  
 
   return (
     <div className="flex">
@@ -138,4 +144,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardLayout;

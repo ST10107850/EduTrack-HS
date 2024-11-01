@@ -6,7 +6,7 @@ import App2 from "./App2.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <AuthProvider>
-    {/* <App /> */}
-    <App2 />
+    <App />
+    {/* <App2 /> */}
   </AuthProvider>
 );
