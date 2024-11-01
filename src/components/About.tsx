@@ -5,7 +5,7 @@ import { GiStairs } from "react-icons/gi";
 
 const About: React.FC = () => {
   return (
-    <section className="text-lg bg-blue-100 py-6 px-10">
+    <section className="text-lg bg-white py-6 px-10">
       <h1 className="font-bold text-center text-3xl mb-8">About Us</h1>
       
       <div className="flex justify-between flex-col lg:flex-row items-center space-y-8 lg:space-y-0 lg:space-x-8">

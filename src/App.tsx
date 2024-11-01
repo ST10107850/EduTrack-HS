@@ -17,11 +17,15 @@ import { ParentDashboard } from "./components/ParentDashboard";
 import { Teachers } from "./components/Teachers";
 import MarksEntryTable from "./components/MarksEntryTable";
 import ParentComponent from "./components/ParentComponent";
+import Profile from "./Pages/ProfDetails";
+import Navbar2 from "./components/Navbar2";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   const { state } = useAuth();
 
   return (
+    <div className="font-serif bg-gradient-to-r  to-cyan-600 from-cyan-200">
     <Router>
       <Routes>
         {/* Public Routes */}
@@ -29,9 +33,9 @@ function App() {
         <Route path="/login" element={<><Navbar /><LoginForm /></>} />
         <Route path="/register" element={<><Navbar /><RegisterForm /></>} />
         <Route path="/mark-entry" element={<MarksEntryTable />} />
+        <Route path="/profDetails" element={<><Navbar2/><Sidebar/><Profile /></>} />
         {/* <Route path="/teacher" element={<Teachers />} />
         <Route path="/admin" element={<AdminDashboard />} /> */}
-
         {/* Protected Routes */}
         {state.isAuthenticated ? (
           <>
@@ -44,6 +48,7 @@ function App() {
         )}
       </Routes>
     </Router>
+    </div>
   );
 }
 

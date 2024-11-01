@@ -60,7 +60,7 @@ export const Contact = () => {
 
 
   return (
-    <div className="flex flex-col justify-center py-20 w-full text-gray-800">
+    <div className="bg-gray-300 flex flex-col justify-center py-20 w-full text-gray-800">
       <h1 className="text-center text-4xl uppercase font-bold text-secondaryColor ">
         Contact Us
       </h1>

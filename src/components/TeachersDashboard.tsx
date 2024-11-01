@@ -16,7 +16,7 @@ export const TeachersDashboard = () => {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col">
+    <div className="bg-gray-200 w-full h-screen flex flex-col">
       <Navbar2 toggleSidebar={toggleSidebar} isCollapsed={isCollapsed} />
       <div className="flex h-full">
         <Sidebar isCollapsed={isCollapsed} IsAdmin={false}/>

@@ -76,7 +76,7 @@ const Staff: React.FC = () => {
     };
 
     return (
-        <section className="bg-blue-50 py-12 px-8 md:px-20">
+        <section className="py-12 px-8 md:px-20">
             <h1 className="text-center text-4xl font-bold text-blue-800 mb-10">Hear From Our Teachers</h1>
             <div className="flex flex-col md:flex-row items-center md:space-x-12 space-y-8 md:space-y-0">
                 <div className="w-full md:w-1/2">

@@ -70,7 +70,7 @@ const LoginForm: React.FC = () => {
   const isFormFilled = values.email && values.password;
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white">
+    <div className="flex items-center justify-center min-h-screen">
       <form onSubmit={onSubmit} className="bg-white p-8 rounded shadow-md w-96">
         <h2 className="text-2xl font-bold text-center mb-4 text-primaryColor">
           Login

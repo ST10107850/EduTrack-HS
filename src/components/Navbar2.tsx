@@ -68,8 +68,19 @@
 // export default Navbar2;
 
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoNotificationsSharp } from "react-icons/io5";
+
+interface UserData {
+  id: string;
+  fullName: string;
+  emailAddress: string;
+  surname: string;
+  idNumber: string;
+  address: string;
+  phoneNumber: string;
+  learnerID: string;
+}
 
 interface NavbarProps {
   isCollapsed: boolean;
@@ -79,6 +90,24 @@ interface NavbarProps {
 const Navbar2: React.FC<NavbarProps> = ({ isCollapsed, toggleSidebar }) => {
   const [isNotificationsOpen, setNotificationsOpen] = useState(false);
   const [isProfileOpen, setProfileOpen] = useState(false);
+  const [userData, setUserData] = useState<UserData | null>(null);
+
+  useEffect(() => {
+    // Fetch data from the JSON file in the public directory
+    fetch("/data.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch user data");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Loaded user data:", data); // Log the fetched data
+        setUserData(data);
+      })
+      .catch((error) => console.error("Error fetching user data:", error));
+  }, []);
+
 
   const toggleNotifications = () => {
     setNotificationsOpen(!isNotificationsOpen);
@@ -91,7 +120,7 @@ const Navbar2: React.FC<NavbarProps> = ({ isCollapsed, toggleSidebar }) => {
   };
 
   return (
-    <nav className="flex items-center justify-between bg-white px-4 py-3 shadow-md fixed top-0 w-full z-10">
+    <nav className="flex items-center justify-between bg-purple-100 px-4 py-3 shadow-md fixed top-0 w-full z-10">
       {/* Logo and Hamburger Menu */}
       <div className="flex items-center space-x-3 pr-4 border-r border-gray-300">
         <button onClick={toggleSidebar} className="focus:outline-none">
@@ -148,14 +177,19 @@ const Navbar2: React.FC<NavbarProps> = ({ isCollapsed, toggleSidebar }) => {
             </div>
           )}
         </button>
-
         {/* Profile Button */}
         <div className="relative" onClick={toggleProfile}>
-          
           <div className="flex items-center space-x-1">
-          <img src="https://via.placeholder.com/30" alt="Profile" className="w-8 h-8 rounded-full" />
+            <img
+              src="https://via.placeholder.com/30"
+              alt="Profile"
+              className="w-8 h-8 rounded-full"
+            />
             <div>
-              <span className="text-sm font-medium text-gray-700">Cody Cubes</span>
+              <span className="text-sm font-medium text-gray-700">
+                {userData ? `${userData.fullName} ${userData.surname}` : "Guest User"}
+              </span>
+
               <span className="text-xs text-gray-500 block">Free Plan</span>
             </div>
             <svg
@@ -165,15 +199,19 @@ const Navbar2: React.FC<NavbarProps> = ({ isCollapsed, toggleSidebar }) => {
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </div>
-
           {isProfileOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-20">
               <div className="p-4">
                 <h4 className="font-semibold">Profile</h4>
-                <div className="py-1">Profile Details</div>
+                <a href="/profDetails" className="py-1">Profile Details</a>
                 <button className="text-red-500 hover:underline">Sign Out</button>
               </div>
             </div>
