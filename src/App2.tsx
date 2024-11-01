@@ -6,8 +6,10 @@ import Section2 from './newComponents/MeetOurStaff';
 import Section3 from './newComponents/Section3';
 import MeetOurStaff from './newComponents/MeetOurStaff';
 import DashboardLayout from './Layout/DashboardLayout';
+import { useState } from 'react';
 
 const App2: React.FC = () => {
+  const [userType, setUserType] = useState<string>("teachers");
   return (
     <>
       <Navbar3 />
@@ -38,7 +40,7 @@ const App2: React.FC = () => {
 
 
 
-      <DashboardLayout />
+      {/* <DashboardLayout userType={userType} /> */}
     </>
   );
 }
