@@ -30,8 +30,24 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<AuthLayout />} />
-        <Route path="/login" element={<><Navbar /><LoginForm /></>} />
-        <Route path="/register" element={<><Navbar /><RegisterForm /></>} />
+        <Route
+          path="/login"
+          element={
+            <>
+              <Navbar />
+              <LoginForm />
+            </>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <>
+              <Navbar />
+              <RegisterForm />
+            </>
+          }
+        />
         <Route path="/mark-entry" element={<MarksEntryTable />} />
         <Route path="/view-user/:userId" element={<ViewResults />} />
         {/* <Route path="/teacher" element={<Teachers />} />
@@ -41,8 +57,18 @@ function App() {
         {state.isAuthenticated ? (
           <>
             <Route path="/parent-dashboard/*" element={<ParentDashboard />} />
-            <Route path="/teachers-dashboard/*" element={<TeachersDashboard />} />
-            <Route path="/admin-dashboard/*" element={<ErrorBoundary><DashboardLayout /></ErrorBoundary>} />
+            <Route
+              path="/teachers-dashboard/*"
+              element={<TeachersDashboard />}
+            />
+            <Route
+              path="/admin-dashboard/*"
+              element={
+                <ErrorBoundary>
+                  <DashboardLayout />
+                </ErrorBoundary>
+              }
+            />
           </>
         ) : (
           <Route path="*" element={<Navigate to="/" />} />

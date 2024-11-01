@@ -1,13 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Sidebar2 from '../newComponents/dashboardComponents/Sidebar2';
-import Greeting from '../newComponents/dashboardComponents/Greeting';
-import UserTable from '../newComponents/dashboardComponents/UserTable';
-import { FaChevronDown } from 'react-icons/fa';
-import { GrNotification } from 'react-icons/gr';
-import { BiUser } from 'react-icons/bi';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import Sidebar2 from "../newComponents/dashboardComponents/Sidebar2";
+import Greeting from "../newComponents/dashboardComponents/Greeting";
+import UserTable from "../newComponents/dashboardComponents/UserTable";
+import { FaChevronDown } from "react-icons/fa";
+import { GrNotification } from "react-icons/gr";
+import { BiUser } from "react-icons/bi";
 import data from "../data/data.json"; // Load notifications data
-import { FaEllipsis } from 'react-icons/fa6';
+import { FaEllipsis } from "react-icons/fa6";
+import { AuthProvider } from "../context/AuthContext"; // Assuming AuthProvider is in context directory
+import { Routes, Route } from "react-router-dom";
+// import TeachersList from "./TeachersList"; // Import the required components
+// import LearnersList from "./LearnersList";
+import { Dashboard1 } from "./Dashboard1";
+import { LearnersList } from "./LearnersList";
+import { TeachersList } from "./TeachersList";
 
 const DashboardLayout: React.FC = () => {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -18,10 +25,10 @@ const DashboardLayout: React.FC = () => {
 
   const loggedInUser = { name: "Tshepo" }; // Replace with dynamic user data as needed
 
-  // const handleSignOut = () => {
- 
-  //   navigate('/login'); 
-  // };
+  const handleSignOut = () => {
+    // Implement your sign out logic here
+    navigate('/login');
+  };
 
   const handleClickOutside = (event: MouseEvent) => {
     if (
@@ -42,18 +49,15 @@ const DashboardLayout: React.FC = () => {
   const totalTeachers = data.teachers ? data.teachers.length : 0;
   const totalParents = data.parents ? data.parents.length : 0;
 
-  
-
   return (
     <div className="flex">
       <Sidebar2 title="EduTrackHS" />
 
       <main className="flex-1 py-10 text-tertiaryColor bg-beigeLight p-8">
         <div className="flex justify-end mb-4 space-x-4">
-          
           {/* Notification button */}
           <div ref={notificationsRef} className="relative">
-            <button 
+            <button
               onClick={() => setShowNotifications(!showNotifications)}
               className="flex items-center space-x-2 bg-white p-2 rounded-lg shadow-md hover:bg-gray-100 transition"
             >
@@ -69,26 +73,21 @@ const DashboardLayout: React.FC = () => {
                   {data.schoolNews.map((newsItem, index) => (
                     <li key={index} className="flex items-start p-2 bg-gray-50 rounded-lg">
                       <div className="mr-3">
-                        <img
-                          src={newsItem.image} 
-                          alt=""
-                          className="w-10 h-10 rounded-full"
-                        />
-       </div>
-       <div className="flex-1 text-orange-400">
-         <p className="text-sm font-semibold">{newsItem.title}</p>
-         <p className="text-xs">
-    {newsItem.description.length > 100
-      ? `${newsItem.description.substring(0, 100)}... `
-      : newsItem.description}
-    {newsItem.description.length > 100 && (
-      <span className="text-black cursor-pointer">Read more</span>
-    )}
-  </p>
-         <p className="text-xs text-black  mt-1">1 Day Ago</p>
-       </div>
-
-     </li>
+                        <img src={newsItem.image} alt="" className="w-10 h-10 rounded-full" />
+                      </div>
+                      <div className="flex-1 text-orange-400">
+                        <p className="text-sm font-semibold">{newsItem.title}</p>
+                        <p className="text-xs">
+                          {newsItem.description.length > 100
+                            ? `${newsItem.description.substring(0, 100)}... `
+                            : newsItem.description}
+                          {newsItem.description.length > 100 && (
+                            <span className="text-black cursor-pointer">Read more</span>
+                          )}
+                        </p>
+                        <p className="text-xs text-black mt-1">1 Day Ago</p>
+                      </div>
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -97,7 +96,7 @@ const DashboardLayout: React.FC = () => {
 
           {/* Profile button */}
           <div ref={profileRef} className="relative">
-            <button 
+            <button
               onClick={() => setShowProfile(!showProfile)}
               className="flex items-center space-x-2 bg-white p-2 rounded-lg shadow-md hover:bg-gray-100 transition"
             >
@@ -110,8 +109,8 @@ const DashboardLayout: React.FC = () => {
             {showProfile && (
               <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg p-4 z-10">
                 <p className="font-medium">{loggedInUser.name}</p>
-                <button 
-                  // onClick={handleSignOut}
+                <button
+                  onClick={handleSignOut}
                   className="text-sm text-red-600 hover:underline mt-2"
                 >
                   Sign Out
@@ -125,18 +124,27 @@ const DashboardLayout: React.FC = () => {
 
         <div className="grid md:grid-cols-3 text-tertiaryColor grid-cols-1 gap-4 mt-8 mb-8 w-3/4">
           <div className="p-4 rounded shadow">
-            <h3 className="text-lg font-light">Total Number Of Active Users</h3>
-            <p className="text-2xl">100</p>
+            <h3 className="text-lg font-light">Total Number Of Learners</h3>
+            <p className="text-2xl">{totalLearners}</p>
           </div>
           <div className="p-4 rounded shadow">
             <h3 className="text-lg font-light">Total Number Of Teachers</h3>
-            <p className="text-2xl">20</p>
+            <p className="text-2xl">{totalTeachers}</p>
           </div>
           <div className="bg-transparent p-4 rounded shadow">
             <h3 className="text-lg font-light">Total Number Of Parents</h3>
-            <p className="text-2xl">80</p>
+            <p className="text-2xl">{totalParents}</p>
           </div>
         </div>
+
+        <AuthProvider>
+          <Routes>
+            <Route path="admin-dashboard" element={<Dashboard1 />} />
+            <Route path="/" element={<Dashboard1 />} />
+            <Route path="teachers" element={<TeachersList />} />
+            <Route path="learners" element={<LearnersList />} />
+          </Routes>
+        </AuthProvider>
 
         <UserTable />
       </main>

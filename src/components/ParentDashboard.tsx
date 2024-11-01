@@ -17,9 +17,9 @@ export const ParentDashboard = () => {
 
   return (
     <div className="w-full h-screen flex flex-col">
-      <Navbar2 toggleSidebar={toggleSidebar} isCollapsed={isCollapsed} />
+      {/* <Navbar2 toggleSidebar={toggleSidebar} isCollapsed={isCollapsed} /> */}
       <div className="flex h-full">
-        <Sidebar isCollapsed={isCollapsed} IsAdmin={false}/>
+        <Sidebar />
         <main className={`transition-all duration-300 p-4 ${isCollapsed ? 'ml-16' : 'ml-64'} w-full`}>
           <Routes>
             {/* Default Route */}
