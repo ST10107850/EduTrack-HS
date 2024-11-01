@@ -32,7 +32,7 @@ function App() {
       {/* <ErrorBoundary> */}
         <Routes>
           {/* Public Routes */}
-          <Route path="/" element={<AuthLayout />} />
+          <Route path="/" element={<AdminDashboard />} />
           <Route
             path="/login"
             element={
