@@ -56,18 +56,9 @@ const DashboardTeacher = () => {
 
         <div className="flex flex-col md:flex-row w-full justify-between space-x-6 space-y-6">
           
-          <div className="flex flex-col items-center w-full space-y-6">
-            <div className="w-full bg-white shadow-lg rounded-lg p-4">
+          <div className="flex items-center w-full space-y-6">
+            <div className="w-full bg-white shadow-lg rounded-lg p-4 ">
               <SubjectsLists teacher={currentTeacher} grades={teacherGrades} />
-            </div>
-            
-          </div>
-
-          
-          <div className="flex flex-col items-center w-full md:w-[30%] space-y-6">
-            <div className="bg-white w-full shadow-lg rounded-lg p-4 justify-center flex flex-col">
-              <h2 className="text-xl font-semibold text-center mb-4">Calendar</h2>
-              <Calendar onChange={handleDateChange} value={date} className="w-full" />
             </div>
             
           </div>
