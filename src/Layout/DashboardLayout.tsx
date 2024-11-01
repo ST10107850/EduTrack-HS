@@ -6,8 +6,14 @@ import StatusCards from '../newComponents/dashboardComponents/StatusCards';
 import { FaChevronDown } from 'react-icons/fa';
 import { BiUser } from 'react-icons/bi';
 import UserTable from '../newComponents/dashboardComponents/UserTable';
+import data from"../data/data.json";
 
 const Dashboard: React.FC = () => {
+
+  const totalLearners = data.learners ? data.learners.length : 0;
+  const totalTeachers = data.teachers ? data.teachers.length : 0;
+  const totalParents = data.parents ? data.parents.length : 0;
+
   return (
     <div className="flex">
       <Sidebar2 title="EduTrackHS" />
@@ -40,16 +46,16 @@ const Dashboard: React.FC = () => {
 
         <div className=" grid md:grid-cols-3 text-tertiaryColor grid-cols-1 gap-4 mt-8 mb-8 w-3/4">
         <div className=" p-4  rounded shadow">
-          <h3 className="text-lg font-light">Total Number Of Active Users</h3>
-          <p className="text-2xl">100</p>
+          <h3 className="text-lg font-light">Total Number Of Learners</h3>
+          <p className="text-2xl">{totalLearners}</p>
         </div>
         <div className=" p-4 rounded shadow">
           <h3 className="text-lg font-light">Total Number Of Teachers</h3>
-          <p className="text-2xl">20</p>
+          <p className="text-2xl">{totalTeachers}</p>
         </div>
         <div className="bg-transparent p-4 rounded shadow ">
           <h3 className="text-lg font-light">Total Number Of Parents</h3>
-          <p className="text-2xl">80</p>
+          <p className="text-2xl">{totalParents}</p>
         </div>
 
        
