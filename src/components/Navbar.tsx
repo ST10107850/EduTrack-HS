@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BiUserCircle } from "react-icons/bi";
-import { BiUserCircle } from "react-icons/bi";
+// import { BiUserCircle } from "react-icons/bi";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { CiSearch } from "react-icons/ci";
 import { MdNotificationsNone, MdAccountCircle } from "react-icons/md";
@@ -9,14 +9,13 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
-export const Navbar = ({ isAuthenticated }) => {
+
 export const Navbar = ({ isAuthenticated }) => {
   const [activeTab, setActiveTab] = useState("home");
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [isProfileMenuOpened, setIsProfileMenuOpened] = useState(false);
-  const [isProfileMenuOpened, setIsProfileMenuOpened] = useState(false);
 
-  const handleTabClick = (tab) => {
+  
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
@@ -29,9 +28,6 @@ export const Navbar = ({ isAuthenticated }) => {
     setIsProfileMenuOpened(!isProfileMenuOpened);
   };
 
-  const toggleProfileMenu = () => {
-    setIsProfileMenuOpened(!isProfileMenuOpened);
-  };
 
   return (
     <div className="backdrop-blur-md fixed shadow-xl top-0 right-0 left-0 z-50 transition-colors px-10 rounded-full bg-gradient-to-r from-cyan-200 via-teal-200 bg-opacity-50">
@@ -146,8 +142,9 @@ export const Navbar = ({ isAuthenticated }) => {
               </div>
             )}
           </div>
-            )}
-          </div>
+          
+            {/* )} */}
+          
 
           {/* Mobile Menu Button */}
           <button
