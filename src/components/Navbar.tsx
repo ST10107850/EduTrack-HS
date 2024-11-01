@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BiUserCircle } from "react-icons/bi";
+import { BiUserCircle } from "react-icons/bi";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { CiSearch } from "react-icons/ci";
 import { MdNotificationsNone, MdAccountCircle } from "react-icons/md";
@@ -9,16 +10,23 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 export const Navbar = ({ isAuthenticated }) => {
+export const Navbar = ({ isAuthenticated }) => {
   const [activeTab, setActiveTab] = useState("home");
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [isProfileMenuOpened, setIsProfileMenuOpened] = useState(false);
+  const [isProfileMenuOpened, setIsProfileMenuOpened] = useState(false);
 
+  const handleTabClick = (tab) => {
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
   const toggleMenuBar = () => {
     setIsMenuOpened(!isMenuOpened);
+  };
+
+  const toggleProfileMenu = () => {
+    setIsProfileMenuOpened(!isProfileMenuOpened);
   };
 
   const toggleProfileMenu = () => {
@@ -138,6 +146,8 @@ export const Navbar = ({ isAuthenticated }) => {
               </div>
             )}
           </div>
+            )}
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -177,6 +187,7 @@ export const Navbar = ({ isAuthenticated }) => {
             </li>
             <li className="hover:rounded-md hover:text-secondaryColor">
               <Link
+                to="/contact"
                 to="/contact"
                 onClick={() => handleTabClick("contact")}
                 className={`${activeTab === "contact"

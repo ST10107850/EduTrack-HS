@@ -3,8 +3,6 @@ import data from "../data/data.json";
 import {  Link, useNavigate } from "react-router-dom";
 
 export const ManageUsers = ({ userType }: { userType: string }) => {
-
-
   type User = { 
     id: string; 
     fullName: string; 
@@ -35,12 +33,6 @@ export const ManageUsers = ({ userType }: { userType: string }) => {
   const displayedUsers = userType === "teachers" ? teachers : learners;
   const setUsers = userType === "teachers" ? setTeachers : setLearners;
 
-  // const handleAddNew = () => {
-  //   setIsAdding(true);
-  //   setNewUser({ id: '', fullName: '', phoneNumber: 0, emailAddress: '', address: '', password: '' });
-  // };
-
-
   const navigate = useNavigate();
   const handleAddNew = () => {
     if (userType === "teachers") {
@@ -52,23 +44,28 @@ export const ManageUsers = ({ userType }: { userType: string }) => {
 
   const handleSaveNewUser = () => {
     const updatedUsers = [...displayedUsers, { ...newUser, id: Date.now().toString() }];
-    if (userType === "teachers") {
-      setTeachers(updatedUsers);
-    } else {
-      setLearners(updatedUsers);
-    }
+    setUsers(updatedUsers);
     setIsAdding(false);
   };
 
   const handleEditUser = (index: number) => {
     setEditingIndex(index);
+    setNewUser(displayedUsers[index]); // Set the newUser to the current user's data
   };
 
   const handleSaveEditUser = (index: number) => {
     const updatedUsers = [...displayedUsers];
-    updatedUsers[index] = newUser;
+    updatedUsers[index] = { ...newUser }; // Ensure you're updating with newUser data
     setUsers(updatedUsers);
     setEditingIndex(null);
+    setNewUser({
+      id: '',
+      fullName: '',
+      phoneNumber: 0,
+      emailAddress: '',
+      address: '',
+      password: '',
+    });
   };
 
   const handleDeleteUser = (index: number) => {
@@ -80,7 +77,7 @@ export const ManageUsers = ({ userType }: { userType: string }) => {
   };
 
   return (
-    <div className="relative flex flex-col md:my-0 my-12 justify-center items-center md:h-[90vh] text-gray-800">
+    <div className="relative  flex flex-col md:my-0 my-12 justify-center items-center md:h-[90vh] text-gray-800">
       <h1 className="text-5xl mx-7 md:mx-0 text-secondaryColor mb-16 font-bold">
         Showing Results For "{userType}"
       </h1>

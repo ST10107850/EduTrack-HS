@@ -66,6 +66,13 @@ export const loginUser = async (email: string, password: string): Promise<User &
         if (users.length > 0) return { ...users[0], role: 'admin' };
     }
 
+    response = await fetch(`${ADMIN_API_URL}?email=${email}&password=${password}`);
+    
+    if (response.ok) {
+        const users = await response.json();
+        if (users.length > 0) return { ...users[0], role: 'admin' };
+    }
+
     // If not found in either parents or teachers, throw an error
     throw new Error("Invalid credentials");
 };
